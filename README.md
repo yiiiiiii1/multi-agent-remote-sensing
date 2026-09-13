@@ -10,7 +10,7 @@
 ## 目录结构
 
 ```text
-多智能体遥感调研/
+multi-agent-remote-sensing/
 ├── README.md          # 本文件：方向总览与学习路线
 ├── papers/            # 论文 PDF
 ├── notes/             # 论文精读笔记

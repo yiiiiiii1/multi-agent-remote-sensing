@@ -29,6 +29,10 @@ cp .env.example .env
 ```bash
 bash run_demo.sh 01   # 最小双智能体（手动流水线）
 bash run_demo.sh 02   # RolePlaying 自动双智能体对话
+bash run_demo.sh 09   # 工具调用 + 文件传递
+bash run_demo.sh 10   # Tavily 联网检索 + 文件传递
+bash run_demo.sh 11   # Workforce 多智能体自动分工
+bash run_demo.sh 12   # 多智能体辩论（对抗场景）
 ```
 
 ## 3. 已完成实验
@@ -40,6 +44,24 @@ bash run_demo.sh 02   # RolePlaying 自动双智能体对话
 ### 02 RolePlaying 双智能体
 用 CAMEL 内置 `RolePlaying`，AI User 与 AI Assistant 围绕同一任务自动多轮对话，直到完成或终止。
 重点看 `session.init_chat()` 和 `session.step(...)`。
+
+### 11 Workforce 多智能体分工
+用 `Workforce`（AUTO_DECOMPOSE）建 3 个 worker，协调者自动把任务拆成 4 个子任务并分配、
+处理依赖后汇总。重点看日志树与 KPI。详见 `11_workforce分工_日志.md`。
+
+### 12 多智能体辩论
+用 `RolePlaying` 让正方（Assistant）与反方（User）辩论 3 轮，再由裁判 Agent 汇总。
+对抗场景，对应综述 3.4.3。详见 `12_多智能体辩论_日志.md`。
+
+### 09 工具调用与文件传递
+3 个 Agent 各带不同工具（自定义 `@tool()` + 官方 `FileToolkit`），通过
+`rainfall.csv` → `analysis.md` → `report.md` 传递文件。详见 `09_工具调用与文件传递_日志.md`。
+
+### 10 联网检索与文件传递
+用 Tavily 联网获取**真实网页数据**。3 个 Agent 产物形态刻意区分：
+检索员写结果清单、分析员出**系统对比表 + 来源可信度分级**、报告员出**决策简报**。
+文件链路 `web_notes.md` → `web_analysis.md` → `web_report.md`。
+需要 `.env` 里的 `TAVILY_API_KEY`。详见 `10_联网检索与文件传递_日志.md`。
 
 ## 4. 第一次修改任务
 

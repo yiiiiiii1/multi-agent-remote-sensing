@@ -31,7 +31,8 @@
 
 ## 阶段 1：单智能体核心机制（先把一个 Agent 吃透）
 
-- [ ] 03 RolePlaying + Critic（消融：有 / 无 critic 对比）
+- [x] 03 ~~RolePlaying + Critic（消融：有 / 无 critic 对比）~~
+      **跳过**：DeepSeek 只支持 n=1，官方 critic 依赖多候选择优，不可用。
       参考 `examples/ai_society/role_playing_with_critic.py`
 - [ ] 04 角色自动生成：Role Description / Persona（Profile 模块）
       参考 `examples/role_description/role_generation.py`
@@ -49,7 +50,9 @@
 - [ ] 08 多模态感知：图像分析（Perception 模块）
       参考 `examples/vision/image_analysis.py`
 - [ ] 09 自定义 FunctionTool + 代码执行（Action 模块）
-      参考 `examples/toolkits/function_tool_example.py`、`examples/interpreters/`
+      参考 `examples/toolkits/function_tool_example.py`、`examples/toolkits/file_toolkit.py`
+      代码已就绪：`experiments/09_工具调用与文件传递.py`（3 个 Agent 各带不同工具，
+      通过 rainfall.csv / analysis.md / report.md 传递文件；待运行）
 - [ ] 10 RAG：给单智能体接检索增强（知识利用）
       参考 `examples/rag/single_agent_with_hybrid_rag.py`
 
@@ -57,10 +60,12 @@
 
 ## 阶段 3：多智能体协作（从"两个 Agent 对话"升级到"团队"）
 
-- [ ] 11 Workforce 基础：多个 worker 自动分工
+- [x] 11 Workforce 基础：多个 worker 自动分工
       参考 `examples/workforce/multiple_single_agents.py`
-- [ ] 12 多智能体辩论（对抗场景，综述 3.4.3）
-      可基于 `examples/ai_society/role_playing_with_critic.py` 改造
+      日志：`11_workforce分工_日志.md`
+- [x] 12 多智能体辩论（对抗场景，综述 3.4.3）
+      基于 `examples/ai_society/role_playing.py` 的 RolePlaying + 裁判改造
+      日志：`12_多智能体辩论_日志.md`
 
 ---
 
@@ -96,3 +101,12 @@
 1. 代码文件：`experiments/XX_名称.py`
 2. 运行记录：`experiments/XX_名称_日志.md`
 3. 在 `experiments/README.md` 登记命令与观察要点
+
+## 补充：工具类实验（已运行，有日志）
+
+- `09_工具调用与文件传递.py`：3 个 Agent 各带不同工具（自定义 @tool + 官方
+  FileToolkit），通过 rainfall.csv / analysis.md / report.md 传递文件。
+  日志：`09_工具调用与文件传递_日志.md`
+- `10_联网检索与文件传递.py`：用 Tavily 联网获取**真实网页数据**，
+  检索员→分析员→报告员，通过 web_notes.md / web_analysis.md / web_report.md 传递。
+  日志：`10_联网检索与文件传递_日志.md`

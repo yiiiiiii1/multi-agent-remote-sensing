@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Optional
 
 from camel.models import ModelFactory
 from camel.types import ModelPlatformType
@@ -15,8 +16,44 @@ except ImportError:  # pragma: no cover - only used before optional setup
     load_dotenv = None
 
 
-CAMEL_ROOT = Path(__file__).resolve().parents[2] / "clones" / "camel"
 ENV_FILE = Path(__file__).with_name(".env")
+
+# 先把本地 .env 读进来（其中可能包含 CAMEL_ROOT）。
+if load_dotenv is not None:
+    load_dotenv(ENV_FILE, override=False)
+
+
+def resolve_camel_root() -> Optional[Path]:
+    """定位 CAMEL 源码克隆目录。
+
+    顺序：
+      1. 环境变量 CAMEL_ROOT（可写在 .env 或终端里）；
+      2. 相对本文件向上几层的常见位置；
+      3. home 目录下的常见位置。
+    找到含 ``camel/__init__.py`` 的目录即返回。
+    """
+    candidates = []
+
+    env_root = os.getenv("CAMEL_ROOT")
+    if env_root:
+        candidates.append(Path(env_root).expanduser())
+
+    here = Path(__file__).resolve()
+    for parent in here.parents[:4]:
+        candidates.append(parent / "clones" / "camel")
+
+    candidates += [
+        Path.home() / "Documents" / "Code" / "clones" / "camel",
+        Path.home() / "clones" / "camel",
+    ]
+
+    for candidate in candidates:
+        if (candidate / "camel" / "__init__.py").exists():
+            return candidate
+    return None
+
+
+CAMEL_ROOT = resolve_camel_root()
 
 
 @dataclass(frozen=True)
@@ -28,7 +65,9 @@ class DemoConfig:
 
 def load_demo_config() -> DemoConfig:
     """Load local .env first, then fall back to the current shell."""
-    env_file = ENV_FILE if ENV_FILE.exists() else CAMEL_ROOT / ".env"
+    env_file = ENV_FILE
+    if not env_file.exists() and CAMEL_ROOT is not None:
+        env_file = CAMEL_ROOT / ".env"
     if load_dotenv is not None:
         load_dotenv(env_file, override=False)
 
@@ -36,7 +75,7 @@ def load_demo_config() -> DemoConfig:
     if not api_key:
         raise RuntimeError(
             "没有找到模型 API key。请把 DEEPSEEK_API_KEY=你的_API_KEY "
-            f"写入 {env_file}，或先在终端设置 DEEPSEEK_API_KEY。"
+            f"写入 {ENV_FILE}，或先在终端设置 DEEPSEEK_API_KEY。"
         )
 
     return DemoConfig(

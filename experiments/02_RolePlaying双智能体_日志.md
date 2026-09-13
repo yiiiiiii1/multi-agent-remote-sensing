@@ -11,7 +11,7 @@
 | 实验编号 | 02 |
 | 实验名称 | RolePlaying 双智能体自动对话 |
 | 参考示例 | `clones/camel/examples/ai_society/role_playing.py` |
-| 实验代码 | `多智能体遥感调研/experiments/02_RolePlaying双智能体.py` |
+| 实验代码 | `multi-agent-remote-sensing/experiments/02_RolePlaying双智能体.py` |
 | 运行命令 | `bash run_demo.sh 02` |
 | 模型 | DeepSeek `deepseek-chat` |
 | 接口地址 | `https://api.deepseek.com` |
