@@ -31,6 +31,50 @@
 - **Orchestrator（编排者）**：接收用户请求 → 分解成子任务 → 为每个子任务生成清晰提示 → **安排执行顺序**（例如必须先 load 再 filter）。
 - **专职 Sub-agents**：每个子任务交给一个专职 Agent，各自持有自己的**专属工具集**。
 
+### 编排到底怎么编（论文原话拆解）
+
+论文原文（III. Methodology · Orchestrator）：
+
+> Our scheduling follows **compositional reasoning** to devise **program-like schedules in natural language**, which specify **the sequential set of agents to execute the task and their (sub)prompts**. Execution follows the prescribed schedule, and the Orchestrator **aggregates return messages to check task completion**. **If incomplete, the schedule is revised and the loop is repeated**.
+
+拆成三步：
+
+1. **编排者生成"排班表"**：不是让 Agent 自由聊天，而是直接产出一段**程序式排班表**——哪些 Agent、按什么顺序、每个的提示词是什么。
+2. **按表执行**：轮到谁，谁就跑自己的工具集，跑完把结果消息**交回编排者**（Agent 之间不直接通信）。
+3. **闭环**：编排者汇总所有返回消息，检查任务完成没。没完成就**改排班表重跑**；完成则把最终结果和更新后的地图返回用户。
+
+**论文给的完整例子**（用户："从 2024 年 NDVI 数据，推荐 Brisbane 的轮作区域并在图上显示"）：
+
+```
+schedule = [ Database  (Load NDVI..),
+             DataOps   (Filter Brisbane),
+             Agriculture (Recommend crop rotation areas based on ..),
+             Map       (Plot..) ]
+```
+
+四个要点：**顺序由编排者定**（load 必须先于 filter）、**每个 Agent 只拿到自己的 sub-prompt**、**每个 Agent 只管自己的动作空间**（农业 Agent 的工具里直接有"基于低 NDVI 聚类推荐轮作"，不需要自己加载 NDVI 数据）、**Agent 之间零通信**。
+
+### 它的协作方式：中心化 · 星形 · 零 Agent 间通信
+
+**这是本卡片最容易被追问、也最能体现读懂的一点**：GeoLLM-Squad 严格说**不是"多个 Agent 一起商量"，而是"一个调度器写程序、一堆执行单元按序跑"**——本质是把单体 Agent 的上下文压力**拆开**，不是把智能拆开。
+
+| 系统 | Agent 之间通信吗 | 协调靠什么 |
+|---|---|---|
+| CAMEL | 是（点对点双 Agent） | 角色设定 |
+| ChatDev | 是（对话链） | Chat Chain |
+| MetaGPT | 是（发布订阅共享池） | SOP |
+| AutoGen | 是（可编程拓扑） | 开发者定义 |
+| AgentVerse | 是（讨论 + 评审） | recruiter + 评估反馈 |
+| **GeoLLM-Squad** | **否** | **编排者的排班表 + 完成度检查** |
+
+**两个容易被说错的术语**（讲的时候要分清）：
+1. **是星形，不是层级**。严格意义的"层级结构"指多层（组长管组员、主管管组长）；GeoLLM-Squad 只有**一层**——编排者在顶，7 个 Agent **平级**在下面，谁也不管谁。真正算多层的是 MetaGPT（PM→架构师→项目经理→工程师→QA）和 MacNet 的 Layer 拓扑。
+2. **是调度员，不是主管**。编排者有**调度权**（谁先跑、谁后跑、给什么提示词），但没有**管理权**——不能改 Agent 职责、不能招人、不能开除人、不能让 Agent 互相商量。对比 AgentVerse：那里有**真的 HR**，会按任务现场招人、淘汰不合格的人；GeoLLM-Squad 的 7 个 Agent 是**写死的名单**。
+
+**纠错粒度：事后，最粗**。一轮内部 Agent 跑完只把 message 交回编排者，编排者**不中途干预**；只有**整条流水线跑完**才检查完成度并决定是否重排。对比：AgentVerse 有 evaluation Agent 在**执行前**把关，MetaGPT 有**可执行反馈**（跑测试读错误）。GeoLLM-Squad 的纠错发生在事后，粒度最粗——编排者一旦排错顺序，整条链就错了，**没有 Agent 能中途纠正**。
+
+**它买的是"隔离"**：521 个 API 工具被分散到各专职 Agent，每个 Agent 上下文里只装自己那几个工具——**这正是它能扛住"超过 3 个领域"的原因**（单 Agent 就是在这里崩的）。代价则是上述的纠错粒度粗、强依赖编排者能力（论文自己承认这是瓶颈）。
+
 ### 六类 Agent（Figure 1）
 | Agent | 职责 |
 |---|---|
@@ -53,8 +97,9 @@
 建在两套开源框架上：**GeoLLM-Engine 当前端**（交互式地图 UI + 对话式功能 + API 工具），**AutoGen 当后端**（LLM function-calling 实现多智能体通信与编排）。**这和卡片 A3 的 AutoGen 直接串起来了**。
 
 ### 对着图怎么讲
-- **Figure 1**：底部一排是六类专职 Agent 的对话示例（Map/UI、GeoDataOps、DatabaseOps、Agriculture、Climate、Urban、Forestry、Satellite Vision），右下角是 GeoLLM-Squad 的编排器。**这张图讲"任务怎么被拆给不同专家"**。
+- **Figure 1**：底部一排是各类专职 Agent 的对话示例（Map/UI、GeoDataOps、DatabaseOps、Agriculture、Climate、Urban、Forestry、Satellite Vision），右下角是 GeoLLM-Squad 的编排器。**这张图讲"任务怎么被拆给不同专家"**。
 - **Figure 2**：左半边是五个任务上各方法的正确率柱状图；右半边是关键——**任务数从 1 增加到 5 时各方法的正确率曲线**。
+- **讲图时补一句**：图里每个 Agent 都在和用户/自己对话，看起来像"多个 Agent 在协作"；但实现上**每个 Agent 只跟编排者交换消息**，Agent 之间没有边——**图上看不到连线，因为没有连线**。
 
 ![GeoLLM-Squad Figure 1 多智能体地理空间 Copilot](../figures/geollm_arch.png)
 *Figure 1｜六类专职 Agent + 编排器，建在 AutoGen 与 GeoLLM-Engine 之上。来源：arXiv:2501.16254, p.2*
@@ -129,3 +174,5 @@
 
 ## 一句话总结
 GeoLLM-Squad 把"编排"从"求解"里拆出来，用专职 sub-agent 分摊工具集，在真实遥感工作流上把正确率从 43% 提到 **60%（+17%）**；更关键的是它证明了**多智能体的优势不在单任务更强，而在任务复杂度增长时不崩**——这正好给了我的"用多智能体纠偏遥感模型"一个可引用的量化依据。
+
+**协作方式一句话**：它不是"多个 Agent 一起商量"，而是**一个调度员（编排者）写排班表、一圈平级执行者按序跑、Agent 之间零通信、事后才纠错**——本质是把单体 Agent 的**上下文压力**拆开，而不是把智能拆开。
