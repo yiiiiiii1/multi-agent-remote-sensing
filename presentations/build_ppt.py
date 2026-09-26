@@ -321,8 +321,8 @@ def p_results_split(prs, page, p):
         rect(s, x, y + Inches(0.04), Inches(0.06), Inches(0.3), fill=color)
         tf = _p(s, x + Inches(0.16), y, half - Inches(0.16), Inches(0.32))
         _run(tf.paragraphs[0], title, size=13.5, bold=True, color=color)
-        bullets(s, x, y + Inches(0.44), half, Inches(2.1), items, size=11.5, gap=7)
-    top = y + Inches(2.72)
+        bullets(s, x, y + Inches(0.42), half, Inches(1.85), items, size=11.5, gap=6)
+    top = y + Inches(2.32)
     f, c = p["results"]["items"][0]
     figure(s, f, M, top, SW - 2 * M, SH - Inches(0.72) - top, c)
     return s
@@ -454,19 +454,12 @@ PAPERS = [
             ],
             figs=[("autogen_overview.png", "Figure 1 左：Agent 定制；中：灵活对话模式；右：完整对话实例（p.1）")]),
         results=dict(
-            headline="六类应用端到端验证；加入 grounding agent 带来明显增益",
-            main=[
-                "用 AutoGen 搭了六个应用：数学求解、RAG 问答、ALFWorld 具身任务、多智能体编码、动态群聊、对话式国际象棋。",
-                "ALFWorld：加入 grounding agent 后平均带来约 15% 的性能提升。",
-                "检索：交互式检索优于一次性静态注入。",
-                "国际象棋：把规则校验独立成 board agent，比塞进玩家 Agent 更可靠。",
-            ],
-            abl=[
-                "grounding agent 在关键节点提供背景常识，阻止系统沿错误计划继续，避免错误循环。",
-                "群聊在需要多视角时优于双 Agent 对话，说明拓扑要按任务选。",
-            ],
-            items=[("autogen_fig4.png", "Figure 4 四个应用的结果（AutoGen, p.7）")],
-            full=False)),
+            headline="六个应用都跑通；ALFWorld 加入 grounding agent 后平均 +15%",
+            items=[("autogen_fig4_top.png",
+                    "Figure 4(a)(b) 数学问题求解（左）与检索增强问答（右）（p.7）"),
+                   ("autogen_fig4_bottom.png",
+                    "Figure 4(c)(d) ALFWorld 具身任务（左）与 OptiGuide 编码任务（右）（p.7）")],
+            full=True)),
 
     dict(
         name="ChatDev", accent=TEAL, section="协作机制",
