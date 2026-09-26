@@ -12,6 +12,9 @@ env/
 # 系统
 .DS_Store
 
+# 编辑器本地配置
+.vscode/
+
 # 汇报材料（不上传）
 presentations/
 

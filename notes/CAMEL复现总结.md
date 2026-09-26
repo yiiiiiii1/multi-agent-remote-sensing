@@ -5,6 +5,9 @@
 
 ---
 
+![CAMEL Figure 1 角色扮演框架](../figures/camel_framework.png)
+*Figure 1｜CAMEL 角色扮演流程：人类给出想法 + 分配角色 → Task Specifier 生成具体任务 → AI User 与 AI Assistant 多轮协作。来源：CAMEL, NeurIPS 2023, p.4*
+
 ## 汇报摘要
 
 本阶段围绕 CAMEL 完成了**机制级复现**与**遥感落地验证**两条线：

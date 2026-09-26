@@ -10,6 +10,9 @@
 - 官方代码：<https://github.com/FoundationAgents/MetaGPT>
 - 论文地址：<https://arxiv.org/abs/2308.00352>
 
+![MetaGPT Figure 1 SOP 对照](../figures/meta_sop.png)
+*Figure 1｜左：真实人类团队开发 SOP；右：MetaGPT 的对应角色与结构化产物（需求文档 → 系统设计 → 任务 → 代码 → 验收）。来源：MetaGPT, ICLR 2024, p.2*
+
 MetaGPT 研究的是：如何让多个基于大语言模型的 Agent 协作完成复杂的软件开发任务。论文认为，简单地把多个 Agent 串起来聊天，容易出现信息歧义、错误传播和级联幻觉；因此它把真实软件团队中的标准流程、角色分工和中间交付物引入多智能体系统。
 
 ## 2. 一句话理解
