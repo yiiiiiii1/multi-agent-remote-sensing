@@ -233,7 +233,7 @@ def p_motivation(prs, page, p):
             p["motivation"]["points"], size=13.5, gap=10)
     rect(s, M + Inches(7.4), y + Inches(1.18), Inches(4.65), Inches(3.8), fill=WARM)
     tf = _p(s, M + Inches(7.7), y + Inches(1.42), Inches(4.05), Inches(3.3))
-    _run(tf.paragraphs[0], "主要难点", size=14.5, bold=True, color=AMBER)
+    _run(tf.paragraphs[0], "难点（技术上的困难）", size=14.5, bold=True, color=AMBER)
     for c in p["motivation"]["challenges"]:
         pp = tf.add_paragraph()
         pp.space_before = Pt(10)
@@ -246,36 +246,40 @@ def p_model(prs, page, p):
     s = new_slide(prs, p["section"], page)
     accent = p["accent"]
     y = header(s, p["name"] + "｜模型", p["model"]["headline"], accent)
-    bullets(s, M, y, Inches(6.15), Inches(4.7), p["model"]["bullets"], size=12.5, gap=9)
-    x2 = M + Inches(6.5)
-    w2 = SW - M - x2
-    top = y - Inches(0.05)
-    avail = SH - Inches(0.78) - top
     figs = p["model"].get("figs") or []
-    if figs:
-        n = len(figs)
-        gap = Inches(0.22)
-        cap_h = Inches(0.26)
-        budget = avail - gap * (n - 1) - cap_h * n
-        nat = []
-        for f, _ in figs:
-            iw, ih = Image.open(os.path.join(FIG, f)).size
-            nat.append(w2 / (iw / ih))
-        scale = min(1.0, budget / sum(nat))
-        yy = top
-        for i, (f, c) in enumerate(figs):
-            h = nat[i] * scale + cap_h
-            figure(s, f, x2, yy, w2, h, c)
-            yy += h + gap
+    spec = p["model"]["bullets"]
+
+    def ratio(f):
+        iw, ih = Image.open(os.path.join(FIG, f)).size
+        return iw / ih
+
+    if figs and ratio(figs[0][0]) > 2.4:
+        # 宽扁图：文字分两栏在上，图片占满整页宽度在下方
+        half = (SW - 2 * M - Inches(0.4)) / 2
+        cut = (len(spec) + 1) // 2
+        bullets(s, M, y, half, Inches(2.0), spec[:cut], size=11.5, gap=7)
+        bullets(s, M + half + Inches(0.4), y, half, Inches(2.0), spec[cut:], size=11.5, gap=7)
+        top = y + Inches(2.18)
+        f, c = figs[0]
+        figure(s, f, M, top, SW - 2 * M, SH - Inches(0.72) - top, c)
     else:
-        rect(s, x2, top, w2, Inches(2.4), fill=LIGHT)
-        tf = _p(s, x2 + Inches(0.24), top + Inches(0.2), w2 - Inches(0.48), Inches(2.0))
-        _run(tf.paragraphs[0], p["model"]["side_title"], size=13.5, bold=True, color=accent)
-        for it in p["model"]["side_items"]:
-            pp = tf.add_paragraph()
-            pp.space_before = Pt(8)
-            pp.line_spacing = 1.12
-            _run(pp, it, size=12, color=INK)
+        bullets(s, M, y, Inches(5.4), Inches(4.85), spec, size=12, gap=9)
+        x2 = M + Inches(5.78)
+        w2 = SW - M - x2
+        top = y - Inches(0.05)
+        avail = SH - Inches(0.78) - top
+        if figs:
+            f, c = figs[0]
+            figure(s, f, x2, top, w2, avail, c)
+        else:
+            rect(s, x2, top, w2, Inches(2.4), fill=LIGHT)
+            tf = _p(s, x2 + Inches(0.24), top + Inches(0.2), w2 - Inches(0.48), Inches(2.0))
+            _run(tf.paragraphs[0], p["model"]["side_title"], size=13.5, bold=True, color=accent)
+            for it in p["model"]["side_items"]:
+                pp = tf.add_paragraph()
+                pp.space_before = Pt(8)
+                pp.line_spacing = 1.12
+                _run(pp, it, size=12, color=INK)
     return s
 
 
@@ -305,25 +309,22 @@ def p_results_full(prs, page, p):
 
 
 def p_results_split(prs, page, p):
-    """结果页 B：左栏结论文字 + 右侧一张图表。"""
+    """结果页 B：主实验与消融并列两栏（无底色框），下方放一张图表。"""
     s = new_slide(prs, p["section"], page)
     accent = p["accent"]
     y = header(s, p["name"] + "｜实验结果", p["results"]["headline"], accent)
-    left_w = Inches(5.35)
-    tf = _p(s, M, y, left_w, Inches(0.32))
-    _run(tf.paragraphs[0], "主实验：与 SOTA 对比", size=13.5, bold=True, color=accent)
-    bullets(s, M, y + Inches(0.4), left_w, Inches(3.5), p["results"]["main"], size=12, gap=9)
-    rect(s, M, y + Inches(4.0), left_w, Inches(1.85), fill=WARM)
-    tf = _p(s, M + Inches(0.24), y + Inches(4.14), left_w - Inches(0.48), Inches(1.6))
-    _run(tf.paragraphs[0], "动机实验（消融）", size=13.5, bold=True, color=AMBER)
-    for it in p["results"]["abl"]:
-        pp = tf.add_paragraph()
-        pp.space_before = Pt(5)
-        pp.line_spacing = 1.08
-        _run(pp, "· " + it, size=10.5, color=INK)
+    half = (SW - 2 * M - Inches(0.4)) / 2
+    for i, (title, items, color) in enumerate([
+            ("主实验：与 SOTA 对比", p["results"]["main"], accent),
+            ("动机实验（消融）", p["results"]["abl"], AMBER)]):
+        x = M + i * (half + Inches(0.4))
+        rect(s, x, y + Inches(0.04), Inches(0.06), Inches(0.3), fill=color)
+        tf = _p(s, x + Inches(0.16), y, half - Inches(0.16), Inches(0.32))
+        _run(tf.paragraphs[0], title, size=13.5, bold=True, color=color)
+        bullets(s, x, y + Inches(0.44), half, Inches(2.1), items, size=11.5, gap=7)
+    top = y + Inches(2.72)
     f, c = p["results"]["items"][0]
-    x2 = M + left_w + Inches(0.4)
-    figure(s, f, x2, y - Inches(0.05), SW - M - x2, SH - Inches(0.72) - y, c)
+    figure(s, f, M, top, SW - 2 * M, SH - Inches(0.72) - top, c)
     return s
 
 
@@ -351,17 +352,15 @@ PAPERS = [
             headline="两个 Agent 靠角色设定自主协作，不需要人一直引导",
             purpose="构造可扩展的 Agent 协作与数据生成机制，用于研究「Agent 社会」的行为。",
             points=[
-                "人工引导的直接代价：任务越复杂，需要的人机往返轮次越多，时间与人力成本随规模上升。",
-                "间接代价：缺乏自动化机制，就无法批量产出协作数据，也就无法系统研究多智能体行为。",
-                "所以这篇论文要的不是更好的提示词，而是一套让两个 Agent 自主把任务推进到底的机制。",
-                "附带价值：同一套机制可以批量生成对话数据，反过来用于训练与评测。",
+                "复杂任务目前依赖人工一步步引导对话，任务越复杂，人机往返轮次越多，时间与人力成本随规模上升。",
+                "人工介入还意味着无法批量产出协作数据，多智能体的行为难以被系统研究。",
+                "论文要的不是更好的提示词，而是一套让两个 Agent 自主把任务推进到底的机制。",
             ],
             challenges=[
-                "角色反转（role flipping）：Assistant 反过来下指令，角色混乱、任务跑偏。",
-                "Assistant 复述指令：只是把用户的话重复一遍，任务不推进。",
-                "敷衍回复（flake replies）：看起来在回答，实际没有可执行内容。",
-                "终止控制：对话何时算完成，需要一个显式约定，否则无效循环。",
-                "效果依赖基础模型能力：底层 LLM 的指令遵循能力直接决定协作质量。",
+                "两个 LLM 之间没有天然的角色边界，容易发生角色反转（Assistant 反过来下指令）。",
+                "对话缺少显式的停止条件，容易陷入无效循环或提前终止。",
+                "生成的对话质量无法保证，会出现只复述指令、敷衍回复的情况。",
+                "协作效果完全依赖底层模型的指令遵循能力，模型弱则机制失效。",
             ]),
         model=dict(
             headline="角色扮演 + 初始提示：人类只在最左边出现一次",
@@ -394,16 +393,15 @@ PAPERS = [
             headline="自由聊天会级联幻觉，需要把流程和中间产物写死",
             purpose="用结构化中间产物替代自由文本，用可执行反馈替代人工检查，把协作变成可复现的流程。",
             points=[
-                "问题：简单串联多个 Agent 自由聊天，会出现信息歧义、错误传播与级联幻觉。",
-                "观察：人类软件团队高效，靠的是标准操作流程（SOP）与明确的中间交付物。",
-                "核心思想：Code = SOP(Team)——把 SOP 编码进 Prompt、Role、Action 与 Message。",
-                "代价：角色越多质量越高，但费用上升；总 Token 高于 ChatDev，单位代码成本反而更低。",
+                "多个 Agent 自由聊天会出现信息歧义，一个 Agent 的错误成为下一个的输入，沿对话链放大（级联幻觉）。",
+                "自然语言信息密度低，Agent 之间没有明确的「接口」，需求理解容易不一致。",
+                "代码「看起来合理」不等于「能运行」，而流程中缺少自动验证环节。",
             ],
             challenges=[
-                "自由对话没有全局约束，容易跑偏、重复劳动、需求理解不一致。",
-                "纯自然语言接口信息密度低，错误沿对话链放大（级联幻觉）。",
-                "生成的代码不可执行时，缺少自动纠正环节。",
-                "角色分工与成本存在矛盾：多加角色提升质量，但费用随之上升。",
+                "如何把人类团队的 SOP 编码成 Agent 可执行的 Prompt、Role 与 Message。",
+                "如何约束依赖关系：谁先工作、下游在什么条件下才允许启动。",
+                "如何定义结构化中间产物，使它能被程序校验，而不只是被人阅读。",
+                "角色越多质量越高但费用上升，需要在质量与开销之间做取舍。",
             ]),
         model=dict(
             headline="四个机制：角色分工 · SOP · 结构化通信 · 可执行反馈",
@@ -414,8 +412,7 @@ PAPERS = [
                 "Publish-Subscribe 共享消息池：Agent 发布结构化消息，其余按订阅关系取用，把连接数从 O(n²) 降到 O(n)。",
                 "可执行反馈：生成代码 → 运行 / 单测 → 读错误 → 改代码 → 再运行，最多重试 3 次。",
             ],
-            figs=[("meta_sop.png", "Figure 1 人类团队 SOP 与 MetaGPT 角色/产物的对应（ICLR 2024, p.2）"),
-                  ("meta_flow.png", "Figure 3 软件开发流程实例：每步交接的都是结构化文档（p.5）")]),
+            figs=[("meta_sop.png", "Figure 1 人类团队 SOP 与 MetaGPT 角色/产物的对应（ICLR 2024, p.2）")]),
         results=dict(
             headline="在代码生成与真实开发任务上同时优于 ChatDev 与单模型",
             items=[("tbl_metagpt_softwaredev.png",
@@ -435,16 +432,15 @@ PAPERS = [
             headline="把协作拓扑变成可编程的接口，而不是写死的流程",
             purpose="提供通用框架，让多个可对话 Agent 之间的交互成为一等公民，开发者能像写程序一样编排协作。",
             points=[
-                "真实任务往往需要「模型 + 工具 + 人」混合参与，写死流程难以复用。",
-                "让 Agent 自由聊天又不可控，无法保证任务推进。",
-                "开发者需要能自由定义对话模式：双 Agent、群聊、层级聊天、联合聊天。",
-                "控制权要能在自然语言与代码之间自由切换，并且人随时可介入。",
+                "真实任务需要「模型 + 工具 + 人」混合参与，而写死的流程难以复用。",
+                "让 Agent 完全自由聊天又不可控，无法保证任务被推进。",
+                "开发者需要能自由定义对话模式，而不是接受一种固定的拓扑。",
             ],
             challenges=[
-                "Agent 要能是 LLM、工具、人或组合，而不是只有一种。",
-                "对话模式要能灵活定义，不能只有一种拓扑。",
-                "自然语言表达不了程序化控制（执行代码、判断终止）。",
-                "不能假设全自动，人必须能在回路里。",
+                "如何让 LLM、工具、人类在框架里成为同一种可互换的实体。",
+                "如何在自然语言回复与程序化控制（执行代码、判断终止）之间自由切换。",
+                "如何设计去中心化机制：没有中央调度器时，由谁推动下一步。",
+                "如何让人类随时可介入，同时不破坏自动流程。",
             ]),
         model=dict(
             headline="Conversable Agent + 自动回复 = 可编程的对话",
@@ -483,16 +479,15 @@ PAPERS = [
             headline="用对话驱动整条开发流水线，规则与防幻觉都写进对话里",
             purpose="用同一种语言贯穿设计、编码与测试，让多智能体靠对话产出可运行的软件。",
             points=[
-                "问题：已有做法分别优化设计、编码、测试各阶段，导致技术不一致、流程碎片化。",
-                "难点：Agent 之间「说什么」需要流程约束，否则容易跳步、漏掉测试。",
-                "难点：Agent 在信息不足时会硬答，凭空编造外部依赖与接口（幻觉）。",
-                "观察：自然语言适合系统设计与需求讨论，编程语言在调试时更有效。",
+                "已有做法分别优化设计、编码、测试各阶段，导致技术不一致、流程碎片化。",
+                "对话若没有流程约束，容易跳步或漏掉测试环节。",
+                "Agent 在信息不足时会硬答，凭空编造外部依赖与接口（幻觉）。",
             ],
             challenges=[
-                "阶段割裂：各阶段模型不统一，输出无法顺畅衔接。",
-                "缺少流程约束时，对话会跑偏或漏步骤。",
-                "信息不足时的硬答会引入幻觉。",
-                "两种语言各有适用面，框架要同时容纳。",
+                "如何把开发流程拆成可独立执行的原子子任务，并为每个子任务定义终止条件。",
+                "如何在不打断流程的前提下，让 Agent 主动承认「信息不足」并追问。",
+                "如何统一两种表达方式：设计阶段用自然语言，调试阶段用编程语言。",
+                "如何保证多轮迭代收敛，而不是反复修改却不改进。",
             ]),
         model=dict(
             headline="Chat Chain：3 阶段 5 子任务 + 交际式去幻觉",
@@ -524,16 +519,15 @@ PAPERS = [
             headline="加神经元有效，那加 Agent 呢？",
             purpose="用有向无环图组织 Agent，系统研究「Agent 数量」与「网络拓扑」对任务质量的影响。",
             points=[
-                "动机：神经网络的 scaling law 说增加神经元能持续提升性能，那持续增加 Agent 呢？",
-                "瓶颈：Agent 两两交互时上下文长度随 n² 增长，时间与成本平方级爆炸。",
-                "未有定论：直觉上交互越密（mesh）越好，但需要实验验证。",
-                "此前研究都在 3–5 个 Agent 的小规模，缺少规模规律。",
+                "神经网络的 scaling law 表明增加神经元能持续提升性能，但持续增加 Agent 是否同理未知。",
+                "Agent 两两交互时上下文长度随 n² 增长，时间与成本平方级爆炸。",
+                "此前研究都在 3–5 个 Agent 的小规模，缺少可用的规模规律。",
             ],
             challenges=[
-                "规模瓶颈：上下文与成本随 n² 增长，规模上不去。",
-                "拓扑无定论：形状与密度的影响未被系统验证。",
-                "规模与拓扑需要权衡取舍，不能只看数量。",
-                "缺少 scaling 视角，没有可用的规模规律。",
+                "如何在大规模下控制上下文长度，使其不再随规模爆炸。",
+                "如何在不预设角色分工的前提下，让 Agent 之间形成有效的批评—改进链。",
+                "如何在数量、形状、密度三个维度之间权衡——没有统一最优解。",
+                "如何验证性能提升确实来自协作，而不是指标口径造成的假象。",
             ]),
         model=dict(
             headline="DAG 组织 Agent；上下文长度从平方级降到线性级",
@@ -545,8 +539,7 @@ PAPERS = [
                 "上下文长度解耦：把增长从平方级降到线性级，这是能扩到千级 Agent 的关键。",
                 "拓扑要按任务选：chain 适合软件开发，tree 适合创意写作。",
             ],
-            figs=[("macnet_topo.png", "Figure 2/3 六种拓扑；节点放 actor、边放 critic（ICLR 2025, p.3）"),
-                  ("macnet_dag.png", "Figure 1 MACNET：DAG 组织 Agent，任务进、产物出（p.1）")]),
+            figs=[("macnet_topo.png", "Figure 2/3 六种拓扑；节点放 actor、边放 critic（ICLR 2025, p.3）")]),
         results=dict(
             headline="不规则拓扑优于规则拓扑；协作性能呈斜 S 形增长",
             main=[
@@ -574,16 +567,15 @@ PAPERS = [
             headline="团队怎么组？人工指定角色无法规模化",
             purpose="提出能自动编排专家团队的多智能体框架，并系统观察协作中涌现的行为。",
             points=[
-                "问题：多智能体比单智能体强已被反复验证，但团队怎么组？",
-                "现有做法都是人工指定角色，要求作者事先懂任务，任务一换就得重新设计，扩展性差。",
-                "团队应该是动态的：不同阶段需要的专家不同，固定团队会浪费算力或能力不足。",
-                "行为不可预测：多 Agent 交互会涌现设计者没预料到的行为，可能是好的也可能是坏的。",
+                "多智能体优于单智能体已被反复验证，但「团队怎么组」仍是开放问题。",
+                "人工指定角色要求作者事先懂任务，任务一换就得重新设计。",
+                "固定团队无法适应任务推进中变化的需求。",
             ],
             challenges=[
-                "角色分配依赖人工，面对多样任务难以规模化。",
-                "固定团队无法适应任务推进中变化的需求。",
-                "涌现行为可能带来风险，尤其在涉及人类时。",
-                "缺少统一验证：既要评估能力提升，也要评估协作行为本身。",
+                "如何让 Agent 在运行时根据目标生成合适的专家描述，而不是从一个白名单里挑。",
+                "如何判断当前团队是否够用，并在不够时增删成员。",
+                "如何评估「协作行为本身」，而不只是任务最终得分。",
+                "涌现行为不受设计者控制，其中可能包含有害行为。",
             ]),
         model=dict(
             headline="四阶段循环：招募 → 决策 → 执行 → 评估",
@@ -624,16 +616,15 @@ PAPERS = [
             headline="自省有天花板，但多个实例的分歧可以用来纠错",
             purpose="让多个模型实例互相看答案与推理并多轮辩论，收敛到共同答案，以提升推理准确性与事实正确性。",
             points=[
-                "问题：单模型会给出错误答案，而且自己检查不出来。",
+                "单模型会给出错误答案，而且自己检查不出来。",
                 "已有做法（CoT、self-consistency、self-reflection）都是让同一个模型换个姿势再想一遍。",
-                "发现：即使是同一个模型类的不同实例，给出的答案也千差万别——分歧是资源，不是噪声。",
-                "要求：方法必须能直接套在黑盒模型上，不依赖模型权重或重新训练。",
+                "同一模型的不同实例答案差异很大，这种分歧尚未被利用。",
             ],
             challenges=[
-                "自省有天花板：只能发现明显问题，改不了根本性推理错误。",
-                "幻觉难检出：模型会编造事实，且不同实例编得还不一样。",
-                "多个 Agent 的答案直接拼接会超出上下文长度。",
-                "必须适配黑盒模型，不能依赖微调。",
+                "如何让多个实例在有限轮次内收敛到共识，而不是各说各话。",
+                "多个 Agent 的完整答案直接拼接会超出上下文长度。",
+                "如何确保辩论中传递的是「推理过程」，而不只是结论。",
+                "方法必须能直接套在黑盒模型上，不能依赖模型权重或微调。",
             ]),
         model=dict(
             headline="多轮辩论 + 收敛；默认 3 个 agent × 2 轮",
@@ -662,7 +653,7 @@ PAPERS = [
             full=True)),
 
     dict(
-        name="GeoLLM-Squad", accent=CRIMSON, section="遥感落地",
+        name="GeoLLM-Squad", accent=TEAL, section="遥感落地",
         toc_sub="遥感落地 · 多智能体工作流",
         en_title="Multi-Agent Geospatial Copilots\nfor Remote Sensing Workflows",
         venue="arXiv:2501.16254 · UT Austin / SIU / Microsoft",
@@ -672,16 +663,15 @@ PAPERS = [
             headline="单体 LLM 撑不住遥感工作流：上下文与工具规模都是瓶颈",
             purpose="把「智能体编排」与「地理空间任务求解」拆开，用专职 sub-agent 分摊工具集，突破单体 LLM 的上下文瓶颈。",
             points=[
-                "遥感工作流需要多种数据、工具与隐性专业知识：例如云量超阈值时，要用地面站温度或 SAR 影像替代光学产品。",
+                "遥感工作流需要多种数据、工具与隐性专业知识，例如云量超阈值时要用 SAR 替代光学产品。",
                 "这类「SAR-over-EO」的条件逻辑很难靠提示词硬塞给单体 Copilot。",
-                "单体 LLM 受上下文窗口与 token 容量限制，撑不起真实应用的时空尺度。",
                 "工具规模从几十涨到几百，单体 Agent 的上下文装不下。",
             ],
             challenges=[
-                "单体 LLM 是瓶颈：上下文与 token 容量有限。",
-                "专业条件判断难以提示词化。",
-                "工具规模爆炸：521 个 API 函数超过单体容量的 3 倍。",
-                "云端 AI 成本高，多智能体系统还必须能跑在开源小模型上。",
+                "如何把 521 个 API 工具分散到多个 Agent，而不让任何单个上下文过载。",
+                "如何生成可靠的执行顺序：谁先跑、谁依赖谁的输出。",
+                "如何在多轮执行后判断任务是否完成，并决定是否需要重排。",
+                "如何让系统在开源小模型上也能工作，以降低云端推理成本。",
             ]),
         model=dict(
             headline="编排与求解分离：一个调度员 + 一圈平级执行者",
