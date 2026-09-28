@@ -77,3 +77,29 @@ MMLU 等数学与问答数据集、ALFWorld（134 个未见任务）、OptiGuide
 ![AutoGen Figure 4 四个应用结果](../figures/autogen_fig4.png)
 *Figure 4｜(c) ALFWorld：加入 grounding agent 后平均 +15%；(d) OptiGuide 多 Agent 分工结果。来源：AutoGen, arXiv:2308.08155, p.7*
 AutoGen 的贡献不是让 Agent 更聪明，而是**把「Agent 之间怎么对话」变成可编程的接口**，让协作拓扑成为设计变量。
+
+---
+
+## 被追问时怎么讲（补充）
+
+**问：Conversable Agent 是什么？**
+框架里只有一种实体，有统一的三接口 `send` / `receive` / `generate_reply`。关键是 `generate_reply`——收到消息后"该说什么、下一步做什么"全写在这里。底层可以是 LLM、代码或人，所以在 AutoGen 里**模型、工具、人是同一种东西**。
+
+**问：什么叫"没有中央调度器"？**
+因为系统里没有主持人决定下一个谁说话。论文原话：*"Once an agent receives a message from another agent, it automatically invokes generate_reply and sends the reply back to the sender unless a termination condition is satisfied."* 收到消息 → 自动想回复 → 自动发回去。每个 Agent 自己决定下一句发给谁，而它的决定取决于刚收到的那句话——这叫 **conversation-driven control flow（对话驱动的控制流）**。
+
+**用 Figure 2 的对话讲最清楚**：
+
+```
+A：画一下 META 和 TESLA 今年股价
+B（generate_reply）→ 请执行这段代码
+A → 去执行 → 报错：yfinance 没装
+A → 把「这条报错」当消息发回给 B
+B（generate_reply）→ 先 pip install yfinance 再执行
+A → 装包、重跑
+```
+
+整条链能自己跑下去，是因为**报错也是一条消息**；没有任何地方写死"如果报错就装包"，是消息把流程推下去的。
+
+**"可编程"编在哪**：定义 Agent + 注册自定义回复函数 + 发起对话，再配终止条件与轮数上限。**拓扑是开发者写出来的，不是框架固定的**。
+对比 MetaGPT：流程是框架写死的 SOP；AutoGen 是你写代码 + Agent 运行时自己决定。
