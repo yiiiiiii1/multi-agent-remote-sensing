@@ -176,3 +176,37 @@ schedule = [ Database  (Load NDVI..),
 GeoLLM-Squad 把"编排"从"求解"里拆出来，用专职 sub-agent 分摊工具集，在真实遥感工作流上把正确率从 43% 提到 **60%（+17%）**；更关键的是它证明了**多智能体的优势不在单任务更强，而在任务复杂度增长时不崩**——这正好给了我的"用多智能体纠偏遥感模型"一个可引用的量化依据。
 
 **协作方式一句话**：它不是"多个 Agent 一起商量"，而是**一个调度员（编排者）写排班表、一圈平级执行者按序跑、Agent 之间零通信、事后才纠错**——本质是把单体 Agent 的**上下文压力**拆开，而不是把智能拆开。
+### 被追问：既然建在 AutoGen 上，怎么保证是星形？
+
+**看起来像个矛盾**：AutoGen 的 auto-reply 让"对话驱动控制流"，那拓扑岂不是涌现的？不是。
+
+**关键区别**：auto-reply 管的是**怎么回**，不管**回给谁**。论文原话：
+
+> Once an agent receives a message from another agent, it automatically invokes generate_reply and **sends the reply back to the sender** unless a termination condition is satisfied.
+
+注意"**back to the sender**"——回给发送者，不是让 LLM 任选下一个说话的人。
+
+**所以拓扑由开发者的代码决定**：
+
+| 写法 | 拓扑 |
+|---|---|
+| `A.initiate_chat(B, msg)` | 固定双人对话，对方写死 |
+| 注册 reply function | 回复函数里指定发给谁 |
+| GroupChat + GroupChatManager | **星形**（消息全经 manager 转发，agent 之间不直接通信） |
+
+**GeoLLM-Squad 属于第一种**：编排者跟每个子 Agent 各建一条双人对话，子 Agent 的"对方"永远是编排者——它们的发送目标里**根本没有彼此**，所以物理上绕不开中心。**星形是代码结构保证的，不是靠 Agent 自觉。**
+
+**额外一条**：AutoGen 自己的 GroupChat 本来就是星形（所有消息经 manager 转发）。所以"星形"在 AutoGen 里是现成模式，不是跟框架对着干。
+
+**那什么是涌现的**：
+
+| 涌现（由消息内容决定） | 不涌现（由代码决定） |
+|---|---|
+| 要来回几轮 | 谁跟谁连 |
+| 要不要执行代码 | 有几个 Agent |
+| 报错怎么修 | 谁是中心 |
+| 什么时候结束 | |
+
+图的结构是写死的，图上的流量是涌现的。
+
+**一句话答法**："auto-reply 决定对话怎么往下走，不是谁跟谁连。子 Agent 之间根本没有彼此的发送目标，只跟编排者建了双人对话——星形是代码结构保证的。"
