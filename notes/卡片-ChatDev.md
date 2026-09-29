@@ -108,3 +108,27 @@ Figure 2 画出完整链路：接到需求（如"开发一个五子棋游戏"）
 ![ChatDev Table 1 主实验](../figures/tbl_chatdev_main.png)
 *Table 1｜主实验：ChatDev 在 Completeness / Executability / Consistency / Quality 四项全部最高，Executability 0.8800 vs MetaGPT 0.4145、GPT-Engineer 0.3583。来源：ChatDev, ACL 2024, p.6*
 ChatDev 证明了**语言本身就是协作协议**：chat chain 管「说什么」，交际式去幻觉管「怎么说」，两者合起来让对话直接产出可运行的软件。
+### 注意：Table 4 怎么读（容易被绕进去）
+
+**`≤x` 的意思是"跑到第 x 阶段就停"**（论文原注：*halting the chat chain after the completion of the x phase*），**不是"去掉什么"**。所以：
+
+- ≤Coding → 只跑编码
+- ≤Complete → 跑到代码补全
+- ≤Review → 跑到评审
+- **≤Testing → 跑到测试结束 = 完整流程**
+
+**`≤Testing` 那一行和 `ChatDev` 那一行数字完全相同**（0.5600 / 0.8800 / 0.8021 / 0.3953），因为它俩就是同一件事。这一行是基准，不是消融结果。
+
+**要看"测试阶段有没有用"，比 ≤Review 和 ≤Testing**：
+
+| 阶段变化 | 可执行性 | 综合质量 |
+|---|---|---|
+| ≤Coding → ≤Complete | 0.77 → 0.74（略降） | 0.2512 → 0.3690（大涨） |
+| ≤Complete → ≤Review | 0.74 → 0.81 | 0.3690 → 0.3717（几乎不动） |
+| ≤Review → ≤Testing | 0.81 → **0.88** | 0.3717 → **0.3953** |
+
+读法：**代码补全主要提升完整性，测试主要提升可执行性**——对应论文原话 *"complete phase enhances Completeness, with testing critical for Executability"*。
+
+**表里真正的消融是最后两行**：`\CDH`（去掉交际式去幻觉）、`\Roles`（去掉角色分工）。
+
+**一个怪现象**：Completeness 在完整流程（0.5600）反而比 ≤Complete（0.6250）低。论文没解释；推测是测试阶段重写/回退代码后个别样本又出现未完成片段，加上样本量小有噪声。被问到就照实说"论文没展开，只知道综合质量稳步上升"。
