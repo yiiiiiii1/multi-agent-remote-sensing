@@ -88,3 +88,13 @@ Arithmetic、GSM8K、Chess（Stockfish pawn score）、传记事实性基准、M
 ![Debate Table 2 事实性](../figures/tbl_debate_factual.png)
 *Table 2｜事实性：传记、MMLU、棋步有效性——辩论在事实正确性上的提升。来源：Multiagent Debate, arXiv:2305.14325, p.7*
 辩论不是让模型更聪明，而是**用分歧做校验**：多个实例的答案不一致，就说明这里有不确定性；多轮互相质疑后收敛，错误答案被自然淘汰——这是"对抗式协作"能降幻觉的机制。
+### 模型图：Figure 2（三轮辩论实例）
+
+论文 p.3 的 Figure 2 是完整的三轮辩论过程，题目是"宝藏里有 175 颗钻石，红宝石比钻石少 35 颗，祖母绿是红宝石的两倍，总共有多少颗宝石"：
+
+- **Round 1**：Agent 1 算出 225（**✗**），Agent 2 算出 595（**✓**）——**同一个问题，两个答案不一致**
+- 然后给两边各发一句："Using the solutions from other agents as additional information, can you give an updated response..."
+- **Round 2**：Agent 1 改成 560（还是 ✗），Agent 2 仍是 595（✓）
+- **Round 3**：两个都改成 595（**✓ ✓**）——**收敛**
+
+**这张图最能说明"用分歧做校验"**：两个 Agent 一开始答案不同，说明这里有不确定性；交换推理过程之后，错的被纠正、最后收敛到同一个答案。所以辩论不是让模型更聪明，是**用不一致来发现错误**。
