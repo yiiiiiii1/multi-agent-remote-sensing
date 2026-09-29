@@ -33,7 +33,8 @@ LIGHT = RGBColor(0xF2, 0xF5, 0xF8)
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 BORDER = RGBColor(0xDD, 0xE3, 0xEA)
 WARM = RGBColor(0xFD, 0xF3, 0xE6)
-FONT = "微软雅黑"
+# Use a CJK font available on macOS so Chinese text survives PDF export.
+FONT = "STHeiti"
 
 SW, SH = Inches(13.333), Inches(7.5)
 M = Inches(0.62)
@@ -458,7 +459,7 @@ PAPERS = [
             items=[("autogen_fig4_top.png",
                     "Figure 4(a)(b) 数学问题求解（左）与检索增强问答（右）（p.7）"),
                    ("autogen_fig4_bottom.png",
-                    "Figure 4(c)(d) ALFWorld 具身任务（左）与 OptiGuide 编码任务（右）（p.7）")],
+                    "Figure 4(c)(d)：左 ALFWorld；右 OptiGuide —— Multi = 多智能体，Single = 单智能体（p.7）")],
             full=True)),
 
     dict(

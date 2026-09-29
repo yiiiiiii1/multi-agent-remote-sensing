@@ -103,3 +103,18 @@ A → 装包、重跑
 
 **"可编程"编在哪**：定义 Agent + 注册自定义回复函数 + 发起对话，再配终止条件与轮数上限。**拓扑是开发者写出来的，不是框架固定的**。
 对比 MetaGPT：流程是框架写死的 SOP；AutoGen 是你写代码 + Agent 运行时自己决定。
+### 补充：Figure 4(d) 怎么读（Multi / Single 是啥）
+
+图例里没有"AutoGen"，**Multi 就是 AutoGen 的多智能体设计**（Commander + Writer + Safeguard），**Single 是单智能体**做同样的任务。
+
+任务是 OptiGuide 供应链问答，例："如果禁止从供应商 1 运到烘焙厂 2，会怎样？"
+流程：用户 → Commander → Writer 写代码 → Commander 交 Safeguard 查安全 → 通过才执行 → Writer 解释结果（"总成本上涨 10.5%"）→ Commander 回给用户；不安全就带调试信息退回重写。
+
+| | F1 | Recall |
+|---|---|---|
+| Multi-GPT4 | **96.00%** | **98.00%** |
+| Single-GPT4 | 88.00% | 78.00% |
+| Multi-GPT3.5 | **83.00%** | **72.00%** |
+| Single-GPT3.5 | 48.00% | 32.00% |
+
+**多智能体在每一对里都赢，而且模型越弱提升越大**（GPT-3.5 的 Recall 从 32% → 72%）。论文图注：*"(d) shows that a multi-agent design is helpful in boosting performance in coding tasks that need safeguards."*
