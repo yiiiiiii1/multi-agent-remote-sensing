@@ -284,13 +284,13 @@ def p_model(prs, page, p):
     return s
 
 
-def p_results_full(prs, page, p):
-    """结果页 A：表格/图表占满宽度（放最大）。"""
+def p_results_full(prs, page, p, items=None):
+    """结果页：表格/图表占满宽度（放最大），无文字说明。"""
     s = new_slide(prs, p["section"], page)
     y = header(s, p["name"] + "｜实验结果", p["results"]["headline"], p["accent"])
     top = y - Inches(0.05)
     avail = SH - Inches(0.72) - top
-    items = p["results"]["items"]
+    items = items if items is not None else p["results"]["items"]
     n = len(items)
     gap = Inches(0.3)
     cap_h = Inches(0.28)
@@ -536,19 +536,11 @@ PAPERS = [
             figs=[("macnet_topo.png", "Figure 2/3 六种拓扑；节点放 actor、边放 critic（ICLR 2025, p.3）")]),
         results=dict(
             headline="不规则拓扑优于规则拓扑；协作性能呈斜 S 形增长",
-            main=[
-                "在多数指标上，MacNet 的各拓扑都超过单 Agent 与已有 MAS 基线（COT / AutoGPT / GPTSwarm / AgentVerse）。",
-                "不规则拓扑（Random）最好，Quality 0.6522 为全场最高。",
-                "直觉上最密的 Mesh 并不是最优（0.6316）：交互过密会造成信息过载，妨碍反思与细化。",
-                "拓扑要按任务选：chain 更适合软件开发（SRDD 0.8056），tree 更适合创意写作（CommonGen 0.7718）。",
-            ],
-            abl=[
-                "节点数从 2⁰ 增到 2⁶：性能先缓升、再快速提升、最后饱和，服从 sigmoid 变体。",
-                "节点量级 2⁴ 是性价比合理的选择。",
-                "协作涌现比神经网络的涌现更早；critic 提改进后 actor 有 93.10% 概率真的实现。",
-            ],
-            items=[("tbl_macnet_main.png", "Table 1 主实验：四类基线与六种拓扑的完整对比（p.6）")],
-            full=False)),
+            items=[("tbl_macnet_main.png",
+                    "Table 1 主实验：四类基线与六种拓扑的完整对比，Random 拓扑质量最高（p.6）"),
+                   ("macnet_scaling.png",
+                    "Figure 7 消融：节点数从 2⁰ 指数增到 2⁶，六种拓扑的性能曲线（p.8）")],
+            full=True)),
 
     dict(
         name="AgentVerse", accent=TEAL, section="协作机制",
@@ -584,20 +576,11 @@ PAPERS = [
             figs=[("agentverse_f1.png", "Figure 1 四阶段循环与多轮团队变化（ICLR 2024, p.2）")]),
         results=dict(
             headline="团队优于单专家与 CoT；同时暴露出破坏性行为风险",
-            main=[
-                "GPT-4 下 Group 在多数任务上优于 Solo 与 CoT 基线。",
-                "逻辑推理（Logic Grid Puzzles）：CoT 59.5 → Solo 64.0 → Group 66.5。",
-                "创意写作（Commongen-Challenge）：CoT 95.9 → Solo 99.0。",
-                "说明「换成更好的角色描述」本身就有收益，团队协作的增量要按任务看。",
-            ],
-            abl=[
-                "volunteer 与 conformity 发生在决策阶段（对话里）；destructive 绕过决策、直接发生在执行阶段。",
-                "destructive 的例子：为拿材料杀掉队友捡掉落物；不去采集而直接拆掉村里的图书馆。",
-                "原因是目标优化压过规则遵守；局限：GPT-3.5 下 Group 有时反而不如 Solo。",
-            ],
             items=[("tbl_agentverse_main.png",
-                    "Table 1 主实验：GPT-3.5 / GPT-4 下 CoT、Solo、Group 三档对比（p.4）")],
-            full=False)),
+                    "Table 1 主实验：GPT-3.5 / GPT-4 下 CoT、Solo、Group 三档对比（p.4）"),
+                   ("agentverse_fig6.png",
+                    "Figure 6 三类涌现行为的完整对话：volunteer / conformity / destructive（p.8）")],
+            full=True)),
 
     dict(
         name="Multiagent Debate", accent=TEAL, section="协作机制",
@@ -689,27 +672,53 @@ PAPERS = [
 ]
 
 
+MIN_FIG_W = Inches(6.5)
+
+
+def results_plan(p):
+    """结果页排布：能同页放下就同页，否则每图一页。"""
+    items = p["results"]["items"]
+    if len(items) <= 1:
+        return [items]
+    full_w = SW - 2 * M
+    avail = SH - Inches(0.72) - Inches(1.47)
+    gap, cap_h = Inches(0.3), Inches(0.28)
+    nat = []
+    for f, _ in items:
+        iw, ih = Image.open(os.path.join(FIG, f)).size
+        nat.append(full_w / (iw / ih))
+    budget = avail - gap * (len(items) - 1) - cap_h * len(items)
+    scale = min(1.0, budget / sum(nat))
+    if full_w * scale >= MIN_FIG_W:
+        return [items]
+    return [[it] for it in items]
+
+
 def build():
+    global TOTAL
     prs = Presentation()
     prs.slide_width, prs.slide_height = SW, SH
 
-    for i, p in enumerate(PAPERS):
-        p["start"] = 4 + 4 * i
+    plans = [results_plan(p) for p in PAPERS]
+    counts = [3 + len(pl) for pl in plans]
+    TOTAL = 3 + sum(counts) + 1          # 前 3 页 + 论文页 + 致谢
+
+    start = 4
+    for p, c in zip(PAPERS, counts):
+        p["start"] = start
+        start += c
 
     p_cover(prs, 1)
     p_yan(prs, 2)
     p_toc(prs, 3, PAPERS)
 
     page = 4
-    for p in PAPERS:
+    for p, pl in zip(PAPERS, plans):
         p_cover_paper(prs, page, p); page += 1
         p_motivation(prs, page, p); page += 1
         p_model(prs, page, p); page += 1
-        if p["results"]["full"]:
-            p_results_full(prs, page, p)
-        else:
-            p_results_split(prs, page, p)
-        page += 1
+        for grp in pl:
+            p_results_full(prs, page, p, grp); page += 1
 
     p_thanks(prs, page)
     prs.save(OUT)
