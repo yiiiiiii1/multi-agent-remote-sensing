@@ -531,7 +531,7 @@ PAPERS = [
                 "不预设角色分工，只做功能二分：actor 负责产出，critic 负责提意见。",
                 "六种代表性拓扑：Chain（类瀑布）、Tree、Star、Layer、Mesh、Random。",
                 "上下文长度解耦：把增长从平方级降到线性级，这是能扩到千级 Agent 的关键。",
-                "拓扑要按任务选：chain 适合软件开发，tree 适合创意写作。",
+                "没有一个拓扑在所有任务上都最好：tree 在创意写作上明显占优（0.7718）；论文认为 chain 更贴合软件开发的线性流程。",
             ],
             figs=[("macnet_topo.png", "Figure 2/3 六种拓扑；节点放 actor、边放 critic（ICLR 2025, p.3）")]),
         results=dict(
