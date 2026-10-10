@@ -530,7 +530,7 @@ def p_action_layer(prs, page):
 
 def p_gap1(prs, page):
     s = new_slide(prs, "四、空白", page)
-    y = header(s, "空白 ①：认知层缺少系统性防御", "三条独立证据指向同一个位置")
+    y = header(s, "空白 ①：认知层缺少系统性防御", "现有工作只防动作层，认知层没有对应机制")
     rect(s, M, y + Inches(0.12), CW, Inches(0.95), fill=WARM, line=AMBER)
     tf = _p(s, M + Inches(0.22), y + Inches(0.26), CW - Inches(0.44), Inches(0.7))
     p = tf.paragraphs[0]
