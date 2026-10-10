@@ -1,0 +1,97 @@
+{
+ "阶段2-卫星多智能体防御/papers/A1 - Beyond Single-Model Injection (2609.22949).pdf": {
+  "name": "A1 - Beyond Single-Model Injection (2609.22949).pdf",
+  "size": 171720,
+  "at": "2026-10-09 22:04"
+ },
+ "阶段2-卫星多智能体防御/papers/A2 - Trust Propagation and Structural Containment (2609.17648).pdf": {
+  "name": "A2 - Trust Propagation and Structural Containment (2609.17648).pdf",
+  "size": 263350,
+  "at": "2026-10-09 22:04"
+ },
+ "阶段2-卫星多智能体防御/papers/A5 - Crescendo Multi-Turn Jailbreaking (2404.01833).pdf": {
+  "name": "A5 - Crescendo Multi-Turn Jailbreaking (2404.01833).pdf",
+  "size": 9185259,
+  "at": "2026-10-09 22:04"
+ },
+ "阶段2-卫星多智能体防御/papers/B1 - CaMeL Defeating Prompt Injections by Design (2503.18813).pdf": {
+  "name": "B1 - CaMeL Defeating Prompt Injections by Design (2503.18813).pdf",
+  "size": 5531468,
+  "at": "2026-10-09 22:04"
+ },
+ "阶段2-卫星多智能体防御/papers/B2 - Design Patterns for Securing LLM Agents (2506.08837).pdf": {
+  "name": "B2 - Design Patterns for Securing LLM Agents (2506.08837).pdf",
+  "size": 1358691,
+  "at": "2026-10-09 22:04"
+ },
+ "阶段2-卫星多智能体防御/papers/E4 - SoK Security of Multi Agent LLM Systems (2609.00595).pdf": {
+  "name": "E4 - SoK Security of Multi Agent LLM Systems (2609.00595).pdf",
+  "size": 1512603,
+  "at": "2026-10-09 22:04"
+ },
+ "阶段2-卫星多智能体防御/papers/E5 - Securing LLM-based Agents against Cyberattacks (Springer 2026).pdf": {
+  "name": "E5 - Securing LLM-based Agents against Cyberattacks (Springer 2026).pdf",
+  "size": 2348165,
+  "at": "2026-10-09 22:04"
+ },
+ "阶段1-协作机制调研/papers/AutoGen 等 - 2023 - AutoGen Enabling Next-Gen LLM Applications via Multi-Agent Conversation.pdf": {
+  "name": "AutoGen 等 - 2023 - AutoGen Enabling Next-Gen LLM Applications via Multi-Agent Conversation.pdf",
+  "size": 3571809,
+  "at": "2026-10-09 22:05"
+ },
+ "阶段1-协作机制调研/papers/Chen 等 - 2023 - ChatDev Communicative Agents for Software Development.pdf": {
+  "name": "Chen 等 - 2023 - ChatDev Communicative Agents for Software Development.pdf",
+  "size": 3477144,
+  "at": "2026-10-09 22:05"
+ },
+ "阶段1-协作机制调研/papers/Du 等 - 2023 - Improving Factuality and Reasoning in Language Models through Multiagent Debate.pdf": {
+  "name": "Du 等 - 2023 - Improving Factuality and Reasoning in Language Models through Multiagent Debate.pdf",
+  "size": 1779875,
+  "at": "2026-10-09 22:05"
+ },
+ "阶段1-协作机制调研/papers/Liu 等 - 2023 - AgentVerse Facilitating Multi-Agent Collaboration and Exploring Emergent Behaviors.pdf": {
+  "name": "Liu 等 - 2023 - AgentVerse Facilitating Multi-Agent Collaboration and Exploring Emergent Behaviors.pdf",
+  "size": 4652125,
+  "at": "2026-10-09 22:05"
+ },
+ "阶段1-协作机制调研/papers/Qian 等 - 2024 - MacNet Scaling Large Language Model-based Multi-Agent Collaboration.pdf": {
+  "name": "Qian 等 - 2024 - MacNet Scaling Large Language Model-based Multi-Agent Collaboration.pdf",
+  "size": 3241680,
+  "at": "2026-10-09 22:05"
+ },
+ "阶段1-协作机制调研/papers/Soni 等 - 2025 - Multi-Agent Geospatial Copilots for Remote Sensing Workflows.pdf": {
+  "name": "Soni 等 - 2025 - Multi-Agent Geospatial Copilots for Remote Sensing Workflows.pdf",
+  "size": 1972976,
+  "at": "2026-10-09 22:05"
+ },
+ "阶段1-协作机制调研/papers/Talemi 等 - 2026 - Agentic AI in Remote Sensing Foundations Taxonomy and Emerging Systems.pdf": {
+  "name": "Talemi 等 - 2026 - Agentic AI in Remote Sensing Foundations Taxonomy and Emerging Systems.pdf",
+  "size": 11828227,
+  "at": "2026-10-09 22:05"
+ },
+ "阶段1-协作机制调研/papers/Tran 等 - 2025 - Multi-Agent Collaboration Mechanisms A Survey of LLMs.pdf": {
+  "name": "Tran 等 - 2025 - Multi-Agent Collaboration Mechanisms A Survey of LLMs.pdf",
+  "size": 2420086,
+  "at": "2026-10-09 22:05"
+ },
+ "阶段1-协作机制调研/papers/Wang 等 - 2023 - A Survey on LLM based Autonomous Agents.pdf": {
+  "name": "Wang 等 - 2023 - A Survey on LLM based Autonomous Agents.pdf",
+  "size": 5788348,
+  "at": "2026-10-09 22:05"
+ },
+ "阶段1-协作机制调研/papers/Wang 等 - 2024 - Mixture-of-Agents Enhances Large Language Model Capabilities.pdf": {
+  "name": "Wang 等 - 2024 - Mixture-of-Agents Enhances Large Language Model Capabilities.pdf",
+  "size": 1157463,
+  "at": "2026-10-09 22:05"
+ },
+ "阶段1-协作机制调研/papers/Xi 等 - 2023 - The Rise and Potential of LLM Based Agents A Survey.pdf": {
+  "name": "Xi 等 - 2023 - The Rise and Potential of LLM Based Agents A Survey.pdf",
+  "size": 6832174,
+  "at": "2026-10-09 22:05"
+ },
+ "阶段1-协作机制调研/papers/Yan 等 - 2025 - Beyond Self-Talk Communication-Centric Survey of LLM Based MAS.pdf": {
+  "name": "Yan 等 - 2025 - Beyond Self-Talk Communication-Centric Survey of LLM Based MAS.pdf",
+  "size": 1158630,
+  "at": "2026-10-09 22:05"
+ }
+}
