@@ -2,7 +2,7 @@
 
 > **论文**：Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack
 > **作者**：Mark Russinovich, Ahmed Salem, Ronen Eldan（**Microsoft Azure**）
-> **出处**：arXiv:2404.01833（2024，这篇稍早，但被 A1 引为多步攻击的代表）
+> **出处**：**USENIX Security 2025**（arXiv:2404.01833）——已上会，正式论文
 > **本地 PDF**：`papers/A5 - Crescendo Multi-Turn Jailbreaking (2404.01833).pdf`（20 页）
 > **一句话**：一种**多轮**越狱攻击——从无害的问题开始，**每次都引用模型自己上一轮的回答**逐步升级，最后把模型带到它本来会拒绝的地方。
 

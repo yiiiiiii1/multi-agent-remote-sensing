@@ -3,7 +3,8 @@
 > **论文**：Defeating Prompt Injections by Design（CaMeL）
 > **作者**：Edoardo Debenedetti, Ilia Shumailov, Tianqi Fan, Jamie Hayes, Nicholas Carlini, Daniel Fabian, Christoph Kern, Chongyang Shi, Andreas Terzis, Florian Tramèr
 > **单位**：Google / Google DeepMind / ETH Zurich
-> **出处**：arXiv:2503.18813 · 2025-06（正文约 20 页，其余是附录，共 125 页）
+> **出处**：**IEEE SaTML 2026**（arXiv:2503.18813v2）
+> ⚠️ **版本差异**：arXiv v2 报 **77%**，SaTML 2026 正式版报 **67%**。**引用时必须注明版本。**
 > **代码**：<https://github.com/google-research/camel-prompt-injection>
 > **本地 PDF**：`papers/B1 - CaMeL Defeating Prompt Injections by Design (2503.18813).pdf`
 > **一句话**：在 LLM 外面套一层**受保护的系统层**——把用户查询**编译成一段可审计的代码**，解释器执行时**追踪每个值的来源和允许的读者（capability）**，在每次调用工具前**强制检查安全策略**，让不可信数据**永远无法改变程序流程、也无法流到不该去的工具**。
