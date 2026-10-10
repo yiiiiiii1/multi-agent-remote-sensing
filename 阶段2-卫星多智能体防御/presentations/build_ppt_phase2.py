@@ -219,14 +219,14 @@ def p_cover(prs, page):
 
 def p_threat(prs, page):
     s = new_slide(prs, "一、威胁", page)
-    y = header(s, "导师给的多步注入攻击链", "单步防御能拦一条可疑指令，但每一条单独看都是无害的")
+    y = header(s, "多步注入攻击链", "单步防御能拦一条可疑指令，但每一条单独看都是无害的")
     steps3(s, M, y + Inches(0.15), CW,
            ["① 获取卫星运行参数", "② 篡改认知范围，使其合理化", "③ 执行不合理操作 / 篡改遥操数据"])
     yy = y + Inches(1.0)
     rect(s, M, yy, CW, Inches(1.45), fill=WARM, line=AMBER)
     tf = _p(s, M + Inches(0.22), yy + Inches(0.16), CW - Inches(0.44), Inches(1.15))
     p = tf.paragraphs[0]
-    _run(p, "★ 先界定「篡改认知」是谁篡改：", 14, True, AMBER)
+    _run(p, "「篡改认知」的含义：", 14, True, AMBER)
     p2 = tf.add_paragraph()
     p2.space_before = Pt(6)
     _run(p2, "攻击者不改 Agent 的代码、不改它的系统提示，而是污染它读到的输入数据，"
@@ -246,11 +246,11 @@ def p_threat(prs, page):
 
 def p_scope(prs, page):
     s = new_slide(prs, "一、威胁", page)
-    y = header(s, "场景边界与卫星场景的特殊性", "边界必须锁定，否则后面所有防御假设都会被追问")
+    y = header(s, "场景边界与卫星场景的特殊性", "研究对象有两种可能，安全假设完全不同")
     rect(s, M, y + Inches(0.10), CW, Inches(1.55), fill=LIGHT, line=BORDER)
     tf = _p(s, M + Inches(0.22), y + Inches(0.22), CW - Inches(0.44), Inches(1.3))
     p = tf.paragraphs[0]
-    _run(p, "本汇报把研究对象界定为：", 14, False, GREY)
+    _run(p, "研究对象界定为：", 14, False, GREY)
     _run(p, "星上多 Agent 协同", 16, True, NAVY)
     _run(p, "（Agent 全在星上、通信在星内）", 14, False, GREY)
     p2 = tf.add_paragraph()
@@ -258,9 +258,6 @@ def p_scope(prs, page):
     _run(p2, "另一种可能是「天地一体化 MAS」", 14, True, AMBER)
     _run(p2, "（地面 Agent + 星上 Agent 跨链路）——延迟高、链路可被劫持，"
              "信任边界落在链路上，安全假设完全不同。", 14, False, INK)
-    p3 = tf.add_paragraph()
-    p3.space_before = Pt(7)
-    _run(p3, "→ 这个边界需要老师拍板（见最后一页）。", 14, True, CRIMSON)
     yy = y + Inches(1.90)
     tf2 = _p(s, M, yy, CW, Inches(0.35))
     _run(tf2.paragraphs[0], "卫星场景的特殊性（三条）", 15, True, NAVY)
@@ -287,7 +284,7 @@ def p_scope(prs, page):
 
 def p_papers(prs, page):
     s = new_slide(prs, "二、调研范围", page)
-    y = header(s, "我读了这 7 篇", "3 篇会议 + 1 篇期刊 + 3 篇预印本（出处已逐篇核实）")
+    y = header(s, "我读了这 7 篇", "3 篇会议 + 1 篇期刊 + 3 篇预印本")
     rows = [
         ["类别", "论文", "出处", "贡献"],
         ["多智能体威胁模型", "A1", "ICML 2026（PMLR 306）", "14 个攻击向量；护栏挡不住"],
@@ -304,14 +301,14 @@ def p_papers(prs, page):
     rect(s, M, yy, CW, Inches(1.15), fill=WARM, line=AMBER)
     tf = _p(s, M + Inches(0.22), yy + Inches(0.14), CW - Inches(0.44), Inches(0.9))
     p = tf.paragraphs[0]
-    _run(p, "★ 两条引用注意：", 13.5, True, AMBER)
+    _run(p, "出处说明：", 13.5, True, AMBER)
     p2 = tf.add_paragraph()
     p2.space_before = Pt(5)
-    _run(p2, "① A2 / B2 / E4 都还没有正式 venue——说「arXiv 预印本」，别说成会议论文（A2、E4 是 9 月刚挂的，属最新工作）。",
+    _run(p2, "A2 / B2 / E4 为 arXiv 预印本（A2、E4 为 2026 年 9 月），尚无正式 venue。",
          13, False, INK)
     p3 = tf.add_paragraph()
     p3.space_before = Pt(4)
-    _run(p3, "② CaMeL 数字有两个版本：arXiv v2 是 77%，IEEE SaTML 2026 正式版是 67%——引用必须注明版本。",
+    _run(p3, "CaMeL 有两个版本的数字：arXiv v2 为 77%，IEEE SaTML 2026 正式版为 67%。",
          13, False, INK)
     return s
 
@@ -353,7 +350,7 @@ def p_air(prs, page):
     rect(s, M, oy, CW, Inches(0.72), fill=WARM, line=AMBER)
     tf5 = _p(s, M + Inches(0.22), oy + Inches(0.12), CW - Inches(0.44), Inches(0.5))
     p = tf5.paragraphs[0]
-    _run(p, "★ 在卫星 MAS 里，最贴合本次威胁的是「", 14, True, AMBER)
+    _run(p, "在卫星 MAS 里，最贴合本次威胁的是「", 14, True, AMBER)
     _run(p, "成员级攻击者", 15, True, CRIMSON)
     _run(p, "」——它对应「某个 Agent 被污染后影响其他 Agent」这条路径。", 14, True, AMBER)
     return s
@@ -372,7 +369,7 @@ def p_crescendo(prs, page):
     rect(s, M, yy, CW, Inches(1.55), fill=WARM, line=AMBER)
     tf = _p(s, M + Inches(0.22), yy + Inches(0.16), CW - Inches(0.44), Inches(1.25))
     p = tf.paragraphs[0]
-    _run(p, "★ 必须区分两类「多步」（否则逻辑链会断）", 14.5, True, AMBER)
+    _run(p, "两类「多步」的区别", 14.5, True, AMBER)
     p2 = tf.add_paragraph()
     p2.space_before = Pt(7)
     _run(p2, "Crescendo 是「单智能体自迭代」的多步越狱，不是「多智能体之间状态传递」的多步攻击。",
@@ -442,7 +439,7 @@ def p_def1(prs, page):
 
 def p_def2(prs, page):
     s = new_slide(prs, "三、领域地图", page)
-    y = header(s, "防御侧路线 ②：独立授权（A2）", "★ 有个关键消融，直接引出后面的空白")
+    y = header(s, "防御侧路线 ②：独立授权（A2）", "针对持有签名密钥的攻击者的消融")
     rows = [
         ["攻击", "条件", "UAR（动作执行）", "JBR（判断被绕过）"],
         ["记忆投毒", "无授权", "100%", "100%"],
@@ -453,7 +450,7 @@ def p_def2(prs, page):
     _run(tf.paragraphs[0], "→ Validator 完全被攻陷，但危险动作一次都没执行。", 15, True, CRIMSON)
     yy = y + Inches(2.4)
     tf2 = _p(s, M, yy, CW, Inches(0.32))
-    _run(tf2.paragraphs[0], "★ 关键消融（针对持有签名密钥的攻击者）", 14.5, True, NAVY)
+    _run(tf2.paragraphs[0], "关键消融：攻击者持有签名密钥", 14.5, True, NAVY)
     rows2 = [
         ["配置", "结果"],
         ["只有 token（签名）", "和没有防御一样"],
@@ -464,11 +461,11 @@ def p_def2(prs, page):
     rect(s, M, oy, CW, Inches(0.95), fill=WARM, line=AMBER)
     tf3 = _p(s, M + Inches(0.22), oy + Inches(0.12), CW - Inches(0.44), Inches(0.7))
     p = tf3.paragraphs[0]
-    _run(p, "★ 过渡：这套防御能拦住「危险动作」，但拦不住「判断被绕过」——JBR 依然是 100%。",
+    _run(p, "这套防御能拦住「危险动作」，但拦不住「判断被绕过」——JBR 依然是 100%。",
          13.5, True, AMBER)
     p2 = tf3.add_paragraph()
     p2.space_before = Pt(4)
-    _run(p2, "它防的是动作层，认知层已经被攻陷了。这正好指向下一部分的空白。", 13.5, True, CRIMSON)
+    _run(p2, "它防的是动作层，认知层已经被攻陷。", 13.5, True, CRIMSON)
     return s
 
 
@@ -484,7 +481,7 @@ def p_def3(prs, page):
         ("出发点：Dual LLM 还不够——控制流守住了，数据流还能被操纵（类比 SQL 注入：不改结构，改参数）。", False),
         ("做法：P-LLM 把用户查询编译成代码 → 解释器给每个值贴 capability（来源 + 允许的读者）→ 每次调工具前查策略。", False),
         ("效果：AgentDojo 上 67% 带可证明安全性（无防御 84%）。", True),
-        ("⚠️ arXiv v2 报 77%，正式版报 67%——引用要注明版本。", False),
+        ("arXiv v2 报 77%，正式版报 67%。", False),
     ]:
         pp = tf.add_paragraph()
         pp.space_before = Pt(8)
@@ -533,7 +530,7 @@ def p_action_layer(prs, page):
 
 def p_gap1(prs, page):
     s = new_slide(prs, "四、空白", page)
-    y = header(s, "空白 ①：认知层缺少系统性防御", "★ 全篇核心页——空白不是我说的，是文献自己承认的")
+    y = header(s, "空白 ①：认知层缺少系统性防御", "三条独立证据指向同一个位置")
     rect(s, M, y + Inches(0.12), CW, Inches(0.95), fill=WARM, line=AMBER)
     tf = _p(s, M + Inches(0.22), y + Inches(0.26), CW - Inches(0.44), Inches(0.7))
     p = tf.paragraphs[0]
@@ -548,7 +545,7 @@ def p_gap1(prs, page):
     table(s, rows, M, y + Inches(1.35), CW, col_w=[1.2, 2.8, 1.0], size=13, rh=Inches(0.6))
     yy = y + Inches(3.5)
     tf2 = _p(s, M, yy, CW, Inches(0.5))
-    _run(tf2.paragraphs[0], "★ 这就是选题的依据：不是「我觉得这里没人做」，而是三条独立证据都指向同一个空位。",
+    _run(tf2.paragraphs[0], "三条独立证据指向同一个空位。",
          14.5, True, CRIMSON)
     return s
 
@@ -572,10 +569,10 @@ def p_gap2(prs, page):
     rect(s, M, yy, CW, Inches(1.05), fill=WARM, line=AMBER)
     tf = _p(s, M + Inches(0.22), yy + Inches(0.13), CW - Inches(0.44), Inches(0.8))
     p = tf.paragraphs[0]
-    _run(p, "★ 备注（防止被追问「人算不算 MAS 的一部分」）：", 13, True, AMBER)
+    _run(p, "系统边界：", 13, True, AMBER)
     p2 = tf.add_paragraph()
     p2.space_before = Pt(4)
-    _run(p2, "本案例展示的是「人机闭环下，认知污染可以把人变成攻击执行端」。后续研究聚焦 Agent 之间的认知传播；"
+    _run(p2, "本案例展示人机闭环下的认知污染（人成为攻击执行端）。后续研究聚焦 Agent 之间的认知传播；"
              "若把地面决策 Agent 纳入系统边界，则属于「天地一体化 MAS」。", 13, False, INK)
     return s
 
@@ -607,7 +604,7 @@ def p_gap3(prs, page):
     rect(s, M, oy, CW, Inches(0.85), fill=WARM, line=AMBER)
     tf3 = _p(s, M + Inches(0.22), oy + Inches(0.11), CW - Inches(0.44), Inches(0.65))
     p = tf3.paragraphs[0]
-    _run(p, "★ 预埋：validity 校验不是万能的——卫星场景里「事实真值」本身就很难获取。"
+    _run(p, "边界：卫星场景里「事实真值」本身就很难获取。"
              "这既是挑战，也是它必须依赖「一致性」与「锚定」而非「真值比对」的原因。",
          13, True, AMBER)
     return s
@@ -629,13 +626,13 @@ def p_gap_sum(prs, page):
     tf = _p(s, M, yy + Inches(0.2), CW, Inches(0.5))
     p = tf.paragraphs[0]
     p.alignment = PP_ALIGN.CENTER
-    _run(p, "四条空白，每条都能指到具体文献——这是选题的依据，不是我猜的", 15, True, WHITE)
+    _run(p, "四条空白，每条都有文献出处", 15, True, WHITE)
     return s
 
 
 def p_idea(prs, page):
     s = new_slide(prs, "五、初步设想", page)
-    y = header(s, "我的初步设想（待讨论，未验证）", "「认知完整性」是我在本次调研中提炼的概念，不是领域已有术语")
+    y = header(s, "初步设想：认知完整性", "与 CaMeL 对称——把「控制流完整性」推广到「认知完整性」")
     rows = [
         ["", "CaMeL（已有工作）", "本设想"],
         ["保护什么", "做哪些动作", "相信什么"],
@@ -660,7 +657,7 @@ def p_idea(prs, page):
     _run(p, "不是去检查那段文字有没有恶意，而是让它根本写不进认知字段。", 15, True, CRIMSON)
     p2 = tf2.add_paragraph()
     p2.space_before = Pt(5)
-    _run(p2, "预答：若攻击者篡改传感器本身——这是本机制的边界，靠多源交叉核验 + 来源签名缓解；"
+    _run(p2, "边界：若攻击者篡改传感器本身，靠多源交叉核验 + 来源签名缓解；"
              "认证源被攻陷属信任根问题，机制无法完全解决。", 12.5, False, GREY)
     return s
 
@@ -680,14 +677,13 @@ def p_yardstick(prs, page):
     rect(s, M, yy, CW, Inches(0.95), fill=WARM, line=AMBER)
     tf = _p(s, M + Inches(0.22), yy + Inches(0.14), CW - Inches(0.44), Inches(0.7))
     p = tf.paragraphs[0]
-    _run(p, "为什么讲这个：说明我想走的路线是「结构型」——不是「加个过滤器」，"
-             "而是让攻击在架构上就没有通道。", 14, True, AMBER)
+    _run(p, "本设想走的是结构型路线：让攻击在架构上没有通道，而不是再加一个过滤器。", 14, True, AMBER)
     return s
 
 
 def p_next(prs, page):
     s = new_slide(prs, "五、初步设想", page)
-    y = header(s, "下一步：需要老师拍板的问题", "四件事，学生定不了")
+    y = header(s, "下一步需要确认的问题", "四件事会决定后面的工作")
     items = [
         ("场景边界：聚焦星上 MAS，还是天地一体化 MAS？", "决定后续所有安全假设"),
         ("投哪个会议 / 期刊？", "决定 deadline 和选题规模（最急）"),
