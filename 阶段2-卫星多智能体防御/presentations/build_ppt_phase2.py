@@ -295,7 +295,7 @@ def p03_scope(prs, page):
 
 def p04_papers(prs, page):
     s = new_slide(prs, "二、调研范围", page)
-    y = header(s, "我读了这 7 篇", "3 篇会议 + 1 篇期刊 + 3 篇预印本")
+    y = header(s, "我精读的 7 篇", "3 篇会议 + 1 篇期刊 + 3 篇预印本")
     rows = [
         ["论文（原标题）", "出处", "贡献"],
         ["Beyond Single-Model Injection: A Threat Model and Defense Architecture for Prompt Injection in Multi-Agent Systems",
@@ -504,7 +504,7 @@ def p10_def3(prs, page):
 
 
 def p11_action_layer(prs, page):
-    s = new_slide(prs, "四、空白", page)
+    s = new_slide(prs, "四、研究空间", page)
     y = header(s, "三篇的共同点：都在动作层",
                "现有防御观测的是「动作」和「数据流」，不观测「认知对不对」", accent=CRIMSON)
     rect(s, M, y + Inches(0.15), CW, Inches(0.95), fill=NAVY)
@@ -525,29 +525,35 @@ def p11_action_layer(prs, page):
 
 
 def p12_gap1(prs, page):
-    s = new_slide(prs, "四、空白", page)
-    y = header(s, "空白 ①：认知层缺少系统性防御",
-               "现有工作只防动作层，认知层没有对应的机制", accent=CRIMSON)
-    callout(s, M, y + Inches(0.15), CW, Inches(1.15), None, [
-        ("SoK 综述指出「同伴/状态操纵 → 轨迹与目标完整性失效」这条攻击路径，"
-         "相关防御研究证据稀少。", True),
-    ], accent=CRIMSON, size=14)
+    s = new_slide(prs, "四、研究空间", page)
+    y = header(s, "相关工作的边界：动作 vs 信念",
+               "这条路已经有人走了——但他们都停在动作空间", accent=CRIMSON)
+    callout(s, M, y + Inches(0.13), CW, Inches(1.15), None, [
+        ("ICML 2026 的 Speculative Safety Honeypot 用多智能体小模型预测 Agent 的"
+         "未来行为、建轨迹树，已经能做到「提前发现分散在多轮里的恶意意图」。", False),
+        ("它的观测对象是动作空间。而一个攻击可以不改任何动作。", True),
+    ], accent=CRIMSON, size=13)
     rows = [
-        ["来源", "说了什么", "边界"],
-        ["SoK（When Safe Agents Fail Together，197 篇）", "路径 P5 → R4，论文标注「证据稀少」", "不等于没人做"],
-        ["综述（Securing LLM-based Agents）", "缺口：防御在自适应攻击下泛化弱", "综述自承"],
-        ["Trust Propagation（原文自承）", "「不能外推到自适应攻击者」", "论文自己的局限"],
+        ["现有工作", "观测什么", "不看什么"],
+        ["Speculative Safety Honeypot（ICML 2026）",
+         "Agent 未来的动作，整棵轨迹树的演化", "它相信什么"],
+        ["VIGIL（ACL 2026）", "工具流的意图，验证后再提交", "同上"],
+        ["CoopGuard", "交互日志里的攻击模式", "同上"],
+        ["CaMeL / policy oracle", "数据流与动作权限", "同上"],
     ]
-    y2 = table(s, rows, M, y + Inches(1.52), CW, col_w=[1.2, 2.8, 1.0],
-               size=13, rh=Inches(0.66))
-    tf = _p(s, M, y2 + Inches(0.28), CW, Inches(0.4))
-    _run(tf.paragraphs[0], "三条独立证据指向同一个空位——这是选题的依据，不是我的猜测。",
-         14.5, True, CRIMSON)
+    y2 = table(s, rows, M, y + Inches(1.50), CW, col_w=[2.5, 2.4, 1.2],
+               size=11.5, rh=Inches(0.55))
+    tf = _p(s, M, y2 + Inches(0.26), CW, Inches(0.72))
+    p = tf.paragraphs[0]
+    _run(p, "它们都在动作空间里做判断。", 15, True, CRIMSON)
+    p2 = tf.add_paragraph()
+    p2.space_before = Pt(5)
+    _run(p2, "而攻击可以完全不改动作——Agent 只是把错误的认知，写进了给操作员的报告。", 15, True, NAVY)
     return s
 
 
 def p13_gap2(prs, page):
-    s = new_slide(prs, "四、空白", page)
+    s = new_slide(prs, "四、研究空间", page)
     y = header(s, "空白 ②：一个具体场景，现有防御看不见",
                "攻击者不需要打败任何防御", accent=CRIMSON)
     code_block(s, M, y + Inches(0.12), CW, Inches(3.35), [
@@ -572,7 +578,7 @@ def p13_gap2(prs, page):
 
 
 def p14_gap3(prs, page):
-    s = new_slide(prs, "四、空白", page)
+    s = new_slide(prs, "四、研究空间", page)
     y = header(s, "空白 ③：为什么现有机制看不见",
                "provenance 和 validity 是两件不同的事", accent=CRIMSON)
     rows = [
@@ -606,24 +612,29 @@ def p14_gap3(prs, page):
 
 
 def p15_gap_sum(prs, page):
-    s = new_slide(prs, "四、空白", page)
-    y = header(s, "空白汇总", "四条空白，每条都有文献出处", accent=CRIMSON)
+    s = new_slide(prs, "四、研究空间", page)
+    y = header(s, "直接相关的现有工作，以及我的位置",
+               "它们有一个共同假设——算力充裕", accent=CRIMSON)
     rows = [
-        ["#", "空白", "证据"],
-        ["1", "认知层缺少系统性防御，只防动作、不防认知漂移", "SoK 综述的 P5/R4 标注「证据稀少」"],
-        ["2", "现有评估大多用静态攻击，缺少对抗自适应攻击者的验证", "Beyond Single-Model Injection 引的 >85% + 两篇自承"],
-        ["3", "多模态没有覆盖", "Beyond Single-Model Injection 原话：multimodal… we do not address"],
-        ["4", "Crescendo 只覆盖单智能体自迭代，跨 Agent 状态传递的多步攻击没有系统级防御",
-         "Crescendo 只讲攻击、没给系统级防御"],
+        ["技术路线", "代表工作", "假设的算力"],
+        ["推测—验证", "Speculative Safety Honeypot（ICML 2026）、VIGIL（ACL 2026）",
+         "多智能体 / 多次 LLM 调用"],
+        ["多智能体协作防御", "CoopGuard（TIFS 投稿）", "多个 LLM 协作"],
+        ["多模态溯源", "Toward Trustworthy Agentic AI、Pictionary（ETH）", "三个净化/验证 Agent"],
+        ["有状态跨轮防御", "Adaptive Adversaries（已有基准）", "跨轮维护状态"],
     ]
-    y2 = table(s, rows, M, y + Inches(0.15), CW, col_w=[0.4, 3.0, 1.9],
-               size=12.5, rh=Inches(0.72))
-    y3 = y2 + Inches(0.42)
-    rect(s, M, y3, CW, Inches(0.76), fill=NAVY)
-    tf = _p(s, M, y3 + Inches(0.19), CW, Inches(0.5))
+    y2 = table(s, rows, M, y + Inches(0.15), CW, col_w=[1.5, 3.4, 1.9],
+               size=11.5, rh=Inches(0.62))
+    y3 = y2 + Inches(0.34)
+    rect(s, M, y3, CW, Inches(1.02), fill=NAVY)
+    tf = _p(s, M + Inches(0.30), y3 + Inches(0.20), CW - Inches(0.60), Inches(0.7))
     p = tf.paragraphs[0]
     p.alignment = PP_ALIGN.CENTER
-    _run(p, "四条空白，每条都能指到具体文献", 15, True, WHITE)
+    _run(p, "这些工作在云端算力充裕的前提下都成立。", 16, True, WHITE)
+    p2 = tf.add_paragraph()
+    p2.alignment = PP_ALIGN.CENTER
+    p2.space_before = Pt(5)
+    _run(p2, "卫星场景不成立——星上算力受限。", 16, True, RGBColor(0xF5, 0xB7, 0xB0))
     return s
 
 
