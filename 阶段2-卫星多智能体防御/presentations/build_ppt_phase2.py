@@ -46,7 +46,7 @@ MONO = "Menlo"
 SW, SH = Inches(13.333), Inches(7.5)
 M = Inches(0.62)
 CW = SW - 2 * M
-TOTAL = 18
+TOTAL = 19
 
 
 def _p(layer, x, y, w, h):
@@ -166,7 +166,7 @@ def code_block(s, x, y, w, h, lines, size=12.5):
     for i, ln in enumerate(lines):
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         p.space_after = Pt(3.5)
-        _run(p, ln, size, False, INK, mono=True)
+        _run(p, ln, size, False, INK, mono=False)
 
 
 def callout(s, x, y, w, h, title, body_lines, accent=TEAL, size=13, title_size=13.5):
@@ -236,7 +236,7 @@ def p01_cover(prs, page):
     _run(p3, "精读 7 篇 + 相关 5 篇；3 篇会议 + 1 篇期刊 + 3 篇预印本", 14, False, GREY)
     p4 = tf2.add_paragraph()
     p4.space_before = Pt(6)
-    _run(p4, "2026 年 10 月", 14, False, GREY)
+    _run(p4, "汇报人：［姓名］　·　2026 年 10 月", 14, False, GREY)
     return s
 
 
@@ -455,10 +455,12 @@ def p09_def2(prs, page):
         ["只有 policy oracle（独立策略）", "和完整防御一样"],
     ]
     y4 = table(s, rows2, M, y3, CW, col_w=[1.2, 1.0], size=13, rh=Inches(0.44))
-    callout(s, M, y4 + Inches(0.32), CW, Inches(1.05), None, [
-        ("这套防御能拦住危险动作，但拦不住判断被绕过——JBR 依然是 100%。", True),
-        ("也就是说，它防的是动作层，认知层已经被攻陷了。", True),
-    ], accent=CRIMSON, size=13.5)
+    callout(s, M, y4 + Inches(0.26), CW, Inches(1.30), None, [
+        ("它还加了一层 Observer：专门识别「伪造的审批声明」。误拦率从 49.1% 降到 7.4%，"
+         "危险动作执行率保持 0%。", False),
+        ("但论文明确说：Observer 只保可用性，不是安全控制——真正拦住攻击的仍是独立的策略检查。", False),
+        ("这套防御能拦住危险动作，但拦不住判断被绕过：JBR 依然是 100%。它防的是动作层。", True),
+    ], accent=CRIMSON, size=13)
     return s
 
 
@@ -510,16 +512,16 @@ def p11_def4(prs, page):
     rows = [
         ["工作", "做法", "效果"],
         ["Speculative Safety Honeypot（ICML 2026）",
-         "用小模型多智能体做「推测—验证」，预测未来动作、建轨迹树，提前发现多轮里的意图",
+         "小模型多智能体做「推测—验证」，建轨迹树预测未来动作",
          "提前预警，给现有检测器提供决策冗余"],
         ["VIGIL（ACL 2026）",
-         "工具流「先验证再提交」：先生成假设，再做意图锚定的验证",
+         "工具流「先验证再提交」：生成假设 + 意图锚定验证",
          "ASR 再降 22% 以上，攻击下可用性翻倍"],
         ["CoopGuard（TIFS 投稿）",
-         "多智能体协作：干扰节奏、误导对手、日志取证，自适应协调",
+         "多智能体协作：干扰节奏、误导对手、日志取证",
          "ASR 平均降 69%，攻击方 token 消耗 +199%"],
         ["Adaptive Adversaries（基准）",
-         "自适应跨轮攻击基准，21 场景 945 场对抗",
+         "自适应跨轮攻击基准，21 场景 945 场",
          "第一轮 ASR 0–1%，放到 15 轮变 7.9–16.8%"],
     ]
     y2 = table(s, rows, M, y + Inches(0.15), CW, col_w=[1.9, 3.4, 2.3],
@@ -533,12 +535,12 @@ def p11_def4(prs, page):
 def p13_action_layer(prs, page):
     s = new_slide(prs, "四、领域现状", page)
     y = header(s, "现有防御都在动作层",
-               "现有防御观测的是「动作」和「数据流」，不观测「认知对不对」", accent=CRIMSON)
+               "这些防御有一个共同点", accent=CRIMSON)
     rect(s, M, y + Inches(0.15), CW, Inches(0.95), fill=NAVY)
     tf = _p(s, M, y + Inches(0.34), CW, Inches(0.6))
     p = tf.paragraphs[0]
     p.alignment = PP_ALIGN.CENTER
-    _run(p, "它们观测「动作」和「数据流」，不观测「认知对不对」", 19, True, WHITE)
+    _run(p, "只要攻击者不直接下命令，这些防御会全部静默通过", 19, True, WHITE)
     rows = [
         ["防御", "观测什么", "不管什么"],
         ["CaMeL 的 capability", "数据来源与访问权限", "不校验数据本身真假，阻止不了形成错误认知"],
@@ -562,10 +564,8 @@ def p14_boundary(prs, page):
     ], accent=CRIMSON, size=13)
     rows = [
         ["现有工作", "观测什么", "不看什么"],
-        ["Speculative Safety Honeypot（ICML 2026）",
-         "Agent 未来的动作，整棵轨迹树的演化", "它相信什么"],
-        ["VIGIL（ACL 2026）", "工具流的意图，验证后再提交", "同上"],
-        ["CoopGuard", "交互日志里的攻击模式", "同上"],
+        ["Speculative Safety Honeypot", "未来动作、整棵轨迹树的演化", "它相信什么"],
+        ["VIGIL / CoopGuard", "工具流意图 / 日志里的攻击模式", "同上"],
         ["CaMeL / policy oracle", "数据流与动作权限", "同上"],
     ]
     y2 = table(s, rows, M, y + Inches(1.50), CW, col_w=[2.5, 2.4, 1.2],
@@ -669,8 +669,10 @@ def p17_status(prs, page):
         ["有状态跨轮防御", "Adaptive Adversaries（基准）", "跨轮维护状态"],
     ]
     y3 = table(s, rows, M, y2, CW, col_w=[1.5, 3.2, 2.1], size=11, rh=Inches(0.44))
-    tf3 = _p(s, M, y3 + Inches(0.22), CW, Inches(0.36))
-    _run(tf3.paragraphs[0], "这四条路线都建立在同一个前提上：算力充裕。", 14, True, CRIMSON)
+    rect(s, M, y3 + Inches(0.20), CW, Inches(0.62), fill=T_RISK, line=CRIMSON)
+    tf3 = _p(s, M + Inches(0.24), y3 + Inches(0.32), CW - Inches(0.48), Inches(0.4))
+    _run(tf3.paragraphs[0], "四条路线都建立在同一个前提上：算力充裕——而卫星场景恰恰相反。",
+         14.5, True, CRIMSON)
     return s
 
 
@@ -693,7 +695,38 @@ def p12_yardstick(prs, page):
     return s
 
 
-def p18_next(prs, page):
+def p18_findings(prs, page):
+    s = new_slide(prs, "四、领域现状", page)
+    y = header(s, "本次调研的四条核心发现", "如果只记四句话", accent=CRIMSON)
+    items = [
+        ("攻击已经从单点转向跨轮、跨主体",
+         "工具输出间接注入 43%、Agent 间消息 31%；只算第一轮 ASR 0–1%，放到 15 轮变 7.9–16.8%"),
+        ("防御的主流已经从提示级转向架构级",
+         "最新一批（SSH、VIGIL、CoopGuard）都不再靠拦住单次输入，而是维护跨轮状态、预测未来"),
+        ("现有防御的观测对象是动作和数据流",
+         "统一不包含「Agent 相信什么」——而一个攻击可以完全不改动作，只改认知"),
+        ("四条技术路线都假设云端算力充裕",
+         "推测—验证、多智能体协作、多模态溯源、有状态防御，都没有回答「算力受限时还剩多少」"),
+    ]
+    hh = Inches(1.06)
+    for i, (t, d) in enumerate(items):
+        yy = y + Inches(0.18) + i * (hh + Inches(0.16))
+        rect(s, M, yy, CW, hh, fill=T_RISK, line=CRIMSON)
+        rect(s, M + Inches(0.18), yy + Inches(0.24), Inches(0.50), Inches(0.50),
+             fill=CRIMSON, radius=0.5)
+        tfx = _p(s, M + Inches(0.18), yy + Inches(0.32), Inches(0.50), Inches(0.4))
+        px = tfx.paragraphs[0]
+        px.alignment = PP_ALIGN.CENTER
+        _run(px, str(i + 1), 17, True, WHITE)
+        tf = _p(s, M + Inches(0.86), yy + Inches(0.20), CW - Inches(1.05), Inches(0.8))
+        _run(tf.paragraphs[0], t, 15, True, NAVY)
+        p2 = tf.add_paragraph()
+        p2.space_before = Pt(5)
+        _run(p2, d, 12, False, GREY)
+    return s
+
+
+def p19_next(prs, page):
     s = new_slide(prs, "五、后续计划", page)
     y = header(s, "后续调研计划与需要确认的问题", "接下来读什么、以及需要老师定的三件事", accent=TEAL)
     w2 = int((CW - Inches(0.50)) / 2)
@@ -731,7 +764,7 @@ def build():
     P = [p01_cover, p02_threat, p03_scope, p04_papers, p05_air, p06_crescendo,
          p07_attack, p08_def1, p09_def2, p10_def3, p11_def4, p12_yardstick,
          p13_action_layer, p14_boundary, p15_scene, p16_validity, p17_status,
-         p18_next]
+         p18_findings, p19_next]
     for i, fn in enumerate(P, 1):
         fn(prs, i)
     prs.save(OUT)
