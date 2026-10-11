@@ -225,15 +225,15 @@ def p01_cover(prs, page):
     s = prs.slides.add_slide(prs.slide_layouts[6])
     rect(s, 0, 0, SW, Inches(2.95), fill=NAVY, radius=0)
     tf = _p(s, M, Inches(1.10), CW - Inches(1), Inches(1.6))
-    _run(tf.paragraphs[0], "卫星多智能体系统的多步注入攻击防御", 37, True, WHITE)
+    _run(tf.paragraphs[0], "卫星多智能体安全：多步注入攻击与防御", 35, True, WHITE)
     p2 = tf.add_paragraph()
     p2.space_before = Pt(12)
     _run(p2, "调 研 汇 报", 19, False, RGBColor(0x9E, 0xC5, 0xE8))
     tf2 = _p(s, M, Inches(3.55), CW, Inches(1.5))
-    _run(tf2.paragraphs[0], "从「动作层防御」到「认知层防御」", 19, True, TEAL)
+    _run(tf2.paragraphs[0], "领域调研：威胁、防御路线与现状", 19, True, TEAL)
     p3 = tf2.add_paragraph()
     p3.space_before = Pt(14)
-    _run(p3, "7 篇文献调研：3 篇会议 + 1 篇期刊 + 3 篇预印本", 14, False, GREY)
+    _run(p3, "精读 7 篇 + 相关 5 篇；3 篇会议 + 1 篇期刊 + 3 篇预印本", 14, False, GREY)
     p4 = tf2.add_paragraph()
     p4.space_before = Pt(6)
     _run(p4, "2026 年 10 月", 14, False, GREY)
@@ -295,7 +295,7 @@ def p03_scope(prs, page):
 
 def p04_papers(prs, page):
     s = new_slide(prs, "二、调研范围", page)
-    y = header(s, "我精读的 7 篇", "3 篇会议 + 1 篇期刊 + 3 篇预印本")
+    y = header(s, "调研范围：精读 7 篇", "3 篇会议 + 1 篇期刊 + 3 篇预印本；另有 5 篇直接相关工作，见第 11 页")
     rows = [
         ["论文（原标题）", "出处", "贡献"],
         ["Beyond Single-Model Injection: A Threat Model and Defense Architecture for Prompt Injection in Multi-Agent Systems",
@@ -503,8 +503,35 @@ def p10_def3(prs, page):
     return s
 
 
-def p11_action_layer(prs, page):
-    s = new_slide(prs, "四、研究空间", page)
+def p11_def4(prs, page):
+    s = new_slide(prs, "三、领域地图", page)
+    y = header(s, "防御侧路线 ④：推测—验证与有状态防御",
+               "这一批是最新的工作，都做多轮 / 跨轮防御", accent=BLUE)
+    rows = [
+        ["工作", "做法", "效果"],
+        ["Speculative Safety Honeypot（ICML 2026）",
+         "用小模型多智能体做「推测—验证」，预测未来动作、建轨迹树，提前发现多轮里的意图",
+         "提前预警，给现有检测器提供决策冗余"],
+        ["VIGIL（ACL 2026）",
+         "工具流「先验证再提交」：先生成假设，再做意图锚定的验证",
+         "ASR 再降 22% 以上，攻击下可用性翻倍"],
+        ["CoopGuard（TIFS 投稿）",
+         "多智能体协作：干扰节奏、误导对手、日志取证，自适应协调",
+         "ASR 平均降 69%，攻击方 token 消耗 +199%"],
+        ["Adaptive Adversaries（基准）",
+         "自适应跨轮攻击基准，21 场景 945 场对抗",
+         "第一轮 ASR 0–1%，放到 15 轮变 7.9–16.8%"],
+    ]
+    y2 = table(s, rows, M, y + Inches(0.15), CW, col_w=[1.9, 3.4, 2.3],
+               size=11, rh=Inches(0.90))
+    tf = _p(s, M, y2 + Inches(0.26), CW, Inches(0.4))
+    _run(tf.paragraphs[0], "这批工作的共同点：都不再靠「拦住单次输入」，而是维护跨轮状态、预测未来。",
+         14, True, NAVY)
+    return s
+
+
+def p13_action_layer(prs, page):
+    s = new_slide(prs, "四、领域现状", page)
     y = header(s, "现有防御都在动作层",
                "现有防御观测的是「动作」和「数据流」，不观测「认知对不对」", accent=CRIMSON)
     rect(s, M, y + Inches(0.15), CW, Inches(0.95), fill=NAVY)
@@ -524,8 +551,8 @@ def p11_action_layer(prs, page):
     return s
 
 
-def p12_gap1(prs, page):
-    s = new_slide(prs, "四、研究空间", page)
+def p14_boundary(prs, page):
+    s = new_slide(prs, "四、领域现状", page)
     y = header(s, "相关工作的边界：动作 vs 信念",
                "这条路已经有人走了——但他们都停在动作空间", accent=CRIMSON)
     callout(s, M, y + Inches(0.13), CW, Inches(1.15), None, [
@@ -552,8 +579,8 @@ def p12_gap1(prs, page):
     return s
 
 
-def p13_gap2(prs, page):
-    s = new_slide(prs, "四、研究空间", page)
+def p15_scene(prs, page):
+    s = new_slide(prs, "四、领域现状", page)
     y = header(s, "一个具体场景：不改动作，只改认知",
                "攻击者不需要打败任何防御", accent=CRIMSON)
     code_block(s, M, y + Inches(0.12), CW, Inches(3.35), [
@@ -577,8 +604,8 @@ def p13_gap2(prs, page):
     return s
 
 
-def p14_gap3(prs, page):
-    s = new_slide(prs, "四、研究空间", page)
+def p16_validity(prs, page):
+    s = new_slide(prs, "四、领域现状", page)
     y = header(s, "为什么现有机制够不着：来源 ≠ 真伪",
                "provenance 和 validity 是两件不同的事", accent=CRIMSON)
     rows = [
@@ -611,116 +638,90 @@ def p14_gap3(prs, page):
     return s
 
 
-def p15_gap_sum(prs, page):
-    s = new_slide(prs, "四、研究空间", page)
-    y = header(s, "现有工作与我的位置：算力约束",
-               "它们有一个共同假设——算力充裕", accent=CRIMSON)
+def p17_status(prs, page):
+    s = new_slide(prs, "四、领域现状", page)
+    y = header(s, "领域现状小结", "共识、分歧、以及还没解决的问题", accent=CRIMSON)
+    w2 = int((CW - Inches(0.45)) / 2)
+    rect(s, M, y + Inches(0.15), w2, Inches(1.95), fill=T_KEY, line=TEAL)
+    tf = _p(s, M + Inches(0.22), y + Inches(0.30), w2 - Inches(0.44), Inches(1.65))
+    _run(tf.paragraphs[0], "已经形成的共识", 15, True, TEAL)
+    for t in ["单步防护不够，攻击是跨轮、跨主体的",
+              "提示级防护不可靠，要做架构级",
+              "评测必须放到多轮、自适应攻击下做"]:
+        pp = tf.add_paragraph()
+        pp.space_before = Pt(8)
+        _run(pp, "·  " + t, 12.5, False, INK)
+    rect(s, M + w2 + Inches(0.45), y + Inches(0.15), w2, Inches(1.95), fill=T_CAVEAT, line=AMBER)
+    tf2 = _p(s, M + w2 + Inches(0.67), y + Inches(0.30), w2 - Inches(0.44), Inches(1.65))
+    _run(tf2.paragraphs[0], "还有分歧或没解决的", 15, True, AMBER)
+    for t in ["有状态防御的开销，在受限环境下是否可接受",
+              "来源可验证，但内容真伪没法验证",
+              "「不改动作、只改认知」这类攻击怎么观测"]:
+        pp = tf2.add_paragraph()
+        pp.space_before = Pt(8)
+        _run(pp, "·  " + t, 12.5, False, INK)
+    y2 = y + Inches(2.32)
     rows = [
         ["技术路线", "代表工作", "假设的算力"],
-        ["推测—验证", "Speculative Safety Honeypot（ICML 2026）、VIGIL（ACL 2026）",
-         "多智能体 / 多次 LLM 调用"],
-        ["多智能体协作防御", "CoopGuard（TIFS 投稿）", "多个 LLM 协作"],
-        ["多模态溯源", "Toward Trustworthy Agentic AI、Pictionary（ETH）", "三个净化/验证 Agent"],
-        ["有状态跨轮防御", "Adaptive Adversaries（已有基准）", "跨轮维护状态"],
+        ["推测—验证", "Speculative Safety Honeypot、VIGIL", "多智能体 / 多次 LLM 调用"],
+        ["多智能体协作防御", "CoopGuard", "多个 LLM 协作"],
+        ["多模态溯源", "Toward Trustworthy Agentic AI、Pictionary", "三个净化 / 验证 Agent"],
+        ["有状态跨轮防御", "Adaptive Adversaries（基准）", "跨轮维护状态"],
     ]
-    y2 = table(s, rows, M, y + Inches(0.15), CW, col_w=[1.5, 3.4, 1.9],
-               size=11.5, rh=Inches(0.62))
-    y3 = y2 + Inches(0.34)
-    rect(s, M, y3, CW, Inches(1.02), fill=NAVY)
-    tf = _p(s, M + Inches(0.30), y3 + Inches(0.20), CW - Inches(0.60), Inches(0.7))
-    p = tf.paragraphs[0]
-    p.alignment = PP_ALIGN.CENTER
-    _run(p, "这些工作在云端算力充裕的前提下都成立。", 16, True, WHITE)
-    p2 = tf.add_paragraph()
-    p2.alignment = PP_ALIGN.CENTER
-    p2.space_before = Pt(5)
-    _run(p2, "卫星场景不成立——星上算力受限。", 16, True, RGBColor(0xF5, 0xB7, 0xB0))
+    y3 = table(s, rows, M, y2, CW, col_w=[1.5, 3.2, 2.1], size=11, rh=Inches(0.44))
+    tf3 = _p(s, M, y3 + Inches(0.22), CW, Inches(0.36))
+    _run(tf3.paragraphs[0], "这四条路线都建立在同一个前提上：算力充裕。", 14, True, CRIMSON)
     return s
 
 
-def p16_idea(prs, page):
-    s = new_slide(prs, "五、初步设想", page)
-    y = header(s, "初步设想：认知完整性",
-               "与 CaMeL 对称——把「控制流完整性」推广到「认知完整性」", accent=TEAL)
-    rows = [
-        ["", "CaMeL（已有工作）", "本设想"],
-        ["保护什么", "做哪些动作", "相信什么"],
-        ["从哪提取", "可信查询 → 控制流和数据流", "可信任务定义 → 目标和约束"],
-        ["不可信数据能影响", "只能填数据槽", "只能填结构化事实槽"],
-        ["不能影响", "动作序列", "目标、约束、判断标准"],
-    ]
-    y2 = table(s, rows, M, y + Inches(0.12), CW, col_w=[1.1, 1.6, 1.6],
-               size=12.5, rh=Inches(0.44))
-    y3 = y2 + Inches(0.24)
-    tf = _p(s, M, y3, CW, Inches(0.32))
-    _run(tf.paragraphs[0], "关键设计：区分「数据」和「话」", 14.5, True, TEAL)
-    code_block(s, M, y3 + Inches(0.40), CW, Inches(1.35), [
-        '认知状态 = { "debris_risk": false, "attitude_change_allowed": false,',
-        '             "constraints": ["不得改变卫星姿态", "只读操作"] }',
-        '',
-        "只有认证的结构化来源能写这些字段：碎片传感器 → debris_risk；地面任务定义 → constraints",
-        "气象报告里的文字 → 只能进「参考资料」，写不进上面任何一个字段",
-    ], size=11.5)
-    y4 = y3 + Inches(1.90)
-    tf2 = _p(s, M, y4, CW, Inches(0.75))
-    p = tf2.paragraphs[0]
-    _run(p, "不是去检查那段文字有没有恶意，而是让它根本写不进认知字段。", 14.5, True, CRIMSON)
-    p2 = tf2.add_paragraph()
-    p2.space_before = Pt(7)
-    _run(p2, "边界：如果攻击者篡改传感器本身，靠多源交叉核验和来源签名缓解；"
-             "但认证源被攻陷属于信任根问题，机制无法完全解决。", 12, False, GREY)
-    return s
-
-
-def p17_yardstick(prs, page):
-    s = new_slide(prs, "五、初步设想", page)
-    y = header(s, "判断标尺：结构约束 vs 策略检查",
-               "本设想走的是结构型路线", accent=TEAL)
+def p12_yardstick(prs, page):
+    s = new_slide(prs, "三、领域地图", page)
+    y = header(s, "防御的分类：结构约束 vs 策略检查",
+               "现有防御可以按这个维度分成两类", accent=BLUE)
     rows = [
         ["", "结构约束", "策略检查"],
         ["怎么工作", "架构层面限制攻击路径，让恶意行为在架构层面无法发生", "运行时判断，然后放行或拒绝"],
-        ["例子", "切断数据回流、把计划定死、基础设施层裁权限", "policy oracle、capability、内容过滤"],
+        ["现有工作的例子", "Action-Selector、Plan-Then-Execute、按角色裁权限", "policy oracle、capability、内容过滤"],
         ["押在哪", "不依赖运行时判断", "策略完备 + 组件可信"],
         ["防自适应攻击", "较强", "弱"],
     ]
     y2 = table(s, rows, M, y + Inches(0.15), CW, col_w=[1.0, 2.6, 2.0],
                size=12.5, rh=Inches(0.62))
     callout(s, M, y2 + Inches(0.38), CW, Inches(0.90), None, [
-        ("我想走的不是「再加一个过滤器」，而是让攻击在架构上就没有通道。", True),
-    ], accent=TEAL, size=14)
+        ("两类的强弱不同：结构约束不依赖运行时判断，策略检查押在策略完备和组件可信上。", True),
+    ], accent=BLUE, size=14)
     return s
 
 
 def p18_next(prs, page):
-    s = new_slide(prs, "五、初步设想", page)
-    y = header(s, "下一步需要确认的问题", "这四件事会决定后面的工作", accent=TEAL)
-    items = [
-        ("场景边界：聚焦星上 MAS，还是天地一体化 MAS？", "决定后续所有的安全假设"),
-        ("投哪个会议或期刊？", "决定 deadline 和选题规模，也是最急的一件"),
-        ("数据和算力怎么解决？", "卫星有没有可用的公开数据，实验跑在哪里"),
-        ("认知层这个切口，值不值得做？", "方向确认"),
-    ]
-    hh = Inches(0.82)
-    for i, (q, why) in enumerate(items):
-        yy = y + Inches(0.15) + i * (hh + Inches(0.14))
-        rect(s, M, yy, CW, hh, fill=T_KEY, line=TEAL)
-        rect(s, M + Inches(0.18), yy + Inches(0.17), Inches(0.48), Inches(0.48),
-             fill=TEAL, radius=0.5)
-        tfx = _p(s, M + Inches(0.18), yy + Inches(0.24), Inches(0.48), Inches(0.4))
-        px = tfx.paragraphs[0]
-        px.alignment = PP_ALIGN.CENTER
-        _run(px, str(i + 1), 16, True, WHITE)
-        tf = _p(s, M + Inches(0.84), yy + Inches(0.15), CW - Inches(1.0), Inches(0.6))
-        p = tf.paragraphs[0]
-        _run(p, q, 15, True, NAVY)
-        p2 = tf.add_paragraph()
-        p2.space_before = Pt(4)
-        _run(p2, why, 12, False, GREY)
-    y2 = y + Inches(4.05)
-    callout(s, M, y2, CW, Inches(0.72), None, [
-        ("备选方案：如果卫星数据一时拿不到，先在通用 Agent 基准上验证机制，"
-         "卫星作为应用场景——这样能保证发表节奏。", True),
-    ], accent=AMBER, size=13)
+    s = new_slide(prs, "五、后续计划", page)
+    y = header(s, "后续调研计划与需要确认的问题", "接下来读什么、以及需要老师定的三件事", accent=TEAL)
+    w2 = int((CW - Inches(0.50)) / 2)
+    rect(s, M, y + Inches(0.15), w2, Inches(4.55), fill=T_KEY, line=TEAL)
+    tf = _p(s, M + Inches(0.24), y + Inches(0.34), w2 - Inches(0.48), Inches(4.15))
+    _run(tf.paragraphs[0], "接下来要读的", 15.5, True, TEAL)
+    for t in ["Speculative Safety Honeypot（ICML 2026）—— 离本次调研最近",
+              "Governing the Intelligence Loop（CMU）—— 航天 + 认知脆弱性",
+              "Pictionary（ETH）—— 通道转换这类结构型防御",
+              "VIGIL（ACL 2026）与 CoopGuard —— 已有全文，逐篇精读",
+              "Adaptive Adversaries —— 当评测基准用"]:
+        pp = tf.add_paragraph()
+        pp.space_before = Pt(14)
+        _run(pp, "·  " + t, 13, False, INK)
+    rect(s, M + w2 + Inches(0.50), y + Inches(0.15), w2, Inches(4.55), fill=T_CAVEAT, line=AMBER)
+    tf2 = _p(s, M + w2 + Inches(0.74), y + Inches(0.34), w2 - Inches(0.48), Inches(4.15))
+    _run(tf2.paragraphs[0], "需要确认的", 15.5, True, AMBER)
+    for i, (q, why) in enumerate([
+        ("场景边界：星上 MAS，还是天地一体化 MAS？", "决定后续调研关注哪条信任边界"),
+        ("调研要覆盖到多深？", "是只做文献综述，还是要复现 / 对比"),
+        ("要不要往卫星方向收？", "决定下一步读航天那几篇的优先级"),
+    ], 1):
+        pp = tf2.add_paragraph()
+        pp.space_before = Pt(16)
+        _run(pp, f"{i}. {q}", 13.5, True, NAVY)
+        p3 = tf2.add_paragraph()
+        p3.space_before = Pt(2)
+        _run(p3, "　  " + why, 11.5, False, GREY)
     return s
 
 
@@ -728,8 +729,9 @@ def build():
     prs = Presentation()
     prs.slide_width, prs.slide_height = SW, SH
     P = [p01_cover, p02_threat, p03_scope, p04_papers, p05_air, p06_crescendo,
-         p07_attack, p08_def1, p09_def2, p10_def3, p11_action_layer, p12_gap1,
-         p13_gap2, p14_gap3, p15_gap_sum, p16_idea, p17_yardstick, p18_next]
+         p07_attack, p08_def1, p09_def2, p10_def3, p11_def4, p12_yardstick,
+         p13_action_layer, p14_boundary, p15_scene, p16_validity, p17_status,
+         p18_next]
     for i, fn in enumerate(P, 1):
         fn(prs, i)
     prs.save(OUT)
