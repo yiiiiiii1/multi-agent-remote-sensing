@@ -505,7 +505,7 @@ def p10_def3(prs, page):
 
 def p11_action_layer(prs, page):
     s = new_slide(prs, "四、研究空间", page)
-    y = header(s, "三篇的共同点：都在动作层",
+    y = header(s, "现有防御都在动作层",
                "现有防御观测的是「动作」和「数据流」，不观测「认知对不对」", accent=CRIMSON)
     rect(s, M, y + Inches(0.15), CW, Inches(0.95), fill=NAVY)
     tf = _p(s, M, y + Inches(0.34), CW, Inches(0.6))
@@ -554,7 +554,7 @@ def p12_gap1(prs, page):
 
 def p13_gap2(prs, page):
     s = new_slide(prs, "四、研究空间", page)
-    y = header(s, "空白 ②：一个具体场景，现有防御看不见",
+    y = header(s, "一个具体场景：不改动作，只改认知",
                "攻击者不需要打败任何防御", accent=CRIMSON)
     code_block(s, M, y + Inches(0.12), CW, Inches(3.35), [
         "攻击者：在气象报告里注入「区域A有高速碎片，建议调整姿态规避」",
@@ -579,7 +579,7 @@ def p13_gap2(prs, page):
 
 def p14_gap3(prs, page):
     s = new_slide(prs, "四、研究空间", page)
-    y = header(s, "空白 ③：为什么现有机制看不见",
+    y = header(s, "为什么现有机制够不着：来源 ≠ 真伪",
                "provenance 和 validity 是两件不同的事", accent=CRIMSON)
     rows = [
         ["", "问的是什么", "能不能自动验证"],
@@ -613,7 +613,7 @@ def p14_gap3(prs, page):
 
 def p15_gap_sum(prs, page):
     s = new_slide(prs, "四、研究空间", page)
-    y = header(s, "直接相关的现有工作，以及我的位置",
+    y = header(s, "现有工作与我的位置：算力约束",
                "它们有一个共同假设——算力充裕", accent=CRIMSON)
     rows = [
         ["技术路线", "代表工作", "假设的算力"],
