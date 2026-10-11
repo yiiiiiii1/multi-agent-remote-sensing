@@ -236,7 +236,7 @@ def p01_cover(prs, page):
     _run(p3, "精读 7 篇 + 相关 5 篇；3 篇会议 + 1 篇期刊 + 3 篇预印本", 14, False, GREY)
     p4 = tf2.add_paragraph()
     p4.space_before = Pt(6)
-    _run(p4, "汇报人：［姓名］　·　2026 年 10 月", 14, False, GREY)
+    _run(p4, "2026 年 10 月", 14, False, GREY)
     return s
 
 
@@ -512,8 +512,8 @@ def p11_def4(prs, page):
     rows = [
         ["工作", "做法", "效果"],
         ["Speculative Safety Honeypot（ICML 2026）",
-         "小模型多智能体做「推测—验证」：先预测未来动作建轨迹树，再用真实动作校准剪枝",
-         "提前预警，给现有检测器提供决策冗余"],
+         "三个模拟器（助手/用户/环境）异步建推测树；多样性 Beam Search 追路径覆盖率，真实动作匹配剪枝",
+         "配合现有检测器把 ASR 降到 0%；只用 3B 模型，参数开销 +1.3%"],
         ["VIGIL（ACL 2026）",
          "工具流「先验证再提交」：先生成假设，再按意图锚定做验证",
          "ASR 再降 22% 以上，攻击下可用性翻倍"],
@@ -564,18 +564,21 @@ def p14_boundary(prs, page):
     ], accent=CRIMSON, size=13)
     rows = [
         ["现有工作", "观测什么", "不看什么"],
-        ["Speculative Safety Honeypot", "未来动作、整棵轨迹树的演化", "它相信什么"],
+        ["Speculative Safety Honeypot", "未来动作、整棵推测树的演化", "Agent 内部相信什么"],
         ["VIGIL / CoopGuard", "工具流意图 / 日志里的攻击模式", "同上"],
         ["CaMeL / policy oracle", "数据流与动作权限", "同上"],
     ]
     y2 = table(s, rows, M, y + Inches(1.50), CW, col_w=[2.5, 2.4, 1.2],
                size=11.5, rh=Inches(0.55))
-    tf = _p(s, M, y2 + Inches(0.26), CW, Inches(0.72))
+    tf = _p(s, M, y2 + Inches(0.24), CW, Inches(1.10))
     p = tf.paragraphs[0]
     _run(p, "它们都在动作空间里做判断。", 15, True, CRIMSON)
     p2 = tf.add_paragraph()
     p2.space_before = Pt(5)
     _run(p2, "而攻击可以完全不改动作——Agent 只是把错误的认知，写进了给操作员的报告。", 15, True, NAVY)
+    p3 = tf.add_paragraph()
+    p3.space_before = Pt(7)
+    _run(p3, "（SSH 全文用的是「动作层面的推测」，通篇没有出现信念、认知状态这一类概念。）", 12, False, GREY)
     return s
 
 
@@ -668,11 +671,12 @@ def p17_status(prs, page):
         ["多模态溯源", "Toward Trustworthy Agentic AI、Pictionary", "三个净化 / 验证 Agent"],
         ["有状态跨轮防御", "Adaptive Adversaries（基准）", "跨轮维护状态"],
     ]
-    y3 = table(s, rows, M, y2, CW, col_w=[1.5, 3.2, 2.1], size=11, rh=Inches(0.44))
-    rect(s, M, y3 + Inches(0.20), CW, Inches(0.62), fill=T_RISK, line=CRIMSON)
-    tf3 = _p(s, M + Inches(0.24), y3 + Inches(0.32), CW - Inches(0.48), Inches(0.4))
-    _run(tf3.paragraphs[0], "四条路线都建立在同一个前提上：算力充裕——而卫星场景恰恰相反。",
-         14.5, True, CRIMSON)
+    y3 = table(s, rows, M, y2, CW, col_w=[1.5, 3.2, 2.1], size=11, rh=Inches(0.40))
+    rect(s, M, y3 + Inches(0.18), CW, Inches(0.82), fill=T_RISK, line=CRIMSON)
+    tf3 = _p(s, M + Inches(0.24), y3 + Inches(0.30), CW - Inches(0.48), Inches(0.6))
+    _run(tf3.paragraphs[0], "这些工作已经把开销压得很低（SSH 用 3B 模型、参数只加 1.3%），"
+                             "但并行推测的显存和功耗仍不可忽略——没有人在算力硬受限的前提下验证过。",
+         13, True, CRIMSON)
     return s
 
 
@@ -705,8 +709,8 @@ def p18_findings(prs, page):
          "最新一批（SSH、VIGIL、CoopGuard）都不再靠拦住单次输入，而是维护跨轮状态、预测未来"),
         ("现有防御的观测对象是动作和数据流",
          "统一不包含「Agent 相信什么」——而一个攻击可以完全不改动作，只改认知"),
-        ("四条技术路线都假设云端算力充裕",
-         "推测—验证、多智能体协作、多模态溯源、有状态防御，都没有回答「算力受限时还剩多少」"),
+        ("四条技术路线都没在「算力硬受限」下验证过",
+         "SSH 已把开销压到 3B 模型、参数只加 1.3%；但并行推测的显存与功耗仍不可忽略，其余路线同理"),
     ]
     hh = Inches(1.06)
     for i, (t, d) in enumerate(items):
