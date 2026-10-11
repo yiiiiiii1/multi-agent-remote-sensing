@@ -512,23 +512,23 @@ def p11_def4(prs, page):
     rows = [
         ["工作", "做法", "效果"],
         ["Speculative Safety Honeypot（ICML 2026）",
-         "小模型多智能体做「推测—验证」，建轨迹树预测未来动作",
+         "小模型多智能体做「推测—验证」：先预测未来动作建轨迹树，再用真实动作校准剪枝",
          "提前预警，给现有检测器提供决策冗余"],
         ["VIGIL（ACL 2026）",
-         "工具流「先验证再提交」：生成假设 + 意图锚定验证",
+         "工具流「先验证再提交」：先生成假设，再按意图锚定做验证",
          "ASR 再降 22% 以上，攻击下可用性翻倍"],
         ["CoopGuard（TIFS 投稿）",
-         "多智能体协作：干扰节奏、误导对手、日志取证",
+         "多智能体协作：干扰节奏、误导对手、日志取证，自适应协调",
          "ASR 平均降 69%，攻击方 token 消耗 +199%"],
         ["Adaptive Adversaries（基准）",
          "自适应跨轮攻击基准，21 场景 945 场",
          "第一轮 ASR 0–1%，放到 15 轮变 7.9–16.8%"],
     ]
-    y2 = table(s, rows, M, y + Inches(0.15), CW, col_w=[1.9, 3.4, 2.3],
-               size=11, rh=Inches(0.90))
-    tf = _p(s, M, y2 + Inches(0.26), CW, Inches(0.4))
+    y2 = table(s, rows, M, y + Inches(0.15), CW, col_w=[1.9, 3.5, 2.2],
+               size=10.5, rh=Inches(0.86))
+    tf = _p(s, M, y2 + Inches(0.22), CW, Inches(0.4))
     _run(tf.paragraphs[0], "这批工作的共同点：都不再靠「拦住单次输入」，而是维护跨轮状态、预测未来。",
-         14, True, NAVY)
+         13.5, True, NAVY)
     return s
 
 
