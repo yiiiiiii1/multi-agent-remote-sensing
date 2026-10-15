@@ -319,36 +319,40 @@ def p_background(prs, total, page):
 def p_axis(prs, total, page):
     s = blank(prs)
     chrome(s, "开场", page, total)
-    y = title(s, "领域坐标：A-I-R 框架", "出处：E4 SoK（系统化了 197 篇工作）——八篇各落在不同位置")
-    rect(s, M, y + Inches(0.12), CW, Inches(0.90), fill=NAVY)
-    tf = _p(s, M, y + Inches(0.30), CW, Inches(0.6))
-    p = tf.paragraphs[0]
-    p.alignment = PP_ALIGN.CENTER
-    _r(p, "A 攻击者位置      →      I 交互接口      →      R 系统级风险", 21, True, WHITE)
-    tf2 = _p(s, M, y + Inches(1.18), CW, Inches(0.42))
-    _r(tf2.paragraphs[0], "核心论点：单独安全的 Agent，一起用会失败。", 16, True, CRIMSON)
-    y2 = y + Inches(1.76)
-    w2 = int((CW - Inches(0.45)) / 2)
-    rect(s, M, y2, w2, Inches(1.95), fill=T_INFO, line=BLUE)
-    tf = _p(s, M + Inches(0.20), y2 + Inches(0.14), w2 - Inches(0.40), Inches(1.7))
-    _r(tf.paragraphs[0], "六个交互接口（攻击从哪进来）", 13.5, True, BLUE)
-    for t in ["I1 准入　·　I2 消息传递　·　I3 状态传播",
-              "I4 权限与动作　·　I5 集体决策　·　I6 检测干预"]:
+    y = title(s, "领域坐标：把多智能体安全拆开的一个框架",
+              "出处：《SoK: When Safe Agents Fail Together: The Security of Multi Agent LLM Systems》"
+              "（Johns Hopkins + NTU，系统化 197 篇工作）")
+    wl = int(CW * 0.47)
+    wr = CW - wl - Inches(0.40)
+    image(s, "p0-air", M, y + Inches(0.06), wl, BOTTOM - y - Inches(0.08),
+          caption="论文 Figure 1：多智能体安全的统一执行视图")
+    rx = M + wl + Inches(0.40)
+    blocks = [
+        ("四个攻击者位置（谁在攻击）", CRIMSON,
+         "外部攻击者　·　用户级攻击者　·　成员级攻击者（多智能体独有）　·　基础设施攻击者"),
+        ("六个交互接口（从哪进来）", BLUE,
+         "准入　·　消息传递　·　状态　·　委托能力　·　集体结果　·　检测与干预"),
+        ("七个系统级风险（什么后果）", AMBER,
+         "遏制失效　·　独立性丧失　·　集体决策完整性失效　·　轨迹与目标完整性失效　·　"
+         "跨主体机密泄露　·　传递性授权失效　·　可用性与资源隔离失效"),
+    ]
+    ry = y + Inches(0.06)
+    tints = {CRIMSON: T_RISK, BLUE: T_INFO, AMBER: T_CAVEAT}
+    for head, col, body in blocks:
+        est_units = sum(1.0 if ord(c) > 0x2000 else 0.55 for c in body)
+        per = max(1, int((wr - Inches(0.44)) / 914400 * 72 / (12.5 * 1.02)))
+        lines = max(1, -(-int(est_units) // per))
+        h = Inches(0.44 + lines * 12.5 * 1.42 / 72)
+        rect(s, rx, ry, wr, h, fill=tints[col], line=col)
+        tf = _p(s, rx + Inches(0.20), ry + Inches(0.11), wr - Inches(0.40), h - Inches(0.22))
+        _r(tf.paragraphs[0], head, 13, True, col)
         pp = tf.add_paragraph()
-        pp.space_before = Pt(8)
-        _r(pp, t, 12, False, INK)
-    rect(s, M + w2 + Inches(0.45), y2, w2, Inches(1.95), fill=T_INFO, line=BLUE)
-    tf = _p(s, M + w2 + Inches(0.65), y2 + Inches(0.14), w2 - Inches(0.40), Inches(1.7))
-    _r(tf.paragraphs[0], "四个攻击者位置（谁在攻击）", 13.5, True, BLUE)
-    for t, b in [("A1 外部　·　A2 用户级", False),
-                 ("A3 成员级（多智能体独有）", True),
-                 ("A4 基础设施", False)]:
-        pp = tf.add_paragraph()
-        pp.space_before = Pt(8)
-        _r(pp, t, 12, b, CRIMSON if b else INK)
-    callout(s, M, y2 + Inches(2.20), CW, None, [
-        ("卫星场景里最贴合本次威胁的是「成员级攻击者」——它对应「一个 Agent 被污染，再去影响其他 Agent」。", True),
-    ], accent=CRIMSON, size=13)
+        pp.space_before = Pt(4)
+        _r(pp, body, 12.5, False, INK)
+        ry += h + Inches(0.16)
+    callout(s, rx, ry, wr, None, [
+        ("卫星场景里最贴合的是「成员级攻击者」——一个 Agent 被污染，再去影响其他 Agent。", True),
+    ], accent=CRIMSON, size=12.5)
 
 
 def p_toc(prs, total, page, papers):
@@ -514,7 +518,7 @@ def p_next(prs, total, page):
               "Governing the Intelligence Loop（CMU，航天 + 认知脆弱性）",
               "Pictionary（ETH，通道转换这类结构型防御）",
               "Toward Trustworthy Agentic AI（多模态溯源）",
-              "E4 SoK 的来源清单（顺着引用往回查）"]:
+              "《SoK: When Safe Agents Fail Together》的来源清单（顺着引用往回查）"]:
         pp = tf.add_paragraph()
         pp.space_before = Pt(11)
         _r(pp, "·  " + t, 12.5, False, INK)

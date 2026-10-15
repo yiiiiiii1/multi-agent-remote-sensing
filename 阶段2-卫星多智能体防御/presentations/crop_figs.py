@@ -26,6 +26,7 @@ DPI = 400
 GAP = 34          # 相邻图形对象的垂直间隙小于这个值（pt）就认为同属一张图
 
 FILES = {
+    "E4": "E4 - SoK Security of Multi Agent LLM Systems (2609.00595).pdf",
     "A1": "A1 - Beyond Single-Model Injection (2609.22949).pdf",
     "A2": "A2 - Trust Propagation and Structural Containment (2609.17648).pdf",
     "A5": "A5 - Crescendo Multi-Turn Jailbreaking (2404.01833).pdf",
@@ -52,6 +53,7 @@ JOBS = [
     ("p8-vigil-arch",        "VIGIL", 4, 320.4),
     ("f1-camel-perf",        "B1", 11, 260.0),   # CaMeL Figure 8：可用性
     ("f2-ssh-risk",          "SSH", 6, 675.3),   # SSH Figure 3：平均风险分与告警率
+    ("p0-air",               "E4", 1, 563.6),    # E4 Figure 1：MAS 安全的统一执行视图
 ]
 
 
