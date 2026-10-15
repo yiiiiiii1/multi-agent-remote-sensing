@@ -850,7 +850,7 @@ PAPERS = [
 def build():
     prs = Presentation()
     prs.slide_width, prs.slide_height = SW, SH
-    total = 5 + 4 * len(PAPERS) + 3          # 5 开场 + 每篇 4 页 + 3 收尾
+    total = 5 + 4 * len(PAPERS) + 2          # 5 开场 + 每篇 4 页 + 2 收尾
     p_cover(prs, total)
     p_background(prs, total, 2)
     p_axis(prs, total, 3)
@@ -864,8 +864,7 @@ def build():
         p_res(prs, total, page + 3, p, i)
         page += 4
     p_summary(prs, total, page)
-    p_next(prs, total, page + 1)
-    p_thanks(prs, total, page + 2)
+    p_thanks(prs, total, page + 1)
     prs.save(OUT)
     print("已生成:", OUT, "共", len(prs.slides._sldIdLst), "页")
     # 交付前自检：PPT 上不能有讲法/导师/提醒/工作痕迹
