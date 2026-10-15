@@ -50,6 +50,8 @@ JOBS = [
     ("p7-ssh-arch",          "SSH", 3, 298.5),
     ("p8-vigil-challenge",   "VIGIL", 0, 457.3),
     ("p8-vigil-arch",        "VIGIL", 4, 320.4),
+    ("f1-camel-perf",        "B1", 11, 260.0),   # CaMeL Figure 8：可用性
+    ("f2-ssh-risk",          "SSH", 6, 675.3),   # SSH Figure 3：平均风险分与告警率
 ]
 
 

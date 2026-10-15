@@ -226,6 +226,21 @@ def callout(s, x, y, w, title_text, lines, accent=TEAL, size=12.5, tsize=13):
     return y + h
 
 
+def kpi_col(s, items, x, y, w, size=15, gap=Inches(0.16)):
+    """竖排 KPI（每项一行，左侧大字右侧小字）。返回底边 y。"""
+    tints = {TEAL: T_KEY, CRIMSON: T_RISK, BLUE: T_INFO, AMBER: T_CAVEAT, NAVY: T_GREY}
+    h = Inches(0.78)
+    for big, small, col in items:
+        rect(s, x, y, w, h, fill=tints.get(col, T_GREY), line=col)
+        tf = _p(s, x + Inches(0.16), y + Inches(0.10), w - Inches(0.32), h - Inches(0.20))
+        _r(tf.paragraphs[0], big, size, True, col)
+        for line in str(small).split("\n"):
+            pp = tf.add_paragraph()
+            _r(pp, line, 10.5, False, GREY)
+        y += h + gap
+    return y - gap
+
+
 def kpi_row(s, items, x, y, w, h=Inches(1.02), size=17, gap=Inches(0.22)):
     """items: (大字, 小字, 颜色)。返回底边 y。"""
     n = len(items)
@@ -413,20 +428,42 @@ def p_model(prs, total, page, p, idx):
 
 
 def p_res(prs, total, page, p, idx):
+    """实验结果页：优先放【论文原表格/原图】；宽图整幅在上，竖图左图右文。"""
     s = blank(prs)
     chrome(s, f"第 {idx} 篇 · 实验结果", page, total)
     y = title(s, p["res"]["headline"], p.get("res_sub"), accent=p["accent"])
     r = p["res"]
     y2 = y + Inches(0.10)
-    if r.get("table"):
-        y2 = table(s, r["table"], M, y2, CW, col_w=r.get("col_w"), size=12.5, head_size=12)
-    if r.get("kpis"):
-        y2 = kpi_row(s, r["kpis"], M, y2 + Inches(0.24), CW)
-    if r.get("fig"):
-        y2 = image(s, r["fig"], M, y2 + Inches(0.22), CW,
-                   BOTTOM - y2 - Inches(0.24), caption=r.get("fig_cap"))
-    if r.get("notes"):
-        bullets(s, r["notes"], M, y2 + Inches(0.20), CW, size=12.5, gap=7)
+    figs = r.get("figs") or []
+    if figs:
+        name, cap = figs[0]
+        iw, ih = Image.open(figpath(name)).size
+        avail_h = BOTTOM - y2
+        reserved = (Inches(0.40) if cap else Inches(0.06))
+        if r.get("kpis"):
+            reserved += Inches(0.22) + Inches(0.92)      # 间隙 + KPI 行高
+        if r.get("notes"):
+            reserved += Inches(0.18) + Inches(0.34) * len(r["notes"])   # 间隙 + 每条约两行
+        # 摆法 A：整幅在上，KPI 在下
+        sA = min(CW / iw, (avail_h - reserved) / ih)
+        # 摆法 B：左图右文
+        wl = int(CW * 0.58)
+        wr = CW - wl - Inches(0.36)
+        sB = min(wl / iw, avail_h / ih)
+        if sA >= sB:
+            th = int(ih * sA)
+            b = image(s, name, M, y2, CW, th, caption=cap)
+            if r.get("kpis"):
+                b = kpi_row(s, r["kpis"], M, b + Inches(0.22), CW, h=Inches(0.92), size=15)
+            if r.get("notes"):
+                bullets(s, r["notes"], M, b + Inches(0.16), CW, size=12, gap=6)
+        else:
+            image(s, name, M, y2, wl, avail_h, caption=cap)
+            ry = y2
+            if r.get("kpis"):
+                ry = kpi_col(s, r["kpis"], M + wl + Inches(0.36), ry, wr)
+            if r.get("notes"):
+                bullets(s, r["notes"], M + wl + Inches(0.36), ry + Inches(0.18), wr, size=12, gap=7)
     return s
 
 
@@ -537,10 +574,7 @@ PAPERS = [
         res=dict(
             headline="攻击效果与对照防御",
             res_sub="它证明单轮检测对多步攻击失效",
-            table=[["对比对象", "提升"],
-                   ["vs GPT-4 上其他 SOTA 越狱", "**+29% ~ +61%**"],
-                   ["vs Gemini-Pro 上其他 SOTA 越狱", "**+49% ~ +71%**"]],
-            col_w=[2.6, 1.2],
+            figs=[("t4-crescendo", "论文 Table 4：各越狱方法在 AdvBench 子集上的对比")],
             kpis=[("4 类模型", "ChatGPT / Gemini / LLaMA / Anthropic", BLUE),
                   (">0% 即失守", "论文的判据：只要成功一次就算没防住", CRIMSON),
                   ("Self-Reminder", "部分有效：难任务降了，Election 等不受影响", AMBER)],
@@ -570,16 +604,11 @@ PAPERS = [
                     "四类攻击：直接注入 3 个、工具输出间接注入 4 个、Agent 间消息注入 4 个、级联注入 3 个。",
                     "四层防御：消息签名 + 溯源 ｜ 边界净化 ｜ 按角色限定工具权限 ｜ 通信模式异常检测。",
                     "编排者在 14 个向量里被瞄准 8 次，是最脆弱的一环。"],
-            figs=[]),
+            figs=[("t1-a1-attack", "论文 Table 1：四类 14 个攻击向量与实测成功率")]),
         res=dict(
             headline="四类攻击的成功率与防御效果",
             res_sub="通用多智能体基准上的数字，不是卫星场景",
-            table=[["攻击类别", "基线", "四层全上"],
-                   ["直接注入（用户输入）", "19%", "3.8%"],
-                   ["**工具输出间接注入**", "**43%**", "4.6%"],
-                   ["**Agent 间消息注入**", "**31%**", "1.2%"],
-                   ["级联注入（操控编排者）", "28%", "3.4%"]],
-            col_w=[2.6, 1.0, 1.1],
+            figs=[("t2-a1-defense", "论文 Table 2：每一层防御对四类攻击的效果")],
             kpis=[("31.2% → 4.2%", "总体攻击成功率", TEAL),
                   ("+4.7%", "延迟开销（基线 4.8 秒）", BLUE),
                   ("2.3%", "净化器误判率", AMBER)],
@@ -613,10 +642,7 @@ PAPERS = [
         res=dict(
             headline="最有用的一行数字",
             res_sub="单轮评测严重低估风险",
-            table=[["评测方式", "攻击成功率"],
-                   ["**只算第一轮**", "**0–1%**"],
-                   ["**允许 15 轮**", "**7.9–16.8%**"]],
-            col_w=[1.4, 1.2],
+            figs=[("t5-aa-matrix", "论文 Table 3：前沿矩阵（3×3 攻击方—防守方，聚合 21 个场景）")],
             kpis=[("1.7–2.2×", "三个攻击 LLM 合起来，比最好的单个多找到的唯一成功输入", BLUE),
                   ("110/270 → 70/270", "加一段溯源说明后的效果（但不同任务差别大）", TEAL),
                   ("相反弱点", "聚合率掩盖了：会话密钥保护 vs 权限处理", CRIMSON)],
@@ -647,12 +673,7 @@ PAPERS = [
         res=dict(
             headline="Validator 完全被攻陷，但危险动作一次都没执行",
             res_sub="这是全篇最关键的一张表",
-            table=[["攻击", "条件", "UAR", "JBR"],
-                   ["记忆投毒", "无授权", "**100%**", "100%"],
-                   ["记忆投毒", "**有授权**", "**0%**", "**100%**"],
-                   ["Agent 劫持", "无授权", "0%", "0%"],
-                   ["Agent 劫持", "有授权", "0%", "0%"]],
-            col_w=[1.5, 1.1, 0.9, 0.9],
+            figs=[("t3-a2-tiers", "论文 TABLE I：各 tier 的攻击效果（3 种子，每格 n = 180）")],
             kpis=[("签名 ⊥ 权限", "只给签名 = 没防御；只给独立策略 = 完整防御", CRIMSON),
                   ("49.1% → 7.4%", "Observer 层的误拦率（但它不是安全控制）", BLUE),
                   ("60 任务 / 3 种子", "Enron 邮件 1000 封，gemma4:31b", GREY)],
@@ -684,10 +705,7 @@ PAPERS = [
         res=dict(
             headline="AgentDojo 上带可证明安全性的完成率",
             res_sub="它给的是「结构上不可能违规」，不是「拦住了多少」",
-            table=[["配置", "任务完成率"],
-                   ["无防御系统", "84%"],
-                   ["**CaMeL**", "**67%**（且带可证明的安全性）"]],
-            col_w=[1.4, 1.6],
+            figs=[("f1-camel-perf", "论文 Figure 8：各模型在 AgentDojo 上的可用性（CaMeL vs 原生工具调用）")],
             kpis=[("8 个模型", "gemini-2.5 / claude-sonnet-4 / gpt-4.1 / o4-mini / o3", BLUE),
                   ("77% vs 67%", "arXiv v2 报 77%，正式版报 67%——引用要注明版本", AMBER),
                   ("Data requires action", "固有失败模式：要做什么取决于读不到的数据", CRIMSON)],
@@ -721,12 +739,7 @@ PAPERS = [
         res=dict(
             headline="这是设计模式论文，不是实证论文",
             res_sub="它没有 benchmark 数字，价值在分类和案例",
-            table=[["模式", "只防「改动作」", "也防「改参数」"],
-                   ["Action-Selector", "是（切断回流）", "—"],
-                   ["Plan-Then-Execute", "是", "**否**"],
-                   ["Code-Then-Execute", "是", "**否**"],
-                   ["Dual LLM / CaMeL", "是", "是（capability）"]],
-            col_w=[1.8, 1.4, 1.6],
+            figs=[("t6-b2-cases", "论文 Table 1：10 个案例与所用设计模式的对应")],
             kpis=[("10 个案例", "OS 助手 / SQL / 邮件日历 / 客服 / 预订 / 推荐 / 简历 / 药品 / 医疗 / 软工", BLUE),
                   ("朴素 → 稳健", "每个案例都给了「有漏洞的实现」与「稳健设计」的对照", TEAL),
                   ("设计依据", "当设计依据用，不当实验依据用", AMBER)],
@@ -759,11 +772,7 @@ PAPERS = [
         res=dict(
             headline="配合现有检测器，把 ASR 压到 0%",
             res_sub="数字都很硬；同时它降低了检测器本身的要求",
-            table=[["配置", "攻击成功率"],
-                   ["PromptGuard 单用", "12.25%"],
-                   ["Judger 单用", "10.48%"],
-                   ["**SSH + 任一检测器**", "**0%**"]],
-            col_w=[1.6, 1.0],
+            figs=[("f2-ssh-risk", "论文 Figure 3：各基准上的平均风险分与告警率")],
             kpis=[("86M 也够", "最轻量的检测器接上 SSH 也能到 0%", TEAL),
                   ("+8.12%", "travel 场景可用性提升；系统级 FPR 0.2%", BLUE),
                   ("3B / +1.3%", "Dolphin3-3B 模拟器，相对 235B 目标参数只加 1.3%", AMBER)],
@@ -798,10 +807,7 @@ PAPERS = [
         res=dict(
             headline="ASR 再降 22% 以上，同时攻击下可用性翻倍",
             res_sub="在安全与可用性之间取平衡",
-            table=[["对比对象", "结果"],
-                   ["vs SOTA 动态防御", "**ASR 再降 22% 以上**"],
-                   ["攻击下的可用性", "**翻倍**（对比静态基线）"]],
-            col_w=[1.6, 1.6],
+            figs=[("t7-vigil-siren", "论文 Table 2：VIGIL 与各基线在 SIREN 上的性能")],
             kpis=[("SIREN 基准", "959 个工具流注入案例 + 949 个数据流基线案例", BLUE),
                   ("五类攻击向量", "显式指令 / 依赖陷阱 / 特性诱导 / 运行时劫持 / 错误劫持", CRIMSON),
                   ("两个层面", "定义层（规划）与执行层（运行时）都覆盖", TEAL)],
