@@ -38,6 +38,11 @@ FILES = {
 }
 
 # 图名, 文件, 页码(0基), 图注 y(pt), 可选横向范围(页宽比例；双栏图需手工指定)
+# 需要手工指定范围的图（双栏排版，自动判栏不可靠）：名字 → (x0, y0, x1, y1)
+EXPLICIT = {
+    "f2-ssh-risk": (303, 536, 547, 675),   # SSH 双栏：Figure 3 在右栏
+}
+
 JOBS = [
     ("p1-crescendo-mech",    "A5", 3, 287.6),
     ("p1-crescendo-result",  "A5", 9, 287.8),
@@ -98,7 +103,8 @@ def figure_bbox(page, cap_y, gap=GAP):
             break
         u |= r
     # 扩展 x：把与该纵向区间重叠的文本块也纳入（图里常有文字标签、注释框）
-    # 双栏排版时只在同一栏内扩，避免把隔壁正文吸进来
+    # 关键：只扩「横向落在图形对象 ±60pt 内」的块——否则双栏排版会把隔壁整栏正文吸进来
+    gx0, gx1 = u.x0, u.x1
     for b in page.get_text("blocks"):
         br = pymupdf.Rect(b[:4])
         if not (br.y1 > u.y0 and br.y0 < u.y1 and br.height < (u.height * 0.9)):
@@ -134,6 +140,8 @@ def do_one(name, key, pno, cap_y, xr=None):
     doc = pymupdf.open(os.path.join(PAPERS, FILES[key]))
     page = doc[pno]
     bb = figure_bbox(page, cap_y)
+    if name in EXPLICIT:
+        bb = pymupdf.Rect(*EXPLICIT[name])
     if bb is not None and xr:
         bb.x0 = page.rect.width * xr[0]
         bb.x1 = page.rect.width * xr[1]

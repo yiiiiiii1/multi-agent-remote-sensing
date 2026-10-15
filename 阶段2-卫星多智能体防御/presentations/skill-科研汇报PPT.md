@@ -166,10 +166,17 @@ def figure_bbox(page, cap_y, gap=34):
             break
         u |= r
     # 扩展 x：把与图同高的文本块（图里的标签、注释框）也纳入
+    # ★ 必须限制在「图形对象横向 ±60pt 内」——只按 y 重叠去扩，
+    #   双栏排版会把隔壁整栏正文吸进来（SSH Figure 3 就这么裁错过一次）
+    gx0, gx1 = u.x0, u.x1
     for b in page.get_text("blocks"):
         br = pymupdf.Rect(b[:4])
-        if br.y1 > u.y0 and br.y0 < u.y1 and br.height < u.height * 0.9:
-            u |= br
+        cx = (br.x0 + br.x1) / 2
+        if not (br.y1 > u.y0 and br.y0 < u.y1 and br.height < u.height * 0.9):
+            continue
+        if not (gx0 - 60 <= cx <= gx1 + 60):
+            continue
+        u |= br
     return u
 ```
 
@@ -187,7 +194,9 @@ def figure_bbox(page, cap_y, gap=34):
 把聚合数字放到 KPI 卡里。
 
 **两个坑**：
-- **双栏论文**：图注常通栏但图只在一栏。自动判栏很容易误伤——**给需要的那张手工指定横向范围**（按页宽比例），比写复杂启发式可靠。
+- **双栏论文**：图注常通栏但图只在一栏。自动判栏很容易误伤——**给需要的那张手工指定坐标**
+  （`EXPLICIT = {名字: (x0, y0, x1, y1)}`），比写复杂启发式可靠。
+  判断哪张需要手工指定：裁完如果**宽度接近整页宽**，但那张图在论文里只占一栏，就是裁错了。
 - **表注在页顶**：`Table 1` 的图注在表**上方**，此时表在下面，不能用「往上收」的逻辑。**表格建议不裁**——在 PPT 里用原生表格重画（更清晰、可编辑、还能只留表头和数据）。
 
 裁完**必须逐张 `read_image` 目检**：常见问题是左/右边缘被切掉（图里有文字标签但不在矢量对象里）。
