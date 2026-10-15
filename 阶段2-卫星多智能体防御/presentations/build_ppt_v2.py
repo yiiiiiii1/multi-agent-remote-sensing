@@ -14,6 +14,7 @@
 用法： python3 build_ppt_v2.py
 """
 import os
+import sys
 from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
@@ -283,7 +284,7 @@ def p_cover(prs, total):
 def p_background(prs, total, page):
     s = blank(prs)
     chrome(s, "开场", page, total)
-    y = title(s, "背景：多步注入攻击链", "导师给的三步——前两步都很轻，谁都不会报警")
+    y = title(s, "背景：多步注入攻击链", "三个环节：拿参数 → 改认知 → 动手")
     steps = ["① 获取卫星运行参数", "② 篡改认知范围，使其合理化", "③ 执行不合理操作 / 篡改遥操数据"]
     n, gap = 3, Inches(0.34)
     bw = int((CW - gap * (n - 1)) / n)
@@ -311,7 +312,7 @@ def p_background(prs, total, page):
         ("默认场景：星上多 Agent 协同（Agent 全在星上、通信在星内）。另一种是天地一体化 MAS，信任边界落在链路上。", False),
         ("三条特殊性：数据多模态（影像 + 遥测 + 文本）｜ 动作物理不可逆（遥操指令发出收不回）｜ 算力受限。", True),
     ], accent=BLUE, size=13)
-    bullets(s, ["这三条特殊性，在下面每一篇的防御设计里都会成为判断依据。"],
+    bullets(s, [("数据流与工具输出是主要入口；动作不可逆意味着防御窗口必须前移。", False)],
             M, y3 + Inches(0.22), CW, size=13, color=GREY)
 
 
@@ -380,8 +381,6 @@ def p_cover_paper(prs, total, page, p, idx):
     rect(s, M, y, CW, Inches(1.05), fill=T_GREY, line=BORDER)
     tfc = _p(s, M + Inches(0.26), y + Inches(0.22), CW - Inches(0.52), Inches(0.7))
     _r(tfc.paragraphs[0], p["one_liner"], 17, True, acc)
-    tf3 = _p(s, M, Inches(6.10), CW, Inches(0.4))
-    _r(tf3.paragraphs[0], f'本篇四页：动机与难点 → 模型 → 实验结果', 12, False, GREY)
 
 
 def p_mot(prs, total, page, p, idx):
@@ -506,7 +505,7 @@ def p_summary(prs, total, page):
 def p_next(prs, total, page):
     s = blank(prs)
     chrome(s, "收尾", page, total)
-    y = title(s, "后续调研计划与需要确认的问题", "接下来读什么、以及需要老师定的三件事", accent=TEAL)
+    y = title(s, "后续调研计划与需要确认的问题", "接下来读什么、以及需要确认的三件事", accent=TEAL)
     w2 = int((CW - Inches(0.50)) / 2)
     rect(s, M, y + Inches(0.14), w2, Inches(4.20), fill=T_KEY, line=TEAL)
     tf = _p(s, M + Inches(0.24), y + Inches(0.32), w2 - Inches(0.48), Inches(3.9))
@@ -543,7 +542,7 @@ def p_thanks(prs, total, page):
     tf2 = _p(s, M, Inches(5.20), CW, Inches(0.5))
     p = tf2.paragraphs[0]
     p.alignment = PP_ALIGN.CENTER
-    _r(p, "请老师指正", 15, False, GREY)
+    _r(p, "欢迎提问与讨论", 15, False, GREY)
 
 
 # ================== 八篇的内容 ==================
@@ -628,7 +627,7 @@ PAPERS = [
             purpose=["评测 Agent 安全性需要对抗基准，但现有基准大多只统计单轮结果。",
                      "要把攻击者、防守方、场景、会话状态、交互预算都变成可配置的选项。"],
             challenges=["攻击者是自主 LLM，会观察防守方上一轮回答再调整——固定测试集测不出它的能力。",
-                        "防守方每轮按「全新交互」评，必须区分跨轮记忆和跨轮会话。",
+                        "防守方每轮按「全新交互」评，因此要区分跨轮记忆与跨轮会话两件事。",
                         "单个攻击模型会漏掉大量成功攻击，需要多个攻击模型合起来。",
                         "聚合指标会掩盖场景之间的相反弱点。"]),
         model=dict(
@@ -707,7 +706,7 @@ PAPERS = [
             res_sub="它给的是「结构上不可能违规」，不是「拦住了多少」",
             figs=[("f1-camel-perf", "论文 Figure 8：各模型在 AgentDojo 上的可用性（CaMeL vs 原生工具调用）")],
             kpis=[("8 个模型", "gemini-2.5 / claude-sonnet-4 / gpt-4.1 / o4-mini / o3", BLUE),
-                  ("77% vs 67%", "arXiv v2 报 77%，正式版报 67%——引用要注明版本", AMBER),
+                  ("77% vs 67%", "arXiv v2 报 77%，IEEE SaTML 2026 正式版报 67%", AMBER),
                   ("Data requires action", "固有失败模式：要做什么取决于读不到的数据", CRIMSON)],
             notes=[("non-goal：不防「文本到文本」的攻击——只改变生成内容、不影响控制流/数据流的攻击它管不了。", True)]),
     ),
@@ -836,6 +835,13 @@ def build():
     p_thanks(prs, total, page + 2)
     prs.save(OUT)
     print("已生成:", OUT, "共", len(prs.slides._sldIdLst), "页")
+    # 交付前自检：PPT 上不能有讲法/导师/提醒/工作痕迹
+    import subprocess
+    r = subprocess.run([sys.executable, os.path.join(HERE, "check_ppt.py"), OUT],
+                       capture_output=True, text=True)
+    print(r.stdout.strip())
+    if r.returncode != 0:
+        print("⚠️ 上面的违规必须清掉，否则不要交付")
 
 
 if __name__ == "__main__":
