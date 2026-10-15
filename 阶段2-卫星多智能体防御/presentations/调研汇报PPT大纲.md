@@ -57,8 +57,8 @@
 | 2 | Beyond Single-Model Injection | ICML 2026 | 攻击 · 多智能体威胁模型 |
 | 3 | Adaptive Adversaries | arXiv:2607.18063 | 评测 · 自适应多轮基准 |
 | 4 | Trust Propagation… | arXiv:2609.17648 | 防御 · 独立授权 |
-| 5 | CaMeL（Defeating Prompt Injections by Design） | IEEE SaTML 2026 | 防御 · 设计层 |
-| 6 | Design Patterns… | arXiv:2506.08837 | 防御 · 架构模式 |
+| 5 | Design Patterns… | arXiv:2506.08837 | 防御 · 架构模式 |
+| 6 | Defeating Prompt Injections by Design（CaMeL） | IEEE SaTML 2026 | 防御 · 设计层 |
 | 7 | Speculative Safety Honeypot | ICML 2026 | 防御 · 推测—验证 |
 | 8 | VIGIL | ACL 2026 | 防御 · 工具流验证 |
 
@@ -86,7 +86,7 @@
 - **适用边界**：必须是多轮——**没有对话历史的系统天然更难被攻破**
 - **配图**：论文 Figure 1 或 Figure 2（多轮升级的实例）
 
-**P8 · 实验结果**
+**P9 · 实验结果**（新增一栏「**对星上的含义**」——每篇都有一栏，回答「这跟卫星什么关系」）
 | 对比 | 提升 |
 |---|---|
 | vs GPT-4 上其他 SOTA 越狱方法 | **+29% ~ +61%** |
@@ -104,7 +104,7 @@
 **P9 · 题名页**
 - 标题：**Beyond Single-Model Injection: A Threat Model and Defense Architecture for Prompt Injection in Multi-Agent Systems**
 - 作者：Rudrendu Kumar Paul（Boston University）、Sourav Nandy（UT Austin）
-- 出处：**ICML 2026**（PMLR 306）· arXiv:2609.22949
+- 出处：**Agents in the Wild Workshop @ ICML 2026** · arXiv:2609.22949（arXiv comments 原文如此，是 workshop 论文，不是主会）
 - 一句话定位：**把注入从单模型推进到多智能体，给出 14 个攻击向量与四层架构防御**
 
 **P10 · 动机与难点**
@@ -219,7 +219,9 @@
 
 ---
 
-## 论文 5 · CaMeL（P22–25）
+## 论文 5 · Design Patterns（P22–25）
+
+> 讲序说明：先给「有哪些抗注入架构模式」的总览，再展开其中 Code-Then-Execute 那一条（第 6 篇 CaMeL）。
 
 **P21 · 题名页**
 - 标题：**Defeating Prompt Injections by Design**
@@ -268,7 +270,7 @@
 
 ---
 
-## 论文 6 · Design Patterns（P26–29）
+## 论文 6 · CaMeL（P26–29）
 
 **P25 · 题名页**
 - 标题：**Design Patterns for Securing LLM Agents against Prompt Injections**
@@ -400,7 +402,7 @@
 
 ## 收尾（2 页，1 分钟）
 
-### P38 · 现状小结
+### P38 · 现状小结与判断
 **共识三条**：
 1. 单步防护不够——攻击是跨轮、跨主体的（**第一轮 0–1% vs 15 轮 7.9–16.8%**）
 2. 提示级防护不可靠，要做架构级
@@ -411,7 +413,16 @@
 2. **来源可验证，内容真伪没法验证**——所有工作都在把溯源做细
 3. **"不改动作、只改认知"这类攻击怎么观测**——八篇里有七篇的观测对象是动作空间
 
-**顺带带过的（不进专页）**：CoopGuard（多智能体协作防御，ASR 降 69%）、Pictionary（ETH，把不可信内容渲染成图片）、Toward Trustworthy Agentic AI（多模态溯源框架）、CMU 的航天认知脆弱性
+**五条防御在星上会卡在哪（表格，这是收尾的判断）**：
+| 防御路线 | 代表工作 | 星上会卡在哪 |
+|---|---|---|
+| 独立授权 | Trust Propagation | 只多一次策略检查——**最可能存活** |
+| 架构模式 | Design Patterns | 切断通道不额外调模型——**其次可行** |
+| 数据流隔离 | CaMeL | 要跑编译加解释器，算力吃不消 |
+| 推测—验证 | Speculative Safety Honeypot | 并行多条推测分支，显存与功耗不可接受 |
+| 沙箱试错 | VIGIL | **动作物理不可逆，试错这个前提本身不成立** |
+
+**收尾一句**：五条防御没有一条是轻量的。要问的不是「哪条效果最好」，而是「算力砍到十分之一之后，哪条还剩多少」。
 
 ### P39 · 致谢
 
