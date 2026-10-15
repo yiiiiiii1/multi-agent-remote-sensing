@@ -155,7 +155,7 @@ def table(s, rows, x, y, w, col_w=None, size=11, head_size=11, rh=None,
             per = max(1, int(widths[c] / 914400 * 72 / ((head_size if r == 0 else size) * 1.02)))
             mx = max(mx, -(-int(units) // per))
         need = per_line * mx + per_line * 0.55
-        heights.append(max(need, rh or Inches(0.36)))
+        heights.append(int(max(need, rh or Inches(0.36))))
     gf = s.shapes.add_table(nr, nc, x, y, w, sum(heights, Inches(0)))
     tbl = gf.table
     tbl.first_row = True
@@ -256,8 +256,8 @@ def p_cover(prs, total):
     _r(p2, "八 篇 论 文 调 研", 19, False, RGBColor(0x9E, 0xC5, 0xE8))
     tf2 = _p(s, M, Inches(3.42), CW, Inches(1.6))
     _r(tf2.paragraphs[0], "攻击侧 3 篇 ｜ 防御侧 5 篇", 18, True, TEAL)
-    for t in ["攻击：Crescendo · Beyond Single-Model Injection · Adaptive Adversaries",
-              "防御：Trust Propagation · CaMeL · Design Patterns · Speculative Safety Honeypot · VIGIL"]:
+    for t in ["攻击侧：多轮攻击范式 · 多智能体威胁模型 · 自适应评测基准",
+              "防御侧：独立授权 · 设计层防御 · 架构模式 · 推测—验证 · 工具流验证"]:
         pp = tf2.add_paragraph()
         pp.space_before = Pt(10)
         _r(pp, t, 12.5, False, GREY)
@@ -339,11 +339,11 @@ def p_toc(prs, total, page, papers):
     s = blank(prs)
     chrome(s, "开场", page, total)
     y = title(s, "目录：八篇论文", "攻击侧 3 篇 → 防御侧 5 篇；每篇固定四页")
-    rows = [["#", "论文（原标题简称）", "出处", "定位"]]
+    rows = [["#", "论文（原标题）", "出处", "定位"]]
     for i, p in enumerate(papers, 1):
-        rows.append([str(i), p["name"], p["venue_short"], p["role"]])
-    table(s, rows, M, y + Inches(0.14), CW, col_w=[0.32, 3.5, 2.5, 2.2],
-          size=12.5, head_size=12)
+        rows.append([str(i), p["en_title"].replace("\n", " "), p["venue_short"], p["role"]])
+    table(s, rows, M, y + Inches(0.12), CW, col_w=[0.28, 4.6, 2.2, 2.0],
+          size=10.5, head_size=11)
     tf = _p(s, M, BOTTOM - Inches(0.42), CW, Inches(0.36))
     _r(tf.paragraphs[0], "每篇的节奏固定：题名页 → 动机与难点 → 模型 → 实验结果。", 12.5, True, GREY)
 
@@ -351,7 +351,7 @@ def p_toc(prs, total, page, papers):
 # ================== 每篇四页 ==================
 def p_cover_paper(prs, total, page, p, idx):
     s = blank(prs)
-    chrome(s, f'{idx}. {p["name"]}', page, total)
+    chrome(s, f"第 {idx} 篇", page, total)
     acc = p["accent"]
     rect(s, M, Inches(1.28), Inches(0.10), Inches(1.9), fill=acc, radius=0.5)
     tf = _p(s, M + Inches(0.34), Inches(1.30), CW - Inches(0.6), Inches(1.9))
@@ -371,7 +371,7 @@ def p_cover_paper(prs, total, page, p, idx):
 
 def p_mot(prs, total, page, p, idx):
     s = blank(prs)
-    chrome(s, f'{idx}. {p["name"]} · 动机与难点', page, total)
+    chrome(s, f"第 {idx} 篇 · 动机与难点", page, total)
     y = title(s, p["mot"]["headline"], p.get("mot_sub"), accent=p["accent"])
     m = p["mot"]
     w2 = int((CW - Inches(0.45)) / 2) if m.get("fig") else CW
@@ -388,7 +388,7 @@ def p_mot(prs, total, page, p, idx):
 
 def p_model(prs, total, page, p, idx):
     s = blank(prs)
-    chrome(s, f'{idx}. {p["name"]} · 模型', page, total)
+    chrome(s, f"第 {idx} 篇 · 模型", page, total)
     y = title(s, p["model"]["headline"], p.get("model_sub"), accent=p["accent"])
     mo = p["model"]
     figs = mo.get("figs") or []
@@ -414,7 +414,7 @@ def p_model(prs, total, page, p, idx):
 
 def p_res(prs, total, page, p, idx):
     s = blank(prs)
-    chrome(s, f'{idx}. {p["name"]} · 实验结果', page, total)
+    chrome(s, f"第 {idx} 篇 · 实验结果", page, total)
     y = title(s, p["res"]["headline"], p.get("res_sub"), accent=p["accent"])
     r = p["res"]
     y2 = y + Inches(0.10)
