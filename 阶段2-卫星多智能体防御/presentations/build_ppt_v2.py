@@ -368,6 +368,34 @@ def p_toc(prs, total, page, papers):
     _r(tf.paragraphs[0], "每篇的节奏固定：题名页 → 动机与难点 → 模型 → 实验结果。", 12.5, True, GREY)
 
 
+# 八篇在框架里的落点（接口名与风险名均取自该 SoK）
+MAPPING = [
+    ("消息传递", "轨迹与目标完整性失效"),
+    ("准入 · 消息传递 · 委托能力 · 集体结果", "集体决策完整性失效 · 传递性授权失效"),
+    ("消息传递 · 状态", "跨会话累积（评测侧覆盖）"),
+    ("委托能力", "传递性授权失效"),
+    ("委托能力 · 状态", "传递性授权失效 · 跨主体机密泄露"),
+    ("准入 · 消息传递 · 委托能力", "遏制失效"),
+    ("检测与干预", "轨迹与目标完整性失效"),
+    ("委托能力", "遏制失效 · 传递性授权失效"),
+]
+
+
+def p_mapping(prs, total, page, papers):
+    s = blank(prs)
+    chrome(s, "开场", page, total)
+    y = title(s, "八篇的落点：各自对着框架的哪一段",
+              "接口名与风险名取自《SoK: When Safe Agents Fail Together》", accent=BLUE)
+    rows = [["#", "论文（原标题）", "落在哪个接口", "对着哪个风险"]]
+    for i, (p, (ifs, risk)) in enumerate(zip(papers, MAPPING), 1):
+        rows.append([str(i), p["en_title"].replace("\n", " "), ifs, risk])
+    table(s, rows, M, y + Inches(0.12), CW, col_w=[0.26, 4.3, 2.5, 2.5],
+          size=10, head_size=10.5, per_line=Inches(0.185))
+    tf = _p(s, M, BOTTOM - Inches(0.34), CW, Inches(0.34))
+    _r(tf.paragraphs[0], "攻击侧三篇覆盖了四类接口；防御侧五篇集中在「委托能力」和「检测与干预」两处。",
+       12, True, CRIMSON)
+
+
 # ================== 每篇四页 ==================
 def p_cover_paper(prs, total, page, p, idx):
     s = blank(prs)
@@ -822,12 +850,13 @@ PAPERS = [
 def build():
     prs = Presentation()
     prs.slide_width, prs.slide_height = SW, SH
-    total = 4 + 4 * len(PAPERS) + 3          # 4 开场 + 每篇 4 页 + 3 收尾
+    total = 5 + 4 * len(PAPERS) + 3          # 5 开场 + 每篇 4 页 + 3 收尾
     p_cover(prs, total)
     p_background(prs, total, 2)
     p_axis(prs, total, 3)
-    p_toc(prs, total, 4, PAPERS)
-    page = 5
+    p_mapping(prs, total, 4, PAPERS)
+    p_toc(prs, total, 5, PAPERS)
+    page = 6
     for i, p in enumerate(PAPERS, 1):
         p_cover_paper(prs, total, page, p, i)
         p_mot(prs, total, page + 1, p, i)

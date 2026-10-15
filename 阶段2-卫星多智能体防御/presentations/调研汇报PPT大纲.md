@@ -2,7 +2,7 @@
 
 > **本次大改**：从"按主题聚合"改成 **按论文逐篇讲**，参照阶段一终稿的结构。
 > **每篇固定四页**：**题名页 → 动机与难点 → 模型 → 实验结果**
-> 共 **39 页**，汇报 **20 分钟** + 讨论（开场 2 分 + 8 篇 × 2 分 + 收尾 2 分）
+> 共 **40 页**，汇报 **21 分钟** + 讨论（开场 3 分 + 8 篇 × 2 分 + 收尾 2 分）
 
 ---
 
@@ -10,23 +10,23 @@
 
 | 部分 | 页 | 内容 |
 |---|---|---|
-| 开场 | P1–4 | 封面 / 背景威胁 / 领域坐标 / 目录 |
-| **攻击侧 3 篇** | P5–16 | Crescendo · Beyond Single-Model Injection · Adaptive Adversaries |
-| **防御侧 5 篇** | P17–36 | Trust Propagation · CaMeL · Design Patterns · SSH · VIGIL |
-| 收尾 | P37–39 | 现状小结 / 后续计划 / 致谢 |
+| 开场 | P1–5 | 封面 / 背景威胁 / 领域坐标 / **八篇落点总表** / 目录 |
+| **攻击侧 3 篇** | P6–17 | 第 1–3 篇 |
+| **防御侧 5 篇** | P18–37 | 第 4–8 篇 |
+| 收尾 | P38–40 | 现状小结 / 后续计划 / 致谢 |
 
 **每篇的节奏固定**：题名页 10 秒 → 动机 40 秒 → 模型 40 秒 → 实验 30 秒。
 
 ---
 
-## 开场（4 页，2 分钟）
+## 开场（5 页，3 分钟）
 
 ### P1 · 封面
 - 标题：**卫星多智能体安全：多步注入攻击与防御**
 - 副标题：**八篇论文调研**
 - 日期
 
-### P2 · 背景：导师给的三步攻击链
+### P2 · 背景：多步注入攻击链
 ```
 ① 获取卫星运行参数 → ② 篡改认知范围，使其合理化 → ③ 执行不合理操作 / 篡改遥操数据
 ```
@@ -34,13 +34,23 @@
 - **场景界定**：本文默认**星上多 Agent 协同**；另一种是天地一体化 MAS，安全假设不同
 - **三条特殊性**：数据多模态 / 动作物理不可逆 / 算力受限
 
-### P3 · 领域坐标：A-I-R 框架（E4 SoK，197 篇）
+### P3 · 领域坐标：把多智能体安全拆开的一个框架
+
+出处：《SoK: When Safe Agents Fail Together: The Security of Multi Agent LLM Systems》（Johns Hopkins + NTU，系统化 197 篇工作）。**这页配论文 Figure 1。**
 - **A 攻击者位置 → I 交互接口 → R 系统级风险**
 - 核心论点：单独安全的 Agent，一起用会失败
 - 六个接口 / 四个位置（**A3 成员级是多智能体独有的**）
 - **这篇怎么用**：下面八篇各落在 A-I-R 的不同位置
 
-### P4 · 目录
+### P4 · 八篇的落点总表
+
+把八篇各自接到框架上，一页看全：**# ｜ 论文（原标题）｜ 落在哪个接口 ｜ 对着哪个风险**
+
+- 接口名与风险名**全部取自那篇 SoK**，不自创
+- 表下一句：**攻击侧三篇覆盖了四类接口；防御侧五篇集中在「委托能力」和「检测与干预」两处**
+- 这页的作用是**让后面 32 页有参照**——每讲一篇，观众知道它在哪儿
+
+### P5 · 目录
 | # | 论文 | 出处 | 定位 |
 |---|---|---|---|
 | 1 | Crescendo | USENIX Security 2025 | 攻击 · 多轮渐进越狱 |
@@ -54,7 +64,7 @@
 
 ---
 
-## 论文 1 · Crescendo（P5–8）
+## 论文 1 · Crescendo（P6–9）
 
 **P5 · 题名页**
 - 标题：**Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack**
@@ -89,7 +99,7 @@
 
 ---
 
-## 论文 2 · Beyond Single-Model Injection（P9–12）
+## 论文 2 · Beyond Single-Model Injection（P10–13）
 
 **P9 · 题名页**
 - 标题：**Beyond Single-Model Injection: A Threat Model and Defense Architecture for Prompt Injection in Multi-Agent Systems**
@@ -131,7 +141,7 @@
 
 ---
 
-## 论文 3 · Adaptive Adversaries（P13–16）
+## 论文 3 · Adaptive Adversaries（P14–17）
 
 **P13 · 题名页**
 - 标题：**Adaptive Adversaries: A Multi-Turn, Multi-LLM Benchmark for LLM Agent Security**
@@ -166,7 +176,7 @@
 
 ---
 
-## 论文 4 · Trust Propagation and Structural Containment（P17–20）
+## 论文 4 · Trust Propagation and Structural Containment（P18–21）
 
 **P17 · 题名页**
 - 标题：**Trust Propagation and Structural Containment in Multi-Agent LLM Pipelines**
@@ -209,7 +219,7 @@
 
 ---
 
-## 论文 5 · CaMeL（P21–24）
+## 论文 5 · CaMeL（P22–25）
 
 **P21 · 题名页**
 - 标题：**Defeating Prompt Injections by Design**
@@ -258,7 +268,7 @@
 
 ---
 
-## 论文 6 · Design Patterns（P25–28）
+## 论文 6 · Design Patterns（P26–29）
 
 **P25 · 题名页**
 - 标题：**Design Patterns for Securing LLM Agents against Prompt Injections**
@@ -294,7 +304,7 @@
 
 ---
 
-## 论文 7 · Speculative Safety Honeypot（P29–32）★ 最新、离我们最近
+## 论文 7 · Speculative Safety Honeypot（P30–33）★ 最新、离我们最近
 
 **P29 · 题名页**
 - 标题：**Speculative Safety Honeypot: Toward Proactive Defense Against Multi-turn Agent Attacks**
@@ -346,7 +356,7 @@
 
 ---
 
-## 论文 8 · VIGIL（P33–36）
+## 论文 8 · VIGIL（P34–37）
 
 **P33 · 题名页**
 - 标题：**VIGIL: Defending LLM Agents Against Tool Stream Injection via Verify-Before-Commit**
@@ -390,7 +400,7 @@
 
 ## 收尾（3 页，2 分钟）
 
-### P37 · 现状小结
+### P38 · 现状小结
 **共识三条**：
 1. 单步防护不够——攻击是跨轮、跨主体的（**第一轮 0–1% vs 15 轮 7.9–16.8%**）
 2. 提示级防护不可靠，要做架构级
@@ -403,7 +413,7 @@
 
 **顺带带过的（不进专页）**：CoopGuard（多智能体协作防御，ASR 降 69%）、Pictionary（ETH，把不可信内容渲染成图片）、Toward Trustworthy Agentic AI（多模态溯源框架）、CMU 的航天认知脆弱性
 
-### P38 · 后续调研计划与需要确认的问题
+### P39 · 后续调研计划与需要确认的问题
 **接下来要读的**：CMU「Governing the Intelligence Loop」· Pictionary（ETH）· CoopGuard 全文
 
 **需要确认的**：
@@ -411,7 +421,7 @@
 2. 调研要覆盖到多深：只做文献综述，还是要复现 / 对比
 3. 要不要往卫星方向收
 
-### P39 · 致谢
+### P40 · 致谢
 
 ---
 
@@ -422,8 +432,8 @@
 | 组织方式 | 按**主题**聚合（攻击侧 / 防御侧路线） | **按论文逐篇**，每篇四页 |
 | 论文的处理 | 有的 1 页，有的 1 行 | **8 篇各占 4 页**，结构统一 |
 | 参照 | — | **参照阶段一终稿的八篇结构** |
-| 页数 | 19 | **39** |
-| 时间 | 19 分钟 | **20 分钟** |
+| 页数 | 19 | **40** |
+| 时间 | 19 分钟 | **21 分钟** |
 
 ---
 
