@@ -623,10 +623,10 @@ PAPERS = [
     ),
     dict(
         name="Adaptive Adversaries", role="评测 · 自适应多轮基准", accent=BLUE,
-        venue_short="arXiv:2607.18063",
+        venue_short="arXiv:2607.18063v2（预印本）",
         en_title="Adaptive Adversaries: A Multi-Turn, Multi-LLM\nBenchmark for LLM Agent Security",
         authors="Devina Jain, David Hartmann, Chuan Li　（Lambda）",
-        venue="arXiv:2607.18063（预印本）　·　Agents in the Wild 工作坊",
+        venue="arXiv:2607.18063v2（预印本，2026-09-11，无 venue）",
         one_liner="自适应多步评测基准（单 Agent、多模型）——证明单轮评测会把风险低估一个数量级。",
         star="只在单轮做安全验收，指标会好看但防不住。评测必须跨轮——这条直接决定后面怎么验证防御。",
         mot_sub="现有基准大多只算单轮，测不出会调整策略的攻击者",
