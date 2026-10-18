@@ -658,10 +658,10 @@ PAPERS = [
     ),
     dict(
         name="Trust Propagation", role="防御 · 独立授权", accent=TEAL,
-        venue_short="arXiv:2609.17648（预印本）",
+        venue_short="IEEE CARS 2026",
         en_title="Trust Propagation and Structural Containment\nin Multi-Agent LLM Pipelines",
         authors="Tanzim Hossain Safin 等　（BRAC University / University of Alabama at Birmingham）",
-        venue="arXiv:2609.17648（预印本）",
+        venue="IEEE CARS 2026　·　arXiv:2609.17648",
         one_liner="上游被攻陷 ≠ 系统被攻陷——在执行前放一道独立授权。",
         star="独立授权不依赖「判断对不对」，只多一次策略检查——五条防御里，它最可能在星上退化后仍成立。",
         mot_sub="现有研究问「Agent 会不会被骗」，但很少问「被骗之后会不会造成后果」",
