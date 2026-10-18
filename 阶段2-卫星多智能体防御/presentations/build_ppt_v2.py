@@ -465,6 +465,25 @@ def p_res(prs, total, page, p, idx):
     y = title(s, p["res"]["headline"], p.get("res_sub"), accent=p["accent"])
     r = p["res"]
     y2 = y + Inches(0.10)
+    figs2 = r.get("figs2") or []
+    if figs2:                                  # 两张论文原图并排
+        H = Inches(2.78)
+        pairs = []
+        for nm, cp in figs2:
+            iw, ih = Image.open(figpath(nm)).size
+            pairs.append((nm, cp, int(H * iw / ih)))
+        gap = Inches(0.42)
+        tot = sum(w for _, _, w in pairs) + gap * (len(pairs) - 1)
+        x = M + int((CW - tot) / 2)
+        bot = y2
+        for nm, cp, w in pairs:
+            b = image(s, nm, x, y2, w, H, caption=cp)
+            bot = max(bot, b)
+            x += w + gap
+        if p.get("star"):
+            callout(s, M, bot + Inches(0.20), CW, "对星上的含义",
+                    [(p["star"], False)], accent=TEAL, size=12.5, tsize=12.5)
+        return s
     figs = r.get("figs") or []
     if figs:
         name, cap = figs[0]
@@ -648,12 +667,10 @@ PAPERS = [
                     "三个受控实验：历史控制、防守方状态控制、冻结重放（区分同目标复现与跨目标迁移）。"],
             figs=[("p3-aa-threat", "论文 Figure 1：默认的后沿威胁模型")]),
         res=dict(
-            headline="三个变量，各自能把风险移动多少",
-            res_sub="同一批 945 场存档对局，只改一个变量",
-            figs=[("t5-aa-matrix", "论文 Table 3：前沿矩阵（3×3 攻击方—防守方，聚合 21 个场景）")],
-            kpis=[("0–1% → 7.9–16.8%", "只算第一轮 vs 允许 15 轮（同一批 945 场）", CRIMSON),
-                  ("57.4% → 31.5%", "给防守方加记忆，ASR 降 25.9 个百分点", TEAL),
-                  ("1.7–2.2×", "三个攻击模型联合，比最强单个多发现这么多可成功输入", BLUE)],
+            headline="轮数和记忆，各自能把风险移动多少",
+            res_sub="两张都是论文原图；横轴分别是轮数与四种记忆/状态组合",
+            figs2=[("f3-aa-rounds", "论文 Figure 8：同一批 15 轮轨迹，在不同轮数截断时打分"),
+                   ("t8-aa-memory", "论文 Table 12：A/B 无记忆，C/D 有记忆；A、B 两列合计即 57.4% 与 31.5%")],
             notes=[("它的价值在于：把「多轮评测」从主张变成了可复用的基准。", True)]),
     ),
     dict(
