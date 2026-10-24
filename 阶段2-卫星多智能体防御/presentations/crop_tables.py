@@ -21,6 +21,8 @@ FILES = {
     "B2": "B2 - Design Patterns for Securing LLM Agents (2506.08837).pdf",
     "SSH": "新增6 - Speculative Safety Honeypot (2609.39549).pdf",
     "VIGIL": "新增3 - VIGIL Verify-Before-Commit (2601.05755).pdf",
+    "PEAK": "新增10 - Peak Accumulation 多轮攻击打分 (2602.11247).pdf",
+    "SKY": "新增9 - SkyGuard 卫星分层威胁狩猎 (IEEE CNS 2026).pdf",
 }
 
 # 名字, 文件, 页码(0基), (x0, y0, x1, y1)
@@ -32,6 +34,14 @@ JOBS = [
     ("t5-aa-matrix",   "AA", 13, (106, 67, 507, 144)),   # Table 3 前沿矩阵
     ("f3-aa-rounds",   "AA", 20, (130, 334, 471, 512)),  # Figure 8 不同轮数截断的 ASR 曲线
     ("t8-aa-memory",   "AA", 18, (177, 68, 433, 202)),   # Table 12 记忆因子实验
+    # ---- Peak + Accumulation（单栏）----
+    ("t9-peak-ceiling", "PEAK", 3, (70, 130, 526, 232)),  # Table 1：加权平均的天花板
+    ("t10-peak-pattern","PEAK", 4, (70, 78, 526, 240)),   # Table 2：五类跨轮模式与权重
+    ("t11-peak-result", "PEAK", 6, (95, 180, 500, 350)),  # Table 3：主结果
+    # ---- SkyGuard（双栏，右栏）----
+    ("f4-sky-arch",     "SKY", 3, (310, 50, 566, 184)),   # Fig.2 两层架构
+    ("t12-sky-cat",     "SKY", 6, (310, 55, 566, 236)),   # TABLE II 分类别召回
+    ("t13-sky-chain",   "SKY", 6, (310, 248, 566, 408)),  # TABLE III 分链召回
     ("t6-b2-cases",    "B2", 9, (93, 66, 507, 304)),     # Table 1 案例 × 模式
     ("t7-vigil-siren", "VIGIL", 6, (66, 70, 530, 252)),  # Table 2（截取表头 + 第一个模型块）
     ("f1-camel-perf",  "B1", 11, (0, 0, 0, 0)),          # 占位（下方单独处理）

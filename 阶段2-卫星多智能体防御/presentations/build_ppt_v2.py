@@ -271,9 +271,10 @@ def p_cover(prs, total):
     p2.space_before = Pt(12)
     _r(p2, "八 篇 论 文 调 研", 19, False, RGBColor(0x9E, 0xC5, 0xE8))
     tf2 = _p(s, M, Inches(3.42), CW, Inches(1.6))
-    _r(tf2.paragraphs[0], "攻击侧 3 篇 ｜ 防御侧 5 篇", 18, True, TEAL)
-    for t in ["攻击侧：多步攻击范式 · 多智能体威胁模型 · 自适应评测基准",
-              "防御侧：独立授权 · 设计层防御 · 架构模式 · 推测—验证 · 工具流验证"]:
+    _r(tf2.paragraphs[0], "攻击与评测 2 篇 ｜ 防御 5 篇 ｜ 卫星 1 篇", 18, True, TEAL)
+    for t in ["攻击与评测：多步攻击范式 · 自适应评测基准",
+              "防御：多步检测 · 独立授权 · 设计层 · 推测—验证 · 工具流验证",
+              "卫星：分层威胁狩猎（唯一可部署的形态）"]:
         pp = tf2.add_paragraph()
         pp.space_before = Pt(10)
         _r(pp, t, 12.5, False, GREY)
@@ -370,14 +371,14 @@ def p_toc(prs, total, page, papers):
 
 # 八篇在框架里的落点（接口名与风险名均取自该 SoK）
 MAPPING = [
-    ("消息传递", "轨迹与目标完整性失效"),
-    ("准入 · 消息传递 · 委托能力 · 集体结果", "集体决策完整性失效 · 传递性授权失效"),
-    ("状态（单 Agent 多轮）", "轨迹与目标完整性失效（评测侧）"),
-    ("委托能力", "传递性授权失效"),
-    ("委托能力 · 状态", "传递性授权失效 · 跨主体机密泄露"),
-    ("准入 · 消息传递 · 委托能力", "遏制失效"),
-    ("检测与干预", "轨迹与目标完整性失效"),
-    ("委托能力", "遏制失效 · 传递性授权失效"),
+    ("消息传递", "轨迹与目标完整性失效"),                            # Crescendo
+    ("状态（单 Agent 多轮）", "轨迹与目标完整性失效（评测侧）"),       # Adaptive Adversaries
+    ("消息传递", "轨迹与目标完整性失效"),                            # Peak + Accumulation
+    ("委托能力", "传递性授权失效"),                                  # Trust Propagation
+    ("委托能力 · 状态", "传递性授权失效 · 跨主体机密泄露"),            # CaMeL
+    ("检测与干预", "轨迹与目标完整性失效"),                           # Speculative Safety Honeypot
+    ("委托能力", "遏制失效 · 传递性授权失效"),                        # VIGIL
+    ("检测与干预", "遏制失效"),                                      # SkyGuard
 ]
 
 
@@ -392,7 +393,7 @@ def p_mapping(prs, total, page, papers):
     table(s, rows, M, y + Inches(0.12), CW, col_w=[0.26, 4.3, 2.5, 2.5],
           size=10, head_size=10.5, per_line=Inches(0.185))
     tf = _p(s, M, BOTTOM - Inches(0.34), CW, Inches(0.34))
-    _r(tf.paragraphs[0], "攻击侧三篇覆盖了四类接口；防御侧五篇集中在「委托能力」和「检测与干预」两处。",
+    _r(tf.paragraphs[0], "攻击与评测两篇盯的都是「消息传递」；防御五篇集中在「委托能力」和「检测与干预」；卫星那篇落在「检测与干预」。",
        12, True, CRIMSON)
 
 
@@ -467,12 +468,20 @@ def p_res(prs, total, page, p, idx):
     y2 = y + Inches(0.10)
     figs2 = r.get("figs2") or []
     if figs2:                                  # 两张论文原图并排
-        H = Inches(2.78)
-        pairs = []
+        gap = Inches(0.42)
+        avail = BOTTOM - y2
+        reserve = Inches(0.42)                       # 图注
+        if p.get("star"):
+            reserve += Inches(1.15)                  # 「对星上的含义」框
+        H = int(min(avail - reserve, Inches(3.62)))
+        ratios = []
         for nm, cp in figs2:
             iw, ih = Image.open(figpath(nm)).size
-            pairs.append((nm, cp, int(H * iw / ih)))
-        gap = Inches(0.42)
+            ratios.append(iw / ih)
+        H = min(H, int((CW - gap * (len(figs2) - 1)) / sum(ratios)))   # 总宽不许超
+        pairs = []
+        for (nm, cp), r in zip(figs2, ratios):
+            pairs.append((nm, cp, int(H * r)))
         tot = sum(w for _, _, w in pairs) + gap * (len(pairs) - 1)
         x = M + int((CW - tot) / 2)
         bot = y2
@@ -538,21 +547,22 @@ def p_summary(prs, total, page):
     tf = _p(s, M + w2 + Inches(0.67), y + Inches(0.24), w2 - Inches(0.44), Inches(1.7))
     _r(tf.paragraphs[0], "还没解决的", 14.5, True, AMBER)
     for t in ["推测式 / 有状态防御的开销，在算力受限下没人验证",
-              "来源可验证，但内容真伪没法验证",
+              "来源可验证，但内容真伪只做到部分——逐值确认，代价大",
               "「不改动作、只改认知」这类攻击怎么观测"]:
         pp = tf.add_paragraph()
         pp.space_before = Pt(8)
         _r(pp, "·  " + t, 12.5, False, INK)
     y2 = y + Inches(2.24)
     rows = [["防御路线", "代表工作", "星上会卡在哪"],
-            ["独立授权", "Trust Propagation", "只多一次策略检查——**最可能存活**"],
-            ["架构模式", "Design Patterns", "切断通道不额外调模型——**其次可行**"],
+            ["纯规则打分", "Peak + Accumulation", "最省，但只认字面模式，认不出「每句都说得通」"],
+            ["独立授权", "Trust Propagation", "**只多一次策略检查，最可能存活"],
             ["数据流隔离", "CaMeL", "要跑编译加解释器，算力吃不消"],
             ["推测—验证", "Speculative Safety Honeypot", "并行多条推测分支，显存与功耗不可接受"],
-            ["沙箱试错", "VIGIL", "**动作物理不可逆，试错这个前提本身不成立**"]]
+            ["沙箱试错", "VIGIL", "**动作不可逆，试错这个前提不成立"],
+            ["分层威胁狩猎", "SkyGuard", "**已在星上验证可行；但判据是日志和标签"]]
     y3 = table(s, rows, M, y2, CW, col_w=[1.3, 2.6, 4.2], size=11.5, per_line=Inches(0.20))
     callout(s, M, y3 + Inches(0.16), CW, None, [
-        ("五条防御没有一条是轻量的。要问的不是「哪条效果最好」，而是「算力砍到十分之一之后，哪条还剩多少」。", True),
+        ("六条路线里，真能在星上跑起来的只有两类：纯规则的（Peak）和分层的（SkyGuard）。但它们看的全是「做了什么」，没有一条看「Agent 现在信什么」。", True),
     ], accent=CRIMSON, size=12.5)
 
 
@@ -606,39 +616,36 @@ PAPERS = [
                    ("论文 §6.3 的立场：应该假设当前 LLM 最终都会被越狱，所以要在系统层设计。", True)]),
     ),
     dict(
-        name="Beyond Single-Model Injection", role="攻击 · 多智能体威胁模型", accent=CRIMSON,
-        venue_short="AIWILD @ ICML 2026",
-        en_title="Beyond Single-Model Injection: A Threat Model\nand Defense Architecture for Prompt Injection in Multi-Agent Systems",
-        authors="Rudrendu Kumar Paul（Boston University）、Sourav Nandy（UT Austin）",
-        venue="Agents in the Wild Workshop @ ICML 2026　·　arXiv:2609.22949",
-        one_liner="把注入从单模型推进到多智能体：14 个攻击向量 + 四层架构防御。",
-        star="星上 Agent 之间的消息（规划 → 控制 → 遥操）正是「边界防御看不到」的通道。只做链路加密，挡不住这一类。",
-        mot_sub="多智能体比单模型多了三个放大面",
+        name="Peak + Accumulation", role="防御 · 多步检测", accent=TEAL,
+        venue_short="arXiv:2602.11247（预印本）",
+        en_title="Peak + Accumulation: A Proxy-Level Scoring Formula\nfor Multi-Turn LLM Attack Detection",
+        authors="J Alex Corll　（独立作者）",
+        venue="arXiv:2602.11247（预印本，2026-03，无 venue）",
+        one_liner="纯正则加一个算式，把多轮的可疑累成一个总分——先证明加权平均有天花板。",
+        star="它是纯算式，星上几乎零成本；但它对「每句话都说得通」的攻击召回是 0%——而卫星的认知篡改正是这一类。",
+        mot_sub="网关这层不能调 LLM，那多轮的可疑怎么合成一个数",
         mot=dict(
-            headline="为什么单模型的结论套不到多智能体上",
-            purpose=["多智能体把信息、状态、决策、权限跨主体边界搬运，本地检查看不到。",
-                     "要给出一份可复现的攻击向量清单，以及对应的架构防御。"],
-            challenges=["Agent 之间的消息传递，产生了边界防御看不到的注入通道。",
-                        "共享工具访问，可以跨 Agent 边界提权。",
-                        "信任传播，让被污染的 Agent 能反向影响上游编排者。",
-                        "护栏不够用：6 个 Agent 里 4 个（67%）在有系统提示护栏时仍能被越权攻击打穿。"]),
+            headline="加权平均有个天花板：各轮同分时，平均值恒等于那个分",
+            purpose=["多轮攻击把恶意摊到几轮，每轮单看都正常。",
+                     "而网关/代理这层不能调 LLM：延迟 100–500 毫秒、按 token 花钱、分类器自己也能被注入。"],
+            challenges=["加权平均算不出累积——20 轮的持续攻击和 1 轮可疑，得分一模一样。",
+                        "单轮的正则看不到「跨轮累积」这件事。",
+                        "没有现成的、完全确定的跨轮合成公式。"]),
         model=dict(
-            headline="四类 14 个攻击向量 + 四层架构防御",
-            model_sub="实验台是 6 个 Agent 的金融文档分析流水线",
-            points=["实验台：编排者 / 检索 / 代码 / 分析 / 合规 / 输出，共 6 个 Agent。",
-                    "四类攻击：直接注入 3 个、工具输出间接注入 4 个、Agent 间消息注入 4 个、级联注入 3 个。",
-                    "四层防御：消息签名 + 溯源 ｜ 边界净化 ｜ 按角色限定工具权限 ｜ 通信模式异常检测。",
-                    "编排者在 14 个向量里被瞄准 8 次，是最脆弱的一环。"],
-            figs=[("t1-a1-attack", "论文 Table 1：四类 14 个攻击向量与实测成功率")]),
+            headline="五类模式打分，再用五个加数合成总分",
+            model_sub="ρ = 0.45，阈值 τ = 0.7",
+            points=["每轮用正则匹配五类模式，命中就加权重（0.2–0.5），截断到 1。",
+                    "总分 = 峰值 + 全程命中率×ρ + 类别多样性 + 升级奖励 + 重采样奖励，截断到 [0,1]。",
+                    "到 0.7 就拦。全程没有模型在关键路径上，作者说目标是亚毫秒。",
+                    "它先证了一条定理：各轮分数一样时，加权平均恒等于那个分数——所以累积必须另算。"],
+            figs=[("t10-peak-pattern", "论文 Table 2：五类跨轮模式与默认权重")]),
         res=dict(
-            headline="四类攻击的成功率与防御效果",
-            res_sub="通用多智能体基准上的数字，不是卫星场景",
-            figs=[("t2-a1-defense", "论文 Table 2：每一层防御对四类攻击的效果")],
-            kpis=[("31.2% → 4.2%", "总体攻击成功率", TEAL),
-                  ("+4.7%", "延迟开销（基线 4.8 秒）", BLUE),
-                  ("2.3%", "净化器误判率", AMBER)],
-            notes=[("单层效果：签名让 Agent 间注入 31%→2.8%；净化让间接注入 43%→9.5%；权限限定提权全拦、零运行时延迟；异常检测抓住 84% 的级联攻击。", False),
-                   ("论文留下的缺口：multimodal agents face additional injection surfaces that we do not address。", True)]),
+            headline="算得快，但对「话题慢慢跑偏」完全失效",
+            res_sub="一万多段对话，recall 90.8%；但换一类攻击就是 0%",
+            figs=[("t11-peak-result", "论文 Table 3：10,654 段对话上的主结果")],
+            kpis=[("recall 90.8%", "FPR 1.20%，F1 85.9%", TEAL),
+                  ("亚毫秒", "纯正则 + 算式，关键路径上没有模型", BLUE),
+                  ("0%", "对「每轮人畜无害、话题慢慢跑偏」这类，召回是 0", CRIMSON)]),
     ),
     dict(
         name="Adaptive Adversaries", role="评测 · 自适应多轮基准", accent=BLUE,
@@ -739,39 +746,37 @@ PAPERS = [
             notes=[("non-goal：不防「文本到文本」的攻击——只改变生成内容、不影响控制流/数据流的攻击它管不了。", True)]),
     ),
     dict(
-        name="Design Patterns", role="防御 · 架构模式", accent=TEAL,
-        venue_short="arXiv:2506.08837（预印本）",
-        en_title="Design Patterns for Securing LLM Agents\nagainst Prompt Injections",
-        authors="Luca Beurer-Kellner, Beat Buesser, Edoardo Debenedetti, Florian Tramèr, Andrew Paverd 等 14 人（按字母序）",
-        venue="arXiv:2506.08837（预印本）　·　Google / IBM / Microsoft / ETH / EPFL 等联合",
-        one_liner="六个有可证明抗注入性的架构模式 + 10 个案例。",
-        star="六个模式里，「切断通道」这类做法最省算力：不需要额外模型，只限制信息流。",
-        mot_sub=None,
+        name="SkyGuard", role="卫星 · 分层威胁狩猎", accent=TEAL,
+        venue_short="IEEE CNS 2026",
+        en_title="SkyGuard: A Hierarchical SLM–LLM Threat Hunting Framework\nfor the OpenC3+NASA cFS Space-Software Stack",
+        authors="Jonathan Liu, Raymund Lin, Sharon Lo, David Huang, Marrow Tseng, Dean Xie　（台湾科技大学）",
+        venue="IEEE CNS 2026　·　DOI 10.1109/CNS69863.2026.11720931",
+        one_liner="卫星网络上的分层威胁狩猎：边缘小模型本地查，中央大模型只收标签拼攻击链。",
+        star="它是唯一能部署的卫星分层防御。但它的准确率不是最高的——把原始数据全交给中央大模型能到 0.82，它只有 0.46；它的价值是「在链路预算内做得到」。",
+        mot_sub="星上做威胁狩猎，以前两种范式都不成立",
         mot=dict(
-            headline="换个问题：能造出哪些既干活又抗注入的 Agent",
-            purpose=["论文先承认：不相信通用 Agent 能提供有意义且可靠的安全保证。",
-                     "于是改问：今天能造出哪些既能干活、又抗注入的 Agent？"],
-            challenges=["提示注入的根因是 LLM 分不清指令和数据；短期消不掉。",
-                        "所以改架构：故意给 Agent 加约束，明确限制它做任意任务的能力。",
-                        "这是拿能力换安全——每个模式都在牺牲一部分自主性。"]),
+            headline="低轨过境短、上行带宽窄、地面 IDS 看不到星上",
+            purpose=["在星—空—地一体网络（SAGIN）上做威胁狩猎。",
+                     "以前两种做法：多 Agent 互为大模型、边缘机器学习 + 中央大模型。"],
+            challenges=["低轨过境窗口短，传不了多少数据。",
+                        "上行带宽受限，原始遥测传不回去。",
+                        "已有结论说地面 IDS 对星上的实时威胁无效。",
+                        "所以「中央分析器」这个范式在 SAGIN 里根本立不住。"]),
         model=dict(
-            headline="六个模式：共同点是「切断通道」，不是「检查内容」",
-            model_sub="模式选一个用，最佳实践每个都要做",
-            points=["① Action-Selector：切断工具输出回流，Agent 只当动作选择器。",
-                    "② Plan-Then-Execute：允许输出回流，但不许影响选哪些动作。",
-                    "③ LLM Map-Reduce：派隔离子 Agent 处理单块数据。",
-                    "④ Dual LLM：特权 LLM（有工具）+ 隔离 LLM（无工具）；进阶版用符号响应。",
-                    "⑤ Code-Then-Execute：让 LLM 写程序，解释器执行（即 CaMeL 所属路线）。",
-                    "⑥ Context-Minimization：用户提示用完即删（管用户提示，正交）。"],
-            figs=[("p6-dp-selector", "论文 Figure 1：Action-Selector——动作结果不回流给 Agent")]),
+            headline="两层：边缘小模型本地查，中央大模型只收标签拼链",
+            model_sub="原始遥测永不出边缘段，上行只传 ATT&CK 标签摘要",
+            points=["Tier 1 边缘：Qwen2.5 1.5B–7B，4-bit 量化，LoRA 微调，只读本机的遥测和日志。",
+                    "Tier 2 中央：Qwen2.5-32B，4-bit，约 20GB 显存，不微调，用 RAG 挂 ATT&CK 和 SPARTA。",
+                    "上行摘要压到约 500 字节；下行只发抽象行为模式，不发具体 IOC。",
+                    "原始数据标 CONFIDENTIAL 永不出边缘，跨层只走 SANITIZED。",
+                    "边缘另生成 Tier A 规则（带真实字段，留本地）；中央生成 Tier B 规则（只有技术级逻辑，可跨运营商共享）。"],
+            figs=[("f4-sky-arch", "论文 Fig. 2：两层架构——边缘小模型本地查，中央大模型拼链")]),
         res=dict(
-            headline="这是设计模式论文，不是实证论文",
-            res_sub="它没有 benchmark 数字，价值在分类和案例",
-            figs=[("t6-b2-cases", "论文 Table 1：10 个案例与所用设计模式的对应")],
-            kpis=[("10 个案例", "OS 助手 / SQL / 邮件日历 / 客服 / 预订 / 推荐 / 简历 / 药品 / 医疗 / 软工", BLUE),
-                  ("朴素 → 稳健", "每个案例都给了「有漏洞的实现」与「稳健设计」的对照", TEAL),
-                  ("设计依据", "当设计依据用，不当实验依据用", AMBER)],
-            notes=[("论文自己承认：Plan-Then-Execute 与 Code-Then-Execute 都只防改动作，不防改参数——这正是 CaMeL 要补的。", True)]),
+            headline="只有它能拼出攻击链——而且是在链路预算内",
+            res_sub="30 个攻击 + 5 条 APT 链，留一交叉验证",
+            figs2=[("t13-sky-chain", "论文 TABLE III：分链召回——静态规则和纯边缘在每条链上都是 0"),
+                   ("t12-sky-cat", "论文 TABLE II：分类别召回，最右一列是全信息中央大模型，不可部署")],
+            ),
     ),
     dict(
         name="Speculative Safety Honeypot", role="防御 · 推测—验证（最新）", accent=TEAL,
@@ -847,9 +852,9 @@ PAPERS = [
 ]
 
 
-# 讲序：先给「有哪些抗注入架构模式」的总览，再展开其中 Code-Then-Execute 那一条（CaMeL）
-PAPERS[4], PAPERS[5] = PAPERS[5], PAPERS[4]
-MAPPING[4], MAPPING[5] = MAPPING[5], MAPPING[4]
+# 讲序：攻击 → 评测 → 防御四篇 → 卫星压轴
+# 现在 PAPERS 顺序：0 Crescendo, 1 Peak, 2 AA, 3 A2, 4 CaMeL, 5 SkyGuard, 6 SSH, 7 VIGIL
+PAPERS[:] = [PAPERS[i] for i in (0, 2, 1, 3, 4, 6, 7, 5)]
 
 
 def build():
