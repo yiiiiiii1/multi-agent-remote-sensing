@@ -16,7 +16,7 @@
 威胁是"逐步篡改认知"的攻击链：① 获取卫星运行参数 → ② 篡改认知范围使其合理化 → ③ 在篡改后的认知下执行不合理操作或篡改遥操数据。单步防御拦不住，所以要"连环锁"式的多环节防护。
 
 **入口** → [`阶段2-卫星多智能体防御/README.md`](阶段2-卫星多智能体防御/README.md)
-**调研清单** → [`阶段2-卫星多智能体防御/notes/调研清单.md`](阶段2-卫星多智能体防御/notes/调研清单.md)
+**找东西** → [`阶段2-卫星多智能体防御/notes/INDEX.md`](阶段2-卫星多智能体防御/notes/INDEX.md)
 
 ## 目录结构
 
@@ -24,42 +24,24 @@
 multi-agent-remote-sensing/
 ├── README.md                    # 本文件：两阶段总入口
 ├── AGENTS.md                    # 给 AI 助手的工作约定（写作口吻、方向、目录）
-├── 阶段1-协作机制调研/           # ✅ 已完成
-│   ├── README.md                # 阶段小结与结论
-│   ├── notes/                   # 论文卡片、综述笔记、汇报前速查
-│   ├── figures/                 # 30 张裁好的图与表（INDEX.md 是索引）
-│   ├── papers/                  # 论文 PDF（不上传 git）
-│   └── presentations/           # 39 页 PPT、逐页汇报稿、规划（不上传 git）
+├── 阶段1-协作机制调研/           # ✅ 已完成（8 篇 + 39 页 PPT）
+│   ├── README.md / notes/ / figures/ / papers/ / presentations/
 ├── 阶段2-卫星多智能体防御/       # 🚧 当前阶段
 │   ├── README.md                # 方向、威胁模型、待办
-│   ├── notes/                   # 调研清单 → 笔记 → 方案
-│   ├── papers/                  # 本阶段 PDF（不上传 git）
-│   └── figures/
-├── experiments/                 # CAMEL 复现代码与日志（跨阶段共用）
-└── archive/                     # 更早的零散实验，保留但不维护
+│   ├── notes/
+│   │   ├── INDEX.md             ★ 找东西先看这张
+│   │   ├── 论文笔记/            15 份
+│   │   ├── 方向与方案/          4 份
+│   │   ├── 流程与核查/          7 份
+│   │   └── 工具与速查/          2 份
+│   ├── papers/                  18 篇 PDF（不上传 git）
+│   ├── figures/                 19 张在用的图表 + 未用/
+│   └── presentations/           39 页 PPT、讲稿、生成脚本
+├── experiments/                 跑过的代码
+│   ├── 阶段1-CAMEL复现/          01–12 号 demo + 日志
+│   └── archive/                 my_camel_project、rs_model-已停
+└── tools/                       外部工具（zotero 导入、pdf 翻译）
 ```
 
-## 阶段一的结论（供阶段二复用）
+**当前该看什么**：`阶段2-卫星多智能体防御/notes/INDEX.md`。
 
-8 篇调研等于一份**「多智能体攻击面目录」**：
-
-| 阶段一调研 | 对上新方向的什么 |
-|---|---|
-| AgentVerse 破坏性行为 | 攻击第三步长什么样；决策与执行之间缺校验 |
-| MacNet 只传 artifact | 污染可藏进产物，过程不可见就查不出来 |
-| GeoLLM-Squad 编排者排班表 | 排班表是单点信任，被改就控全局 |
-| Multiagent Debate 用分歧做校验 | 防御原语：认知不一致就停 |
-| ChatDev 交际式去幻觉 | 防御原语：信息不完整不许往下走 |
-| MetaGPT 结构化产物 + 可执行反馈 | 产物可程序校验，天然是校验点 |
-| AutoGen 拓扑由代码定 | 中心节点既是单点故障，也能是强制校验点 |
-| CAMEL 角色扮演 + 终止标记 | 攻击可伪造终止标记 → 需角色边界校验 |
-
-## 复现资产
-
-`experiments/` 里是 CAMEL 那条线的复现代码与日志，偏通用的**协作机制执行层**（RolePlaying、Workforce 分工、多智能体辩论、工具调用与文件传递），阶段二可以直接当基础设施用。
-
-```bash
-cd experiments
-cp .env.example .env      # 填入 DEEPSEEK_API_KEY
-bash run_demo.sh 01       # 最小双智能体
-```

@@ -20,3 +20,6 @@ env/
 
 # 论文 PDF（不上传）
 **/papers/
+
+# 第三方工具的运行缓存与二进制（3.4G，不进 git）
+tools/zotero/pdf2zh/

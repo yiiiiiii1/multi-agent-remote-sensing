@@ -103,8 +103,10 @@ multi-agent-remote-sensing/
 │       ├── build_ppt_v2.py / crop_*.py / check_ppt.py
 │       ├── skill-科研汇报PPT.md
 │       └── archive/          旧的 19 页 PPT、旧脚本、过期大纲
-├── experiments/              复现代码（跨阶段共用）
-└── archive/                  更早的零散实验
+├── experiments/              跑过的代码
+│   ├── 阶段1-CAMEL复现/       01–12 号 demo + 日志
+│   └── archive/              my_camel_project、rs_model-已停
+└── tools/                    外部工具（zotero 导入、pdf 翻译；pdf2zh 的缓存不进 git）
 ```
 
 **当前阶段的东西一律放 `阶段2-卫星多智能体防御/`**，不要再往阶段一里加。
