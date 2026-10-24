@@ -89,9 +89,20 @@ multi-agent-remote-sensing/
 │   ├── papers/               论文 PDF（不上传 git）
 │   └── presentations/        PPT、汇报稿、规划（不上传 git）
 ├── 阶段2-卫星多智能体防御/    ← 当前阶段
-│   ├── notes/                调研清单.md 从这里开始
+│   ├── notes/
+│   │   ├── INDEX.md          ★ 找东西先看这张表
+│   │   ├── 论文笔记/         13 份（八篇 + 换下去的 + 调研查到的）
+│   │   ├── 方向与方案/       5 份（方向定位、框架、选题候选）
+│   │   ├── 流程与核查/       9 份（调研地图、空白核实、引用注意、补课文档）
+│   │   └── 工具与速查/       2 份（术语速查、阅读工具）
 │   ├── papers/               本阶段 PDF（不上传 git）
-│   └── figures/
+│   ├── figures/              裁好的图与表
+│   └── presentations/
+│       ├── 卫星多智能体安全调研汇报.pptx   ★ 唯一在用的，39 页
+│       ├── 汇报稿-新方向.md               ★ 约 28 分钟
+│       ├── build_ppt_v2.py / crop_*.py / check_ppt.py
+│       ├── skill-科研汇报PPT.md
+│       └── archive/          旧的 19 页 PPT、旧脚本、过期大纲
 ├── experiments/              复现代码（跨阶段共用）
 └── archive/                  更早的零散实验
 ```
