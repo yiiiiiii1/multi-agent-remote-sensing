@@ -534,7 +534,7 @@ def p_summary(prs, total, page):
     chrome(s, "收尾", page, total)
     y = title(s, "现状小结与判断", "读完之后形成的三条判断", accent=CRIMSON)
     w2 = int((CW - Inches(0.45)) / 2)
-    rect(s, M, y + Inches(0.12), w2, Inches(1.92), fill=T_KEY, line=TEAL)
+    rect(s, M, y + Inches(0.12), w2, Inches(1.70), fill=T_KEY, line=TEAL)
     tf = _p(s, M + Inches(0.22), y + Inches(0.24), w2 - Inches(0.44), Inches(1.7))
     _r(tf.paragraphs[0], "已经形成的共识", 14.5, True, TEAL)
     for t in ["单步防护不够——攻击是跨轮、跨主体的",
@@ -543,7 +543,7 @@ def p_summary(prs, total, page):
         pp = tf.add_paragraph()
         pp.space_before = Pt(8)
         _r(pp, "·  " + t, 12.5, False, INK)
-    rect(s, M + w2 + Inches(0.45), y + Inches(0.12), w2, Inches(1.92), fill=T_CAVEAT, line=AMBER)
+    rect(s, M + w2 + Inches(0.45), y + Inches(0.12), w2, Inches(1.70), fill=T_CAVEAT, line=AMBER)
     tf = _p(s, M + w2 + Inches(0.67), y + Inches(0.24), w2 - Inches(0.44), Inches(1.7))
     _r(tf.paragraphs[0], "还没解决的", 14.5, True, AMBER)
     for t in ["推测式 / 有状态防御的开销，在算力受限下没人验证",
@@ -552,7 +552,7 @@ def p_summary(prs, total, page):
         pp = tf.add_paragraph()
         pp.space_before = Pt(8)
         _r(pp, "·  " + t, 12.5, False, INK)
-    y2 = y + Inches(2.24)
+    y2 = y + Inches(2.02)
     rows = [["防御路线", "代表工作", "星上会卡在哪"],
             ["纯规则打分", "Peak + Accumulation", "最省，但只认字面模式，认不出「每句都说得通」"],
             ["独立授权", "Trust Propagation", "**只多一次策略检查，最可能存活"],
@@ -560,7 +560,7 @@ def p_summary(prs, total, page):
             ["推测—验证", "Speculative Safety Honeypot", "并行多条推测分支，显存与功耗不可接受"],
             ["沙箱试错", "VIGIL", "**动作不可逆，试错这个前提不成立"],
             ["分层威胁狩猎", "SkyGuard", "**已在星上验证可行；但判据是日志和标签"]]
-    y3 = table(s, rows, M, y2, CW, col_w=[1.3, 2.6, 4.2], size=11.5, per_line=Inches(0.20))
+    y3 = table(s, rows, M, y2, CW, col_w=[1.3, 2.6, 4.2], size=11, per_line=Inches(0.175), rh=Inches(0.31))
     callout(s, M, y3 + Inches(0.16), CW, None, [
         ("六条路线里，真能在星上跑起来的只有两类：纯规则的（Peak）和分层的（SkyGuard）。但它们看的全是「做了什么」，没有一条看「Agent 现在信什么」。", True),
     ], accent=CRIMSON, size=12.5)
