@@ -572,7 +572,7 @@ def p_idea(prs, total, page):
     s = blank(prs)
     chrome(s, "想法", page, total)
     y = title(s, "多智能体方向的九个切入点",
-              "四个已经有主，三个只剩一条缝，两个没查到", accent=TEAL)
+              "从代理间通道到跨环保证，逐条查过", accent=TEAL)
     rows = [["想法", "现在什么状态"],
             ["代理间消息通道加固", "有。Beyond Single-Model 列了 14 个跨 Agent 向量、四层防御（工作坊）"],
             ["授权沿链只缩不扩", "有。Progent 用 SMT 判定收紧/扩大；CAPMAS 用 Macaroon 令牌"],
