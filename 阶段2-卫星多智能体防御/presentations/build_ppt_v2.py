@@ -548,7 +548,7 @@ def p_summary(prs, total, page):
     _r(tf.paragraphs[0], "还没解决的", 14.5, True, AMBER)
     for t in ["推测式 / 有状态防御的开销，在算力受限下没人验证",
               "来源可验证，但内容真伪只做到部分——逐值确认，代价大",
-              "「不改动作、只改认知」这类攻击怎么观测"]:
+              "每一环各管各的，串起来还剩多少保证——没有定量答案"]:
         pp = tf.add_paragraph()
         pp.space_before = Pt(8)
         _r(pp, "·  " + t, 12.5, False, INK)
@@ -562,7 +562,7 @@ def p_summary(prs, total, page):
             ["分层威胁狩猎", "SkyGuard", "**已在星上验证可行；但判据是日志和标签"]]
     y3 = table(s, rows, M, y2, CW, col_w=[1.3, 2.6, 4.2], size=11, per_line=Inches(0.175), rh=Inches(0.31))
     callout(s, M, y3 + Inches(0.16), CW, None, [
-        ("六条路线里，真能在星上跑起来的只有两类：纯规则的（Peak）和分层的（SkyGuard）。但它们看的全是「做了什么」，没有一条看「Agent 现在信什么」。", True),
+        ("六条路线里，真能在星上跑起来的只有两类：纯规则的（Peak）和分层的（SkyGuard）。但它们各自只保证自己那一环——一层上的控制，对另一层的攻击检测力为零。", True),
     ], accent=CRIMSON, size=12.5)
 
 
