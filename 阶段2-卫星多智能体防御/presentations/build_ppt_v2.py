@@ -568,26 +568,26 @@ def p_summary(prs, total, page):
 
 
 def p_idea(prs, total, page):
-    """P39：我想过的切入点，以及它们现在的状态。"""
+    """P39：只有多 Agent 才有意义的切入点。"""
     s = blank(prs)
     chrome(s, "想法", page, total)
-    y = title(s, "我想过的切入点，和它们现在的状态",
-              "读完之后的盘点：有的已经有主，有的只剩一条缝", accent=TEAL)
+    y = title(s, "只有多 Agent 才有意义的切入点",
+              "单 Agent 也能做的，都先排除了", accent=TEAL)
     rows = [["想法", "现在什么状态"],
-            ["校验输入数值的物理可行性", "有。Array 2026——但只做轨道力学，而且是检测之后的过滤"],
-            ["跨传感器冗余互证", "有。BLADE-SPACE——星载治理节点，11 级流水线"],
-            ["校验动作的依据链", "有。ARGUS，ASR 28.8% → 3.8%；另有 AGATE、ProTA、SIEVE"],
-            ["读隐藏状态判断有没有被注入", "有。AGRI，线性探针 AUROC 0.90+，ASR 34.6% → 0%"],
-            ["动作前的物理约束检查", "有。Glass Box at Orbit，6 条物理约束 + 7 条 LTL 不变量"],
-            ["分歧当检测信号", "有。EMNLP 2026 主会，「分歧是信号」已写进别人的标题"],
-            ["按角色可见性查信息越界", "**部分。检测手法有人做（AgentLeak、PRISM），角色判据没人"],
-            ["链上判断强度的累积", "**部分。现象被人讲透了（The Hallucination Snowball），检测器没定"],
-            ["每环串起来还剩多少保证", "**没查到。但要理论功底，我一个人不一定扛得住"]]
-    y2 = table(s, rows, M, y + Inches(0.14), CW, col_w=[4.0, 8.1], size=11.5,
-               head_size=11.5, per_line=Inches(0.20), rh=Inches(0.36))
-    callout(s, M, y2 + Inches(0.16), CW, None, [
-        ("九条里，六条已经有人做了。剩下三条：两条只剩一条缝，一条我还没查到。", True),
-    ], accent=CRIMSON, size=12.5)
+            ["代理间消息通道加固", "有。Beyond Single-Model 列了 14 个跨 Agent 向量、四层防御（工作坊）"],
+            ["授权沿链只缩不扩", "有。Progent 用 SMT 判定收紧/扩大；CAPMAS 用 Macaroon 令牌"],
+            ["共享状态的溯源", "有。MAP-Graph 的类型化执行图；PerMIT 的逐值确认"],
+            ["跨 Agent 分歧当告警", "有。EMNLP 2026 主会，「分歧是信号」已写进别人的标题"],
+            ["下游用自己看到的证据复核上游", "部分。ARGUS 查依据链，但它不在 Agent 之间做"],
+            ["按角色可见性查信息越界", "部分。AgentLeak、PRISM 做了检测手法，角色判据没人"],
+            ["链上判断强度的累积", "部分。The Hallucination Snowball 讲透了现象，检测器没定"],
+            ["每环的最小独立证据集", "没查到。它决定一个架构能不能被逐环校验"],
+            ["每环串起来还剩多少保证", "没查到。但要理论功底，我一个人不一定扛得住"]]
+    y2 = table(s, rows, M, y + Inches(0.14), CW, col_w=[4.1, 8.0], size=11.5,
+               head_size=11.5, per_line=Inches(0.185), rh=Inches(0.34))
+    callout(s, M, y2 + Inches(0.18), CW, None, [
+        ("九条里，四条已经有人做了，三条只剩一条缝，两条没查到。", True),
+    ], accent=CRIMSON, size=13)
 
 
 def p_plan(prs, total, page):
@@ -597,29 +597,29 @@ def p_plan(prs, total, page):
     y = title(s, "我倾向的两个，和一个绕不开的难点",
               "都不用发明新机制，只需要把那条缝补上", accent=TEAL)
     w3 = int((CW - Inches(0.66)) / 3)
-    y0 = y + Inches(0.16)
+    y0 = y + Inches(0.18)
     cards = [
-        ("一", "角色可见性当判据",
-         "下游只看得到上游的结论，看不到原始数据。它的输出里如果出现按角色不该知道的细节，就说明信息越界了。",
+        ("一", "下游复核上游",
+         "下发 Agent 拿到任务时，用它自己能看到的证据复核一遍。它看不到原始遥测，只看得到上游的结论——两条对不上，就拦在这一环。",
          TEAL),
         ("二", "链上判断强度的累积",
          "每一步单独看都合理，但假设在往上叠。不取平均，取累积——加权平均有天花板，这件事已经被证明过。",
          BLUE),
-        ("三", "绕不开的难点",
-         "篡改引起的数值波动，能不能跟正常波动分开。这一条不成立，上面两条都没有落点。",
+        ("三", "绕不开的难点：错误归因",
+         "最后输出错了，是第几环引入的？各环说的都是自然语言，这个位置很难定。定不出来，传播深度就测不了。",
          CRIMSON),
     ]
     for i, (num, h, t, c) in enumerate(cards):
         x = M + i * (w3 + Inches(0.33))
-        rect(s, x, y0, w3, Inches(3.62), fill=T_GREY, line=c)
-        tf = _p(s, x + Inches(0.22), y0 + Inches(0.20), w3 - Inches(0.44), Inches(3.2))
+        rect(s, x, y0, w3, Inches(3.55), fill=T_GREY, line=c)
+        tf = _p(s, x + Inches(0.22), y0 + Inches(0.20), w3 - Inches(0.44), Inches(3.1))
         _r(tf.paragraphs[0], num, 13, True, c)
         pp = tf.add_paragraph(); pp.space_before = Pt(4)
         _r(pp, h, 14.5, True, INK)
         pp = tf.add_paragraph(); pp.space_before = Pt(10)
-        _r(pp, t, 12.5, False, GREY)
-    callout(s, M, y0 + Inches(3.82), CW, None, [
-        ("第一条和第二条，是把「每环验什么」定下来；第三条决定这个方向成不成立。", True),
+        _r(pp, t, 12, False, GREY)
+    callout(s, M, y0 + Inches(3.75), CW, None, [
+        ("前两条定下「每环验什么」，第三条决定传播深度能不能测出来。", True),
     ], accent=TEAL, size=12.5)
 
 
