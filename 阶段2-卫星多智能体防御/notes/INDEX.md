@@ -31,9 +31,13 @@
 
 ### 调研中查到的、没进 PPT
 
-- `三篇-多步检测-CausalTrace等.md`
-- `三篇-记忆信任与可逆性.md`
-- `两篇-航天认知脆弱性与S-LARF.md`
+| 文件 | 里面是哪几篇 | 为什么还留着 |
+|---|---|---|
+| `三篇-多步检测-CausalTrace等.md` | CausalTrace、Peak+Accumulation、Fraud Layer | 说明多步检测这块已被占 |
+| **`PerMIT-记忆完整性-笔记.md`** | PerMIT | **唯一站在"信念侧"的先验工作，绕不开** |
+| **`Action-Class Authority-可逆性分级-笔记.md`** | Action-Class Authority | **候选 B 用了它的词汇，必须会正确引用** |
+| `三篇-记忆信任与可逆性.md` | 上面两篇 + 一篇综述 | 三篇合看的视角 |
+| `两篇-航天认知脆弱性与S-LARF.md` | CMU 那篇、S-LARF | 核实过它们没占这块 |
 
 ---
 
