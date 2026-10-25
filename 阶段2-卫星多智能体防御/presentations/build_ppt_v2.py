@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-生成《卫星多智能体安全：多步注入攻击与防御 —— 八篇论文调研》PPT（41 页）。
+生成《卫星多智能体安全：多步注入攻击与防御 —— 八篇论文调研》PPT（40 页）。
 
 结构（参照阶段一终稿）：
     封面 → 背景威胁 → 领域坐标 → 目录
@@ -590,39 +590,6 @@ def p_idea(prs, total, page):
     ], accent=CRIMSON, size=13)
 
 
-def p_plan(prs, total, page):
-    """P40：我倾向的两个，和一个绕不开的难点。"""
-    s = blank(prs)
-    chrome(s, "想法", page, total)
-    y = title(s, "我倾向的两个，和一个绕不开的难点",
-              "都不用发明新机制，只需要把那条缝补上", accent=TEAL)
-    w3 = int((CW - Inches(0.66)) / 3)
-    y0 = y + Inches(0.18)
-    cards = [
-        ("一", "下游复核上游",
-         "下发 Agent 拿到任务时，用它自己能看到的证据复核一遍。它看不到原始遥测，只看得到上游的结论——两条对不上，就拦在这一环。",
-         TEAL),
-        ("二", "链上判断强度的累积",
-         "每一步单独看都合理，但假设在往上叠。不取平均，取累积——加权平均有天花板，这件事已经被证明过。",
-         BLUE),
-        ("三", "绕不开的难点：错误归因",
-         "最后输出错了，是第几环引入的？各环说的都是自然语言，这个位置很难定。定不出来，传播深度就测不了。",
-         CRIMSON),
-    ]
-    for i, (num, h, t, c) in enumerate(cards):
-        x = M + i * (w3 + Inches(0.33))
-        rect(s, x, y0, w3, Inches(3.55), fill=T_GREY, line=c)
-        tf = _p(s, x + Inches(0.22), y0 + Inches(0.20), w3 - Inches(0.44), Inches(3.1))
-        _r(tf.paragraphs[0], num, 13, True, c)
-        pp = tf.add_paragraph(); pp.space_before = Pt(4)
-        _r(pp, h, 14.5, True, INK)
-        pp = tf.add_paragraph(); pp.space_before = Pt(10)
-        _r(pp, t, 12, False, GREY)
-    callout(s, M, y0 + Inches(3.75), CW, None, [
-        ("前两条定下「每环验什么」，第三条决定传播深度能不能测出来。", True),
-    ], accent=TEAL, size=12.5)
-
-
 def p_thanks(prs, total, page):
     s = blank(prs)
     rect(s, 0, Inches(2.55), SW, Inches(2.4), fill=NAVY, radius=0)
@@ -917,7 +884,7 @@ PAPERS[:] = [PAPERS[i] for i in (0, 2, 1, 3, 4, 6, 7, 5)]
 def build():
     prs = Presentation()
     prs.slide_width, prs.slide_height = SW, SH
-    total = 5 + 4 * len(PAPERS) + 4          # 5 开场 + 每篇 4 页 + 2 想法 + 2 收尾
+    total = 5 + 4 * len(PAPERS) + 3          # 5 开场 + 每篇 4 页 + 1 想法 + 2 收尾
     p_cover(prs, total)
     p_background(prs, total, 2)
     p_axis(prs, total, 3)
@@ -932,8 +899,7 @@ def build():
         page += 4
     p_summary(prs, total, page)
     p_idea(prs, total, page + 1)
-    p_plan(prs, total, page + 2)
-    p_thanks(prs, total, page + 3)
+    p_thanks(prs, total, page + 2)
     prs.save(OUT)
     print("已生成:", OUT, "共", len(prs.slides._sldIdLst), "页")
     # 交付前自检：PPT 上不能有讲法/导师/提醒/工作痕迹
