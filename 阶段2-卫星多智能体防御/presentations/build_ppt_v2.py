@@ -568,68 +568,59 @@ def p_summary(prs, total, page):
 
 
 def p_idea(prs, total, page):
-    """P39：下一步的想法——给连环锁算一个界。"""
+    """P39：我想过的切入点，以及它们现在的状态。"""
     s = blank(prs)
     chrome(s, "想法", page, total)
-    y = title(s, "下一步：给「连环锁」算一个界",
-              "三条依据，一个没有答案的问题", accent=TEAL)
-    rows = [["依据", "说的是什么"],
-            ["防御不可迁移", "一层上的控制，对另一层的攻击检测力为零　—　2604.23338"],
-            ["防御弱可组合", "「current defenses remain weakly compositional」　—　2606.10749"],
-            ["越往后越查不出",
-             "边界逃逸率 24.6% → 48.3% → 89.3%；只在最后查，比不查只强 2.3 个百分点　—　2608.14588"]]
-    y2 = table(s, rows, M, y + Inches(0.14), CW, col_w=[2.3, 9.8], size=11.5,
-               per_line=Inches(0.22), rh=Inches(0.40))
-    callout(s, M, y2 + Inches(0.22), CW, "问题", [
-        ("每一环都要校验，那到底要几环？每环要多强？—— 没有定量答案。", True),
-        ("想把「连环锁」从比喻变成一个能算的东西：给出每环漏检率，推出错误最多能传几环。", False),
-    ], accent=CRIMSON, size=13)
-    yc = y2 + Inches(1.62)
-    w3 = int((CW - Inches(0.66)) / 3)
-    cards = [("一个上界", "给定每环漏检率 p₁…pₙ，错误最多能传几环", TEAL),
-             ("一个条件", "要达到这个界，每一环的校验强度得满足什么", BLUE),
-             ("一个实测", "在卫星三环链上，实测传播深度有没有超过上界", AMBER)]
-    for i, (h, t, c) in enumerate(cards):
-        x = M + i * (w3 + Inches(0.33))
-        rect(s, x, yc, w3, Inches(1.55), fill=T_GREY, line=c)
-        tf = _p(s, x + Inches(0.20), yc + Inches(0.16), w3 - Inches(0.40), Inches(1.3))
-        _r(tf.paragraphs[0], h, 14, True, c)
-        pp = tf.add_paragraph()
-        pp.space_before = Pt(8)
-        _r(pp, t, 12, False, INK)
+    y = title(s, "我想过的切入点，和它们现在的状态",
+              "读完之后的盘点：有的已经有主，有的只剩一条缝", accent=TEAL)
+    rows = [["想法", "现在什么状态"],
+            ["校验输入数值的物理可行性", "有。Array 2026——但只做轨道力学，而且是检测之后的过滤"],
+            ["跨传感器冗余互证", "有。BLADE-SPACE——星载治理节点，11 级流水线"],
+            ["校验动作的依据链", "有。ARGUS，ASR 28.8% → 3.8%；另有 AGATE、ProTA、SIEVE"],
+            ["读隐藏状态判断有没有被注入", "有。AGRI，线性探针 AUROC 0.90+，ASR 34.6% → 0%"],
+            ["动作前的物理约束检查", "有。Glass Box at Orbit，6 条物理约束 + 7 条 LTL 不变量"],
+            ["分歧当检测信号", "有。EMNLP 2026 主会，「分歧是信号」已写进别人的标题"],
+            ["按角色可见性查信息越界", "**部分。检测手法有人做（AgentLeak、PRISM），角色判据没人"],
+            ["链上判断强度的累积", "**部分。现象被人讲透了（The Hallucination Snowball），检测器没定"],
+            ["每环串起来还剩多少保证", "**没查到。但要理论功底，我一个人不一定扛得住"]]
+    y2 = table(s, rows, M, y + Inches(0.14), CW, col_w=[4.0, 8.1], size=11.5,
+               head_size=11.5, per_line=Inches(0.20), rh=Inches(0.36))
+    callout(s, M, y2 + Inches(0.16), CW, None, [
+        ("九条里，六条已经有人做了。剩下三条：两条只剩一条缝，一条我还没查到。", True),
+    ], accent=CRIMSON, size=12.5)
 
 
 def p_plan(prs, total, page):
-    """P40：怎么验证——三环流水线上测传播深度。"""
+    """P40：我倾向的两个，和一个绕不开的难点。"""
     s = blank(prs)
     chrome(s, "想法", page, total)
-    y = title(s, "怎么验证：三环流水线上测传播深度",
-              "链短、动作不可逆——界算得出，也测得到", accent=TEAL)
-    w2 = int((CW - Inches(0.40)) / 2)
+    y = title(s, "我倾向的两个，和一个绕不开的难点",
+              "都不用发明新机制，只需要把那条缝补上", accent=TEAL)
+    w3 = int((CW - Inches(0.66)) / 3)
     y0 = y + Inches(0.16)
-    rect(s, M, y0, w2, Inches(2.95), fill=T_KEY, line=TEAL)
-    tf = _p(s, M + Inches(0.22), y0 + Inches(0.16), w2 - Inches(0.44), Inches(2.2))
-    _r(tf.paragraphs[0], "实验设置", 14, True, TEAL)
-    for t in ["三环：遥测判读 → 任务规划 → 遥操下发",
-              "骨干用星上能跑的小模型（7B 档位）",
-              "攻击两类：指令注入（对照）／数值篡改（主）",
-              "四个条件：无防御 ／ 全量血缘 ／ 纯规则 ／ 按界配置"]:
-        pp = tf.add_paragraph()
-        pp.space_before = Pt(7)
-        _r(pp, "·  " + t, 12, False, INK)
-    rect(s, M + w2 + Inches(0.40), y0, w2, Inches(2.95), fill=T_CAVEAT, line=AMBER)
-    tf = _p(s, M + w2 + Inches(0.62), y0 + Inches(0.16), w2 - Inches(0.44), Inches(2.2))
-    _r(tf.paragraphs[0], "要看什么", 14, True, AMBER)
-    for t in ["传播深度：实测几环 vs 上界几环",
-              "总拦截率、良性任务完成率",
-              "每环开销：token、时延、显存"]:
-        pp = tf.add_paragraph()
-        pp.space_before = Pt(7)
-        _r(pp, "·  " + t, 12, False, INK)
-    callout(s, M, y0 + Inches(3.18), CW, "成不成立，先看这一条", [
-        ("篡改引起的数值波动，能不能跟正常波动分开。", True),
-        ("这一条不成立，整个方案就不成立——所以它要最先测，不是最后测。", False),
-    ], accent=CRIMSON, size=12.5)
+    cards = [
+        ("一", "角色可见性当判据",
+         "下游只看得到上游的结论，看不到原始数据。它的输出里如果出现按角色不该知道的细节，就说明信息越界了。",
+         TEAL),
+        ("二", "链上判断强度的累积",
+         "每一步单独看都合理，但假设在往上叠。不取平均，取累积——加权平均有天花板，这件事已经被证明过。",
+         BLUE),
+        ("三", "绕不开的难点",
+         "篡改引起的数值波动，能不能跟正常波动分开。这一条不成立，上面两条都没有落点。",
+         CRIMSON),
+    ]
+    for i, (num, h, t, c) in enumerate(cards):
+        x = M + i * (w3 + Inches(0.33))
+        rect(s, x, y0, w3, Inches(3.62), fill=T_GREY, line=c)
+        tf = _p(s, x + Inches(0.22), y0 + Inches(0.20), w3 - Inches(0.44), Inches(3.2))
+        _r(tf.paragraphs[0], num, 13, True, c)
+        pp = tf.add_paragraph(); pp.space_before = Pt(4)
+        _r(pp, h, 14.5, True, INK)
+        pp = tf.add_paragraph(); pp.space_before = Pt(10)
+        _r(pp, t, 12.5, False, GREY)
+    callout(s, M, y0 + Inches(3.82), CW, None, [
+        ("第一条和第二条，是把「每环验什么」定下来；第三条决定这个方向成不成立。", True),
+    ], accent=TEAL, size=12.5)
 
 
 def p_thanks(prs, total, page):
