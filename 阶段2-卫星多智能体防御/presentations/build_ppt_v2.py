@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-生成《卫星多智能体安全：多步注入攻击与防御 —— 八篇论文调研》PPT（39 页）。
+生成《卫星多智能体安全：多步注入攻击与防御 —— 八篇论文调研》PPT（41 页）。
 
 结构（参照阶段一终稿）：
     封面 → 背景威胁 → 领域坐标 → 目录
@@ -566,6 +566,72 @@ def p_summary(prs, total, page):
     ], accent=CRIMSON, size=12.5)
 
 
+
+def p_idea(prs, total, page):
+    """P39：下一步的想法——给连环锁算一个界。"""
+    s = blank(prs)
+    chrome(s, "想法", page, total)
+    y = title(s, "下一步：给「连环锁」算一个界",
+              "三条依据，一个没有答案的问题", accent=TEAL)
+    rows = [["依据", "说的是什么"],
+            ["防御不可迁移", "一层上的控制，对另一层的攻击检测力为零　—　2604.23338"],
+            ["防御弱可组合", "「current defenses remain weakly compositional」　—　2606.10749"],
+            ["越往后越查不出",
+             "边界逃逸率 24.6% → 48.3% → 89.3%；只在最后查，比不查只强 2.3 个百分点　—　2608.14588"]]
+    y2 = table(s, rows, M, y + Inches(0.14), CW, col_w=[2.3, 9.8], size=11.5,
+               per_line=Inches(0.22), rh=Inches(0.40))
+    callout(s, M, y2 + Inches(0.22), CW, "问题", [
+        ("每一环都要校验，那到底要几环？每环要多强？—— 没有定量答案。", True),
+        ("想把「连环锁」从比喻变成一个能算的东西：给出每环漏检率，推出错误最多能传几环。", False),
+    ], accent=CRIMSON, size=13)
+    yc = y2 + Inches(1.62)
+    w3 = int((CW - Inches(0.66)) / 3)
+    cards = [("一个上界", "给定每环漏检率 p₁…pₙ，错误最多能传几环", TEAL),
+             ("一个条件", "要达到这个界，每一环的校验强度得满足什么", BLUE),
+             ("一个实测", "在卫星三环链上，实测传播深度有没有超过上界", AMBER)]
+    for i, (h, t, c) in enumerate(cards):
+        x = M + i * (w3 + Inches(0.33))
+        rect(s, x, yc, w3, Inches(1.55), fill=T_GREY, line=c)
+        tf = _p(s, x + Inches(0.20), yc + Inches(0.16), w3 - Inches(0.40), Inches(1.3))
+        _r(tf.paragraphs[0], h, 14, True, c)
+        pp = tf.add_paragraph()
+        pp.space_before = Pt(8)
+        _r(pp, t, 12, False, INK)
+
+
+def p_plan(prs, total, page):
+    """P40：怎么验证——三环流水线上测传播深度。"""
+    s = blank(prs)
+    chrome(s, "想法", page, total)
+    y = title(s, "怎么验证：三环流水线上测传播深度",
+              "链短、动作不可逆——界算得出，也测得到", accent=TEAL)
+    w2 = int((CW - Inches(0.40)) / 2)
+    y0 = y + Inches(0.16)
+    rect(s, M, y0, w2, Inches(2.95), fill=T_KEY, line=TEAL)
+    tf = _p(s, M + Inches(0.22), y0 + Inches(0.16), w2 - Inches(0.44), Inches(2.2))
+    _r(tf.paragraphs[0], "实验设置", 14, True, TEAL)
+    for t in ["三环：遥测判读 → 任务规划 → 遥操下发",
+              "骨干用星上能跑的小模型（7B 档位）",
+              "攻击两类：指令注入（对照）／数值篡改（主）",
+              "四个条件：无防御 ／ 全量血缘 ／ 纯规则 ／ 按界配置"]:
+        pp = tf.add_paragraph()
+        pp.space_before = Pt(7)
+        _r(pp, "·  " + t, 12, False, INK)
+    rect(s, M + w2 + Inches(0.40), y0, w2, Inches(2.95), fill=T_CAVEAT, line=AMBER)
+    tf = _p(s, M + w2 + Inches(0.62), y0 + Inches(0.16), w2 - Inches(0.44), Inches(2.2))
+    _r(tf.paragraphs[0], "要看什么", 14, True, AMBER)
+    for t in ["传播深度：实测几环 vs 上界几环",
+              "总拦截率、良性任务完成率",
+              "每环开销：token、时延、显存"]:
+        pp = tf.add_paragraph()
+        pp.space_before = Pt(7)
+        _r(pp, "·  " + t, 12, False, INK)
+    callout(s, M, y0 + Inches(3.18), CW, "成不成立，先看这一条", [
+        ("篡改引起的数值波动，能不能跟正常波动分开。", True),
+        ("这一条不成立，整个方案就不成立——所以它要最先测，不是最后测。", False),
+    ], accent=CRIMSON, size=12.5)
+
+
 def p_thanks(prs, total, page):
     s = blank(prs)
     rect(s, 0, Inches(2.55), SW, Inches(2.4), fill=NAVY, radius=0)
@@ -860,7 +926,7 @@ PAPERS[:] = [PAPERS[i] for i in (0, 2, 1, 3, 4, 6, 7, 5)]
 def build():
     prs = Presentation()
     prs.slide_width, prs.slide_height = SW, SH
-    total = 5 + 4 * len(PAPERS) + 2          # 5 开场 + 每篇 4 页 + 2 收尾
+    total = 5 + 4 * len(PAPERS) + 4          # 5 开场 + 每篇 4 页 + 2 想法 + 2 收尾
     p_cover(prs, total)
     p_background(prs, total, 2)
     p_axis(prs, total, 3)
@@ -874,7 +940,9 @@ def build():
         p_res(prs, total, page + 3, p, i)
         page += 4
     p_summary(prs, total, page)
-    p_thanks(prs, total, page + 1)
+    p_idea(prs, total, page + 1)
+    p_plan(prs, total, page + 2)
+    p_thanks(prs, total, page + 3)
     prs.save(OUT)
     print("已生成:", OUT, "共", len(prs.slides._sldIdLst), "页")
     # 交付前自检：PPT 上不能有讲法/导师/提醒/工作痕迹
