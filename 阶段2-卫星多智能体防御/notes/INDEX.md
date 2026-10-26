@@ -15,7 +15,7 @@
 | 3 | **Peak + Accumulation** | `论文笔记/Peak+Accumulation-多轮打分-笔记.md` |
 | 4 | Trust Propagation | `论文笔记/Trust Propagation-独立授权-笔记.md` |
 | 5 | CaMeL | `论文笔记/CaMeL-从设计上防注入-笔记.md` |
-| 6 | Speculative Safety Honeypot | `论文笔记/SSH-推测验证-笔记.md` |
+| 6 | Speculative Safety Honeypot | `论文笔记/SSH-推测验证-笔记.md` ＋ **`SSH-通读版-逐段.md`**（逐节通读）＋ **`SSH-逐图讲解.md`**（讲图用） |
 | 7 | VIGIL | `论文笔记/VIGIL-工具流验证-笔记.md` |
 | 8 | **SkyGuard** | `论文笔记/SkyGuard-分层威胁狩猎-笔记.md` |
 
