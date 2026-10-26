@@ -571,9 +571,10 @@ def p_idea(prs, total, page):
     """P39：只有多 Agent 才有意义的切入点。"""
     s = blank(prs)
     chrome(s, "想法", page, total)
-    y = title(s, "多智能体方向的九个切入点",
+    y = title(s, "多智能体方向的十个切入点",
               "从代理间通道到跨环保证，逐条查过", accent=TEAL)
     rows = [["想法", "现在什么状态"],
+            ["把 Agent 的判断变成显式对象", "**部分。ARGUS 把动作挂到证据链上；但让 Agent 自报依据有硬伤——理由可能是事后编的"],
             ["代理间消息通道加固", "有。Beyond Single-Model 列了 14 个跨 Agent 向量、四层防御（工作坊）"],
             ["授权沿链只缩不扩", "有。Progent 用 SMT 判定收紧/扩大；CAPMAS 用 Macaroon 令牌"],
             ["共享状态的溯源", "有。MAP-Graph 的类型化执行图；PerMIT 的逐值确认"],
@@ -586,7 +587,7 @@ def p_idea(prs, total, page):
     y2 = table(s, rows, M, y + Inches(0.14), CW, col_w=[4.1, 8.0], size=11.5,
                head_size=11.5, per_line=Inches(0.185), rh=Inches(0.34))
     callout(s, M, y2 + Inches(0.18), CW, None, [
-        ("九条里，四条已经有人做了，三条只剩一条缝，两条没查到。", True),
+        ("十条里，四条已经有人做了，四条只剩一条缝，两条没查到。", True),
     ], accent=CRIMSON, size=13)
 
 
