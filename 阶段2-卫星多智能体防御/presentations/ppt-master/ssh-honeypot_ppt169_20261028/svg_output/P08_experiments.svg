@@ -4,40 +4,40 @@
 <rect x="72" y="56" width="48" height="4" fill="#0E8A7D"/>
 <text x="72" y="118" font-family="Microsoft YaHei, Arial, sans-serif" font-size="42" fill="#16202A" font-weight="700">防得住，灵不灵</text>
 <text x="72" y="200" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#5E6B75" font-weight="400">Table 1 · AgentDojo 全场景平均行</text>
-<rect x="72" y="212" width="376" height="32" fill="#16202A" rx="3"/>
-<text x="86" y="235" font-family="Microsoft YaHei, Arial, sans-serif" font-size="15" fill="#FFFFFF" font-weight="700">Defence</text>
-<text x="254" y="235" font-family="Microsoft YaHei, Arial, sans-serif" font-size="15" fill="#FFFFFF" font-weight="700">ASR</text>
-<text x="358" y="235" font-family="Microsoft YaHei, Arial, sans-serif" font-size="15" fill="#FFFFFF" font-weight="700">UA</text>
-<text x="86" y="267" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">N.A.</text>
-<text x="254" y="267" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">31.78</text>
-<text x="358" y="267" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">56.59</text>
-<rect x="72" y="276" width="376" height="32" fill="#F4F6F7"/>
-<text x="86" y="299" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">Sandwich</text>
-<text x="254" y="299" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">14.52</text>
-<text x="358" y="299" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">52.88</text>
-<text x="86" y="331" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">PromptGuard</text>
-<text x="254" y="331" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">12.25</text>
-<text x="358" y="331" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">36.02</text>
-<rect x="72" y="340" width="376" height="32" fill="#F4F6F7"/>
-<text x="86" y="363" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="700">w. SSH</text>
-<text x="254" y="363" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#C2410C" font-weight="700">0.00</text>
-<text x="358" y="363" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">44.14</text>
-<text x="86" y="395" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">Judger</text>
-<text x="254" y="395" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">10.48</text>
-<text x="358" y="395" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">44.75</text>
-<rect x="72" y="404" width="376" height="32" fill="#F4F6F7"/>
-<text x="86" y="427" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="700">w. SSH</text>
-<text x="254" y="427" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#C2410C" font-weight="700">0.00</text>
-<text x="358" y="427" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">58.43</text>
-<line x1="72" y1="436" x2="448" y2="436" stroke="#DDE2E6" stroke-width="1"/>
-<text x="72" y="462" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">加 SSH 的两行 ASR 全部归零，UA 反而更高。</text>
-<text x="72" y="488" font-family="Microsoft YaHei, Arial, sans-serif" font-size="15" fill="#5E6B75" font-weight="400">据论文 Table 1 的 Avg. 行重排。</text>
+<rect x="72" y="212" width="376" height="36" fill="#16202A" rx="3"/>
+<text x="86" y="237" font-family="Microsoft YaHei, Arial, sans-serif" font-size="15" fill="#FFFFFF" font-weight="700">Defence</text>
+<text x="254" y="237" font-family="Microsoft YaHei, Arial, sans-serif" font-size="15" fill="#FFFFFF" font-weight="700">ASR</text>
+<text x="358" y="237" font-family="Microsoft YaHei, Arial, sans-serif" font-size="15" fill="#FFFFFF" font-weight="700">UA</text>
+<text x="86" y="275" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">N.A.</text>
+<text x="254" y="275" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">31.78</text>
+<text x="358" y="275" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">56.59</text>
+<rect x="72" y="288" width="376" height="40" fill="#F4F6F7"/>
+<text x="86" y="315" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">Sandwich</text>
+<text x="254" y="315" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">14.52</text>
+<text x="358" y="315" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">52.88</text>
+<text x="86" y="355" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">PromptGuard</text>
+<text x="254" y="355" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">12.25</text>
+<text x="358" y="355" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">36.02</text>
+<rect x="72" y="368" width="376" height="40" fill="#F4F6F7"/>
+<text x="86" y="395" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="700">w. SSH</text>
+<text x="254" y="395" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#C2410C" font-weight="700">0.00</text>
+<text x="358" y="395" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">44.14</text>
+<text x="86" y="435" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">Judger</text>
+<text x="254" y="435" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">10.48</text>
+<text x="358" y="435" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">44.75</text>
+<rect x="72" y="448" width="376" height="40" fill="#F4F6F7"/>
+<text x="86" y="475" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="700">w. SSH</text>
+<text x="254" y="475" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#C2410C" font-weight="700">0.00</text>
+<text x="358" y="475" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">58.43</text>
+<line x1="72" y1="488" x2="448" y2="488" stroke="#DDE2E6" stroke-width="1"/>
 <text x="520" y="200" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#5E6B75" font-weight="400">Table 2 · ActorAttack，M 从 1 到 5</text>
-<image href="../images/ssh-table2.png" x="520" y="212" width="688" height="289" preserveAspectRatio="xMidYMid meet"/>
-<text x="520" y="528" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">M 从 4 到 5，暴露率只再涨 1 个点。</text>
-<text x="520" y="554" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">两个子集都压到 0% ASR。</text>
-<line x1="72" y1="584" x2="1208" y2="584" stroke="#DDE2E6" stroke-width="1"/>
-<text x="72" y="614" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#16202A" font-weight="700">两张表一起看：谁当检测器都能归零，样本只取一个就抓到八成四。</text>
+<image href="../images/ssh-table2.png" x="520" y="203" width="688" height="289" preserveAspectRatio="xMidYMid meet"/>
+<text x="72" y="516" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">加 SSH 后 ASR 全部归零，UA 反而更高。</text>
+<text x="72" y="542" font-family="Microsoft YaHei, Arial, sans-serif" font-size="15" fill="#5E6B75" font-weight="400">据论文 Table 1 的 Avg. 行重排。</text>
+<text x="520" y="516" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">M 从 4 到 5，暴露率只再涨 1 个点。</text>
+<text x="520" y="542" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">两个子集最终都是 0% ASR。</text>
+<line x1="72" y1="576" x2="1208" y2="576" stroke="#DDE2E6" stroke-width="1"/>
+<text x="72" y="606" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#16202A" font-weight="700">两张表一起看：谁当检测器都能归零，样本只取一个就抓到八成四。</text>
 <line x1="72" y1="664" x2="1208" y2="664" stroke="#DDE2E6" stroke-width="1"/>
 <text x="72" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">证据 · 两张安全表</text>
 <text x="1208" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400" text-anchor="end">08 / 10</text>
