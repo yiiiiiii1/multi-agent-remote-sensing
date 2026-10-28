@@ -1,0 +1,516 @@
+
+=== 2026-10-28T14:30:45.348Z NOTE id=d09408626db2 ===
+Project initialized: profile=default; canvas=ppt169; path=/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028
+
+=== 2026-10-28T14:30:47.842Z PYTHON run=1b4bbb379130 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/project_manager.py", "import-sources", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/SSH讲解骨架-ABCD.md", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/SSH精读PPT-设计.md"]
+stdout:
+  [OK] Imported sources into: /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028
+=== 2026-10-28T14:30:48.059Z END run=1b4bbb379130 elapsed_ms=217 output_lines=7 retained=1 omitted=6 ===
+
+=== 2026-10-28T14:35:34.545Z PYTHON run=f65f0734cb1e ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/project_manager.py", "validate", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stdout:
+  [ERROR]
+    - Communication trace: missing spec_lock.md with a ## communication section.
+  [WARN]
+    - svg_output directory is empty, no SVG files found
+  [ERROR] Project structure is invalid.
+=== 2026-10-28T14:35:34.877Z END run=f65f0734cb1e elapsed_ms=332 output_lines=7 retained=5 omitted=2 ===
+
+=== 2026-10-28T14:35:44.193Z PYTHON run=bfc442a6494e ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/project_manager.py", "validate", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stdout:
+  [ERROR]
+    - spec_lock.md schema: field 'mode_references' references unknown catalog id 'technical-deepdive'
+  [WARN]
+    - svg_output directory is empty, no SVG files found
+  [ERROR] Project structure is invalid.
+=== 2026-10-28T14:35:44.492Z END run=bfc442a6494e elapsed_ms=299 output_lines=7 retained=5 omitted=2 ===
+
+=== 2026-10-28T14:35:44.552Z PYTHON run=dd611fad9ded ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/icon_sync.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028", "tabler-outline/mail", "tabler-outline/user", "tabler-outline/robot", "tabler-outline/tool", "tabler-outline/binary-tree", "tabler-outline/scissors", "tabler-outline/filter", "tabler-outline/alert-triangle", "tabler-outline/arrow-right", "tabler-outline/check", "tabler-outline/x", "tabler-outline/settings"]
+stderr:
+  [OK] 12 icon(s) in /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/icons:
+       + tabler-outline/mail
+       + tabler-outline/user
+       + tabler-outline/robot
+       + tabler-outline/tool
+       + tabler-outline/binary-tree
+       + tabler-outline/scissors
+       + tabler-outline/filter
+       + tabler-outline/alert-triangle
+stderr-tail:
+       + tabler-outline/arrow-right
+       + tabler-outline/check
+       + tabler-outline/x
+       + tabler-outline/settings
+=== 2026-10-28T14:35:44.560Z END run=dd611fad9ded elapsed_ms=7 output_lines=13 retained=13 omitted=0 ===
+
+=== 2026-10-28T14:35:59.022Z PYTHON run=07b62ca5542f ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/project_manager.py", "validate", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stdout:
+  [WARN]
+  [OK] Project structure is valid, with warnings.
+=== 2026-10-28T14:35:59.325Z END run=07b62ca5542f elapsed_ms=302 output_lines=5 retained=2 omitted=3 ===
+
+=== 2026-10-28T14:36:53.234Z PYTHON run=b33a0d2c909c ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/project_manager.py", "validate", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stdout:
+  [WARN]
+  [OK] Project structure is valid, with warnings.
+=== 2026-10-28T14:36:53.545Z END run=b33a0d2c909c elapsed_ms=311 output_lines=5 retained=2 omitted=3 ===
+
+=== 2026-10-28T14:36:59.566Z PYTHON run=8d539eecfca8 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/text_measure.py", "calibrate", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028", "--outline"]
+=== 2026-10-28T14:36:59.655Z END run=8d539eecfca8 elapsed_ms=89 output_lines=17 retained=0 omitted=17 ===
+
+=== 2026-10-28T14:37:41.983Z PYTHON run=e521bd368363 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_quality_checker.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stdout:
+  [WARN] P01_cover.svg - Passed (with warnings)
+     [WARN] 11 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <text> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+     [WARN] page SVG is missing root data-pptx-page-role
+  [WARN] P02_threats.svg - Passed (with warnings)
+  [SUMMARY] Check Summary
+  Total files: 9
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 9 (100%)
+    [ERROR] With errors: 12 (100%)
+  Provenance categories:
+    blocking: 12         hard findings; gate also requires exit 0
+    introduced: 18       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 9 | text: 130 | images: 4 | icons: 0
+    Geometry: SVG elements 55 | native presets 0 | page-frame elements 0 | marker uses 0
+=== 2026-10-28T14:37:42.525Z END run=e521bd368363 elapsed_ms=542 output_lines=88 retained=17 omitted=71 ===
+
+=== 2026-10-28T14:37:49.726Z PYTHON run=9286adb6e467 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_quality_checker.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stdout:
+  [WARN] P01_cover.svg - Passed (with warnings)
+     [WARN] 11 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <text> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+     [WARN] page SVG is missing root data-pptx-page-role
+  [WARN] P02_threats.svg - Passed (with warnings)
+  [SUMMARY] Check Summary
+  Total files: 9
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 9 (100%)
+    [ERROR] With errors: 9 (100%)
+  Provenance categories:
+    blocking: 9          hard findings; gate also requires exit 0
+    introduced: 18       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 9 | text: 130 | images: 4 | icons: 0
+    Geometry: SVG elements 55 | native presets 0 | page-frame elements 0 | marker uses 0
+=== 2026-10-28T14:37:50.165Z END run=9286adb6e467 elapsed_ms=439 output_lines=85 retained=17 omitted=68 ===
+
+=== 2026-10-28T14:37:53.010Z PYTHON run=c012405905d4 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_quality_checker.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stdout:
+  [WARN] P01_cover.svg - Passed (with warnings)
+     [WARN] 11 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <text> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+     [WARN] page SVG is missing root data-pptx-page-role
+  [WARN] P02_threats.svg - Passed (with warnings)
+  [SUMMARY] Check Summary
+  Total files: 9
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 9 (100%)
+    [ERROR] With errors: 9 (100%)
+  Provenance categories:
+    blocking: 9          hard findings; gate also requires exit 0
+    introduced: 18       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 9 | text: 130 | images: 4 | icons: 0
+    Geometry: SVG elements 55 | native presets 0 | page-frame elements 0 | marker uses 0
+=== 2026-10-28T14:37:53.450Z END run=c012405905d4 elapsed_ms=440 output_lines=85 retained=17 omitted=68 ===
+
+=== 2026-10-28T14:37:53.516Z PYTHON run=efd803286dc2 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_quality_checker.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stdout:
+  [WARN] P01_cover.svg - Passed (with warnings)
+     [WARN] 11 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <text> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+     [WARN] page SVG is missing root data-pptx-page-role
+  [WARN] P02_threats.svg - Passed (with warnings)
+  [SUMMARY] Check Summary
+  Total files: 9
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 9 (100%)
+    [ERROR] With errors: 9 (100%)
+  Provenance categories:
+    blocking: 9          hard findings; gate also requires exit 0
+    introduced: 18       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 9 | text: 130 | images: 4 | icons: 0
+    Geometry: SVG elements 55 | native presets 0 | page-frame elements 0 | marker uses 0
+=== 2026-10-28T14:37:53.941Z END run=efd803286dc2 elapsed_ms=425 output_lines=85 retained=17 omitted=68 ===
+
+=== 2026-10-28T14:37:56.543Z PYTHON run=326e86f73385 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/finalize_svg.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stdout:
+  [OK] Done!
+=== 2026-10-28T14:37:57.113Z END run=326e86f73385 elapsed_ms=569 output_lines=12 retained=1 omitted=11 ===
+
+=== 2026-10-28T14:37:57.183Z PYTHON run=ed4fde784bfe ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_to_pptx.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stderr:
+  Error: default release export requires a passing final SVG quality report for the current svg_output/; found not-provided.
+  Run: python3 skills/ppt-master/scripts/svg_quality_checker.py "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028" --canonical-authoring --stage final --json
+=== 2026-10-28T14:37:57.701Z END run=ed4fde784bfe elapsed_ms=518 output_lines=2 retained=2 omitted=0 ===
+
+=== 2026-10-28T14:38:00.243Z PYTHON run=dfd99fb709f2 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_quality_checker.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] P01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Visible text requires one direct root font-family default; semantic groups and text elements keep only real overrides (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (9 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): svg[1]:font-family None -> 'Microsoft YaHei, Arial, sans-serif'; text[5]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None; text[6]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] 11 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <text> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+  [SUMMARY] Check Summary
+  Total files: 9
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 9 (100%)
+    [ERROR] With errors: 9 (100%)
+  Provenance categories:
+    blocking: 9          hard findings; gate also requires exit 0
+    introduced: 36       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 9 | text: 130 | images: 4 | icons: 0
+    Geometry: SVG elements 55 | native presets 0 | page-frame elements 0 | marker uses 0
+  [REPORT] JSON quality report exported: /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/validation/svg_quality_report.json
+=== 2026-10-28T14:38:00.697Z END run=dfd99fb709f2 elapsed_ms=454 output_lines=104 retained=18 omitted=86 ===
+
+=== 2026-10-28T14:38:00.776Z PYTHON run=0f3797252387 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_to_pptx.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stderr:
+  Error: default release export requires a passing final SVG quality report for the current svg_output/; found failed.
+  Run: python3 skills/ppt-master/scripts/svg_quality_checker.py "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028" --canonical-authoring --stage final --json
+=== 2026-10-28T14:38:01.228Z END run=0f3797252387 elapsed_ms=451 output_lines=2 retained=2 omitted=0 ===
+
+=== 2026-10-28T14:38:03.871Z PYTHON run=69f243f2844a ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_quality_checker.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028", "--canonical-authoring", "--stage", "final"]
+stdout:
+  [WARN] P01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Visible text requires one direct root font-family default; semantic groups and text elements keep only real overrides (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (9 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): svg[1]:font-family None -> 'Microsoft YaHei, Arial, sans-serif'; text[5]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None; text[6]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] 11 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <text> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+  [SUMMARY] Check Summary
+  Total files: 9
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 9 (100%)
+    [ERROR] With errors: 9 (100%)
+  Provenance categories:
+    blocking: 9          hard findings; gate also requires exit 0
+    introduced: 36       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 9 | text: 130 | images: 4 | icons: 0
+    Geometry: SVG elements 55 | native presets 0 | page-frame elements 0 | marker uses 0
+=== 2026-10-28T14:38:04.333Z END run=69f243f2844a elapsed_ms=462 output_lines=103 retained=17 omitted=86 ===
+
+=== 2026-10-28T14:38:06.601Z PYTHON run=7d6b9b957994 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_quality_checker.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028", "--canonical-authoring", "--stage", "final"]
+stdout:
+  [WARN] P01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Visible text requires one direct root font-family default; semantic groups and text elements keep only real overrides (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (9 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): svg[1]:font-family None -> 'Microsoft YaHei, Arial, sans-serif'; text[5]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None; text[6]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] 11 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <text> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+  [SUMMARY] Check Summary
+  Total files: 9
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 9 (100%)
+    [ERROR] With errors: 9 (100%)
+  Provenance categories:
+    blocking: 9          hard findings; gate also requires exit 0
+    introduced: 36       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 9 | text: 130 | images: 4 | icons: 0
+    Geometry: SVG elements 55 | native presets 0 | page-frame elements 0 | marker uses 0
+=== 2026-10-28T14:38:07.020Z END run=7d6b9b957994 elapsed_ms=419 output_lines=103 retained=17 omitted=86 ===
+
+=== 2026-10-28T14:38:19.704Z PYTHON run=964c55377e72 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_quality_checker.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] P01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Visible text requires one direct root font-family default; semantic groups and text elements keep only real overrides (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (9 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): svg[1]:font-family None -> 'Microsoft YaHei, Arial, sans-serif'; text[5]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None; text[6]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] 11 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <text> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+  [SUMMARY] Check Summary
+  Total files: 9
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 9 (100%)
+    [ERROR] With errors: 4 (44%)
+  Provenance categories:
+    blocking: 4          hard findings; gate also requires exit 0
+    introduced: 36       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 9 | text: 130 | images: 4 | icons: 0
+    Geometry: SVG elements 55 | native presets 0 | page-frame elements 0 | marker uses 0
+  [REPORT] JSON quality report exported: /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/validation/svg_quality_report.json
+=== 2026-10-28T14:38:20.256Z END run=964c55377e72 elapsed_ms=552 output_lines=97 retained=18 omitted=79 ===
+
+=== 2026-10-28T14:38:20.336Z PYTHON run=1700e41d7332 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_to_pptx.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stderr:
+  Error: default release export requires a passing final SVG quality report for the current svg_output/; found failed.
+  Run: python3 skills/ppt-master/scripts/svg_quality_checker.py "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028" --canonical-authoring --stage final --json
+=== 2026-10-28T14:38:20.860Z END run=1700e41d7332 elapsed_ms=524 output_lines=2 retained=2 omitted=0 ===
+
+=== 2026-10-28T14:38:23.295Z PYTHON run=4fe0e3c2b12f ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_quality_checker.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028", "--canonical-authoring", "--stage", "final"]
+stdout:
+  [WARN] P01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Visible text requires one direct root font-family default; semantic groups and text elements keep only real overrides (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (9 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): svg[1]:font-family None -> 'Microsoft YaHei, Arial, sans-serif'; text[5]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None; text[6]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] 11 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <text> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+  [SUMMARY] Check Summary
+  Total files: 9
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 9 (100%)
+    [ERROR] With errors: 4 (44%)
+  Provenance categories:
+    blocking: 4          hard findings; gate also requires exit 0
+    introduced: 36       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 9 | text: 130 | images: 4 | icons: 0
+    Geometry: SVG elements 55 | native presets 0 | page-frame elements 0 | marker uses 0
+=== 2026-10-28T14:38:23.711Z END run=4fe0e3c2b12f elapsed_ms=415 output_lines=96 retained=17 omitted=79 ===
+
+=== 2026-10-28T14:38:35.470Z PYTHON run=012a96d215ca ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_quality_checker.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] P01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Visible text requires one direct root font-family default; semantic groups and text elements keep only real overrides (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (9 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): svg[1]:font-family None -> 'Microsoft YaHei, Arial, sans-serif'; text[5]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None; text[6]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] 11 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <text> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+  [SUMMARY] Check Summary
+  Total files: 9
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 9 (100%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 27       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 9 | text: 130 | images: 4 | icons: 0
+    Geometry: SVG elements 55 | native presets 0 | page-frame elements 0 | marker uses 0
+  [REPORT] JSON quality report exported: /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/validation/svg_quality_report.json
+=== 2026-10-28T14:38:36.008Z END run=012a96d215ca elapsed_ms=538 output_lines=80 retained=18 omitted=62 ===
+
+=== 2026-10-28T14:38:36.096Z PYTHON run=d8169ce51b8c ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_to_pptx.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stdout:
+  [Done] Saved: /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/exports/ssh-honeypot_20261028_223836.pptx
+    [POSTFLIGHT] status=passed-with-warnings quality_gate=passed slides=9 warning_categories=1
+    [POSTFLIGHT][WARNING] quality_introduced_warnings=27
+    [PPTX] /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/exports/ssh-honeypot_20261028_223836.pptx
+    [REPORT] /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/validation/ssh-honeypot_20261028_223836.report.json
+=== 2026-10-28T14:38:36.795Z END run=d8169ce51b8c elapsed_ms=698 output_lines=41 retained=5 omitted=36 ===
+
+=== 2026-10-28T14:39:20.436Z PYTHON run=8a3c8d7ba604 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/finalize_svg.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stdout:
+  [OK] Done!
+=== 2026-10-28T14:39:21.033Z END run=8a3c8d7ba604 elapsed_ms=596 output_lines=12 retained=1 omitted=11 ===
+
+=== 2026-10-28T14:39:21.092Z PYTHON run=1ef41e906909 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_quality_checker.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] P01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Visible text requires one direct root font-family default; semantic groups and text elements keep only real overrides (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (9 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): svg[1]:font-family None -> 'Microsoft YaHei, Arial, sans-serif'; text[5]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None; text[6]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] 11 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <text> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+  [ERROR] P08_experiments.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] spec_lock typography-size recurrence: undeclared font-size 38 (4 occurrences) exceeds the sparse-display limit of 2 occurrences. Structural text must return to its declared role band; a genuinely recurring display treatment needs a justified named role in the Design Spec and spec_lock.
+     [WARN] Noncanonical compact authoring: Visible text requires one direct root font-family default; semantic groups and text elements keep only real overrides (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (30 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): svg[1]:font-family None -> 'Microsoft YaHei, Arial, sans-serif'; text[5]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None; text[7]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] 36 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <rect> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+     [WARN] page SVG is missing root data-pptx-page-role
+  [SUMMARY] Check Summary
+  Total files: 9
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 8 (88%)
+    [ERROR] With errors: 1 (11%)
+  Provenance categories:
+    blocking: 1          hard findings; gate also requires exit 0
+    introduced: 28       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 9 | text: 129 | images: 4 | icons: 0
+    Geometry: SVG elements 55 | native presets 0 | page-frame elements 0 | marker uses 0
+  [REPORT] JSON quality report exported: /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/validation/svg_quality_report.json
+=== 2026-10-28T14:39:21.647Z END run=1ef41e906909 elapsed_ms=555 output_lines=86 retained=25 omitted=61 ===
+
+=== 2026-10-28T14:39:21.729Z PYTHON run=ad9ae5121d02 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_to_pptx.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stderr:
+  Error: default release export requires a passing final SVG quality report for the current svg_output/; found failed.
+  Run: python3 skills/ppt-master/scripts/svg_quality_checker.py "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028" --canonical-authoring --stage final --json
+=== 2026-10-28T14:39:22.230Z END run=ad9ae5121d02 elapsed_ms=500 output_lines=2 retained=2 omitted=0 ===
+
+=== 2026-10-28T14:39:24.362Z PYTHON run=c813ba04f09a ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_to_pptx.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stderr:
+  Error: default release export requires a passing final SVG quality report for the current svg_output/; found failed.
+  Run: python3 skills/ppt-master/scripts/svg_quality_checker.py "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028" --canonical-authoring --stage final --json
+=== 2026-10-28T14:39:24.840Z END run=c813ba04f09a elapsed_ms=478 output_lines=2 retained=2 omitted=0 ===
+
+=== 2026-10-28T14:39:27.617Z PYTHON run=2914a32e9b07 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_quality_checker.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028", "--canonical-authoring", "--stage", "final"]
+stdout:
+  [WARN] P01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Visible text requires one direct root font-family default; semantic groups and text elements keep only real overrides (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (9 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): svg[1]:font-family None -> 'Microsoft YaHei, Arial, sans-serif'; text[5]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None; text[6]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] 11 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <text> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+  [ERROR] P08_experiments.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] spec_lock typography-size recurrence: undeclared font-size 38 (4 occurrences) exceeds the sparse-display limit of 2 occurrences. Structural text must return to its declared role band; a genuinely recurring display treatment needs a justified named role in the Design Spec and spec_lock.
+     [WARN] Noncanonical compact authoring: Visible text requires one direct root font-family default; semantic groups and text elements keep only real overrides (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (30 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): svg[1]:font-family None -> 'Microsoft YaHei, Arial, sans-serif'; text[5]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None; text[7]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] 36 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <rect> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+     [WARN] page SVG is missing root data-pptx-page-role
+  [SUMMARY] Check Summary
+  Total files: 9
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 8 (88%)
+    [ERROR] With errors: 1 (11%)
+  Provenance categories:
+    blocking: 1          hard findings; gate also requires exit 0
+    introduced: 28       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 9 | text: 129 | images: 4 | icons: 0
+    Geometry: SVG elements 55 | native presets 0 | page-frame elements 0 | marker uses 0
+=== 2026-10-28T14:39:28.041Z END run=2914a32e9b07 elapsed_ms=424 output_lines=85 retained=24 omitted=61 ===
+
+=== 2026-10-28T14:39:40.749Z PYTHON run=5c49eb3da0e6 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/finalize_svg.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stdout:
+  [OK] Done!
+=== 2026-10-28T14:39:41.366Z END run=5c49eb3da0e6 elapsed_ms=616 output_lines=12 retained=1 omitted=11 ===
+
+=== 2026-10-28T14:39:41.419Z PYTHON run=91e3bacd3829 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_quality_checker.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] P01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Visible text requires one direct root font-family default; semantic groups and text elements keep only real overrides (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (9 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): svg[1]:font-family None -> 'Microsoft YaHei, Arial, sans-serif'; text[5]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None; text[6]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] 11 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <text> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+  [SUMMARY] Check Summary
+  Total files: 9
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 9 (100%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 28       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 9 | text: 129 | images: 4 | icons: 0
+    Geometry: SVG elements 55 | native presets 0 | page-frame elements 0 | marker uses 0
+  [REPORT] JSON quality report exported: /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/validation/svg_quality_report.json
+=== 2026-10-28T14:39:41.925Z END run=91e3bacd3829 elapsed_ms=506 output_lines=81 retained=18 omitted=63 ===
+
+=== 2026-10-28T14:39:42.025Z PYTHON run=b83902a95083 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_to_pptx.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stdout:
+  [Done] Saved: /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/exports/ssh-honeypot_20261028_223942.pptx
+    [POSTFLIGHT] status=passed-with-warnings quality_gate=passed slides=9 warning_categories=1
+    [POSTFLIGHT][WARNING] quality_introduced_warnings=28
+    [PPTX] /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/exports/ssh-honeypot_20261028_223942.pptx
+    [REPORT] /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/validation/ssh-honeypot_20261028_223942.report.json
+=== 2026-10-28T14:39:42.721Z END run=b83902a95083 elapsed_ms=696 output_lines=41 retained=5 omitted=36 ===
+
+=== 2026-10-28T14:40:00.826Z PYTHON run=a18e0d15f964 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/finalize_svg.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stdout:
+  [OK] Done!
+=== 2026-10-28T14:40:01.413Z END run=a18e0d15f964 elapsed_ms=586 output_lines=12 retained=1 omitted=11 ===
+
+=== 2026-10-28T14:40:01.469Z PYTHON run=f58e7b2320a4 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_quality_checker.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] P01_cover.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Visible text requires one direct root font-family default; semantic groups and text elements keep only real overrides (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (9 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): svg[1]:font-family None -> 'Microsoft YaHei, Arial, sans-serif'; text[5]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None; text[6]:font-family 'Microsoft YaHei, Arial, sans-serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+     [WARN] 11 ungrouped top-level Slide-local element(s) in svg_output (<rect> #2, <text> #3, <text> #4, ...); group only logical content units in a top-level <g id="...">. Keep genuine static page framing as a root primitive and declare a supported data-pptx-role such as "background" or "decoration"
+  [SUMMARY] Check Summary
+  Total files: 9
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 9 (100%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 29       advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 9 | text: 129 | images: 4 | icons: 0
+    Geometry: SVG elements 55 | native presets 0 | page-frame elements 0 | marker uses 0
+  [REPORT] JSON quality report exported: /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/validation/svg_quality_report.json
+=== 2026-10-28T14:40:02.003Z END run=f58e7b2320a4 elapsed_ms=533 output_lines=82 retained=18 omitted=64 ===
+
+=== 2026-10-28T14:40:02.101Z PYTHON run=2a29243675d2 ===
+cwd: /Users/a16411/Documents/ppt-master/skills/ppt-master
+argv: ["/Library/Frameworks/Python.framework/Versions/3.12/bin/python3", "scripts/svg_to_pptx.py", "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028"]
+stdout:
+  [Done] Saved: /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/exports/ssh-honeypot_20261028_224002.pptx
+    [POSTFLIGHT] status=passed-with-warnings quality_gate=passed slides=9 warning_categories=1
+    [POSTFLIGHT][WARNING] quality_introduced_warnings=29
+    [PPTX] /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/exports/ssh-honeypot_20261028_224002.pptx
+    [REPORT] /Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028/validation/ssh-honeypot_20261028_224002.report.json
+=== 2026-10-28T14:40:02.786Z END run=2a29243675d2 elapsed_ms=684 output_lines=41 retained=5 omitted=36 ===
