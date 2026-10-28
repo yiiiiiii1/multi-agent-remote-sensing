@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content" width="1280" height="720">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
 <title>三、方法 · C</title>
 <rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
 <rect x="72" y="56" width="48" height="4" fill="#0E8A7D"/>
@@ -25,5 +25,5 @@
 <text x="724" y="568" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#5E6B75" font-weight="400">这个选择把平均效用拉回 8.12%。</text>
 <line x1="72" y1="664" x2="1208" y2="664" stroke="#DDE2E6" stroke-width="1"/>
 <text x="72" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">三、方法 · C</text>
-<text x="1208" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400" text-anchor="end">06 / 09</text>
+<text x="1208" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400" text-anchor="end">06 / 10</text>
 </svg>

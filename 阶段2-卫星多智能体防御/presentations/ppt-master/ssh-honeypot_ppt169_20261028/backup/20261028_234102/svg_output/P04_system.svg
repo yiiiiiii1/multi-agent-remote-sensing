@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<title>三、方法 · A</title>
+<rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+<rect x="72" y="56" width="48" height="4" fill="#0E8A7D"/>
+<text x="72" y="118" font-family="Microsoft YaHei, Arial, sans-serif" font-size="42" fill="#16202A" font-weight="700">三个模拟器，都故意不做安全对齐</text>
+<rect x="72" y="196" width="352" height="150" fill="#F4F6F7" rx="6"/>
+<rect x="72" y="196" width="352" height="3" fill="#0E8A7D"/>
+<text x="94" y="236" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#16202A" font-weight="700">用户模拟器</text>
+<text x="94" y="272" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">生成多样、模糊的意图，覆盖</text>
+<text x="94" y="298" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">边角输入</text>
+<rect x="464" y="196" width="352" height="150" fill="#F4F6F7" rx="6"/>
+<rect x="464" y="196" width="352" height="3" fill="#0E8A7D"/>
+<text x="486" y="236" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#16202A" font-weight="700">助手模拟器</text>
+<text x="486" y="272" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">代理目标 Agent，学它</text>
+<text x="486" y="298" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">的执行习惯，也学它的错误模</text>
+<text x="486" y="324" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">式</text>
+<rect x="856" y="196" width="352" height="150" fill="#F4F6F7" rx="6"/>
+<rect x="856" y="196" width="352" height="3" fill="#0E8A7D"/>
+<text x="878" y="236" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#16202A" font-weight="700">环境模拟器</text>
+<text x="878" y="272" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">给合成反馈、不真执行，推演</text>
+<text x="878" y="298" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">隔离且无害</text>
+<text x="72" y="392" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#16202A" font-weight="700">训练：Differentiated Alignment</text>
+<text x="72" y="424" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#1F2933" font-weight="400">两个方向相反的目标，分开调——</text>
+<text x="72" y="458" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#1F2933" font-weight="400">平时要像主 Agent（保真），遇到攻击时要比它更容易被带偏（敏感）。</text>
+<text x="72" y="492" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#0E8A7D" font-weight="700">高风险场景里，敏感优先于保真：主 Agent 一挡住，就什么也看不到。</text>
+<line x1="72" y1="520" x2="1208" y2="520" stroke="#DDE2E6" stroke-width="1"/>
+<text x="72" y="550" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">保真 ← 11,000 条蒸馏（真实轨迹，去掉长思维链但保留错误模式）</text>
+<text x="72" y="580" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">敏感 ←  4,700 条合成（把一条正常指令从用户位置挪进工具返回）</text>
+<text x="72" y="610" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#5E6B75" font-weight="400">工具与用户模拟器复用同一份数据的另两个字段</text>
+<line x1="72" y1="664" x2="1208" y2="664" stroke="#DDE2E6" stroke-width="1"/>
+<text x="72" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">三、方法 · A</text>
+<text x="1208" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400" text-anchor="end">04 / 10</text>
+</svg>
