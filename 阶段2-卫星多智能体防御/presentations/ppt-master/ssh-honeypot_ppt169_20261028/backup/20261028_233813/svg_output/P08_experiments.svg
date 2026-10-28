@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<title>证据</title>
+<rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+<rect x="72" y="56" width="48" height="4" fill="#0E8A7D"/>
+<text x="72" y="118" font-family="Microsoft YaHei, Arial, sans-serif" font-size="42" fill="#16202A" font-weight="700">三张表：防得住、灵不灵、伤不伤</text>
+<text x="72" y="206" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#5E6B75" font-weight="400">Table 1 · AgentDojo 全部场景的平均行</text>
+<rect x="72" y="218" width="410" height="34" fill="#16202A" rx="3"/>
+<text x="86" y="242" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#FFFFFF" font-weight="700">Defence</text>
+<text x="276" y="242" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#FFFFFF" font-weight="700">ASR</text>
+<text x="386" y="242" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#FFFFFF" font-weight="700">UA</text>
+<text x="86" y="275" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">N.A.</text>
+<text x="276" y="275" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">31.78</text>
+<text x="386" y="275" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">56.59</text>
+<rect x="72" y="284" width="410" height="32" fill="#F4F6F7"/>
+<text x="86" y="307" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">Sandwich</text>
+<text x="276" y="307" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">14.52</text>
+<text x="386" y="307" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">52.88</text>
+<text x="86" y="339" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">PromptGuard</text>
+<text x="276" y="339" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">12.25</text>
+<text x="386" y="339" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">36.02</text>
+<rect x="72" y="348" width="410" height="32" fill="#F4F6F7"/>
+<text x="86" y="371" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="700">w. SSH</text>
+<text x="276" y="371" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#C2410C" font-weight="700">0.00</text>
+<text x="386" y="371" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">44.14</text>
+<text x="86" y="403" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">Judger</text>
+<text x="276" y="403" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">10.48</text>
+<text x="386" y="403" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">44.75</text>
+<rect x="72" y="412" width="410" height="32" fill="#F4F6F7"/>
+<text x="86" y="435" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="700">w. SSH</text>
+<text x="276" y="435" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#C2410C" font-weight="700">0.00</text>
+<text x="386" y="435" font-family="Microsoft YaHei, Arial, sans-serif" font-size="17" fill="#1F2933" font-weight="400">58.43</text>
+<line x1="72" y1="444" x2="482" y2="444" stroke="#DDE2E6" stroke-width="1"/>
+<text x="72" y="468" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">加 SSH 的两行 ASR 全部归零，UA 反而更高。</text>
+<text x="540" y="206" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#5E6B75" font-weight="400">Table 2 · ActorAttack，M 从 1 到 5</text>
+<image href="../images/ssh-table2.png" x="540" y="218" width="668" height="312" preserveAspectRatio="xMidYMid meet"/>
+<text x="540" y="556" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">M 从 4 到 5，暴露率只再涨 1 个点。</text>
+<text x="72" y="470" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#5E6B75" font-weight="400">Table 3 · BFCL-v3 与 XSTest</text>
+<image href="../images/ssh-table3.png" x="72" y="482" width="520" height="121" preserveAspectRatio="xMidYMid meet"/>
+<text x="72" y="626" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">Overall 45.13 → 44.88，拒答率前后都是 0。</text>
+<line x1="636" y1="486" x2="636" y2="610" stroke="#DDE2E6" stroke-width="1"/>
+<text x="660" y="512" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#16202A" font-weight="700">三张表回答三个问题：</text>
+<text x="660" y="546" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">防得住（全 0）、</text>
+<text x="660" y="578" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">灵不灵（M 到 5 归零）、</text>
+<text x="660" y="610" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">伤不伤（基本没动）。</text>
+<line x1="72" y1="664" x2="1208" y2="664" stroke="#DDE2E6" stroke-width="1"/>
+<text x="72" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">证据</text>
+<text x="1208" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400" text-anchor="end">08 / 09</text>
+</svg>

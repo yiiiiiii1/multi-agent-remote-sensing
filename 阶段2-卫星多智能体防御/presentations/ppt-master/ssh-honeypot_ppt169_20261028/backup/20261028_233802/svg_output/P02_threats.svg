@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content" width="1280" height="720">
+<title>一、两类威胁</title>
+<rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+<rect x="72" y="56" width="48" height="4" fill="#0E8A7D"/>
+<text x="72" y="118" font-family="Microsoft YaHei, Arial, sans-serif" font-size="42" fill="#16202A" font-weight="700">两类威胁：坏人装成用户，还是藏在邮件里</text>
+<text x="72" y="208" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#16202A" font-weight="700">多轮越狱</text>
+<text x="72" y="242" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#1F2933" font-weight="400">攻击者本人就是用户，一轮轮把模型带偏，</text>
+<text x="72" y="276" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#1F2933" font-weight="400">靠累积语义压过安全对齐。</text>
+<text x="72" y="318" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#5E6B75" font-weight="400">Crescendo / ASJA / AMA</text>
+<text x="72" y="382" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#C2410C" font-weight="700">间接注入 IPI</text>
+<text x="72" y="416" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#1F2933" font-weight="400">用户是干净的，恶意指令藏在文档或工具返回里。</text>
+<text x="72" y="450" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#1F2933" font-weight="400">Agent 相信外部反馈，就会被带去做别的事。</text>
+<text x="72" y="492" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#5E6B75" font-weight="400">InjecAgent / AgentDojo / STAC</text>
+<line x1="72" y1="530" x2="632" y2="530" stroke="#DDE2E6" stroke-width="1"/>
+<text x="72" y="566" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#16202A" font-weight="700">实例：用户只说「总结今天的邮件」——</text>
+<text x="72" y="600" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#16202A" font-weight="700">邮件里却藏着一句改写指令。</text>
+<image href="../images/ssh-fig1.png" x="690" y="196" width="470" height="206" preserveAspectRatio="xMidYMid meet"/>
+<text x="690" y="430" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#5E6B75" font-weight="400">论文 Fig. 1　SSH 在 Agent 动手前，</text>
+<text x="690" y="454" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#5E6B75" font-weight="400">推出转账与改密码。</text>
+<line x1="72" y1="664" x2="1208" y2="664" stroke="#DDE2E6" stroke-width="1"/>
+<text x="72" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">一、两类威胁</text>
+<text x="1208" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400" text-anchor="end">02 / 09</text>
+</svg>

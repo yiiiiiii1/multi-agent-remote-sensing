@@ -7,7 +7,7 @@
 | --- | --- |
 | Project Name | SSH 单篇精读 |
 | Canvas Format | PPT 16:9 (1280 × 720) |
-| Page Count | 9 |
+| Page Count | 10 |
 | Primary Language | zh-CN |
 | Target Audience | 导师；熟悉 LLM 与 Agent 安全，本次主要检验我是否真正读懂一篇论文，而不只记住结论 |
 | Communication Intent | 单篇论文精读汇报：把 ICML 2026 的 Speculative Safety Honeypot 讲透——它把 Agent 防御从“回顾历史”改成“动手前推演”，用三个模拟器异步建推测树、以真实动作剪枝，并靠决策冗余降低对单个检测器精度的依赖 |
@@ -131,6 +131,8 @@
 | ssh-fig1.png | 1076×471 | 2.28 | 动机图：用户请求被邮件里的注入劫持，SSH 在动手前推出转账与改密码 | figure | 居中偏左，右侧留出三行讲图标注的呼吸位，不加边框 | no-crop | user | Existing | Fig. 1 | keep | 正文 |
 | ssh-fig2.png | 2084×972 | 2.14 | 模型图：异步发送消息列表、三个模拟器建树、真实动作剪枝、右侧 Beam Search 细节 | figure | 通栏置于页面中部，上下各留 28 px，右侧 Beam Search 细节不得被裁 | no-crop | user | Existing | Fig. 2 | keep | 正文 |
 | ssh-fig3.png | 1022×539 | 1.90 | 结果图：All 与 w/o. Zero 两组、双轴（风险分柱 + 告警率虚线） | figure | 半宽置左，右侧放两条结论；不得缩放至刻度不可读 | no-crop | user | Existing | Fig. 3 | keep | 正文 |
+| ssh-table2.png | 1335×623 | 2.14 | Table 2 原表：HarmBench / Circuit Breaker 两子集 × M=1–5 | table | 右侧直放，不加框 | no-crop | user | Existing | Table 2 | keep | 正文 |
+| ssh-table3.png | 1335×312 | 4.28 | Table 3 原表：BFCL-v3 四项与 Overall + XSTest 拒答率 | table | 左下直放，不加框 | no-crop | user | Existing | Table 3 | keep | 正文 |
 | ssh-fig4.png | 2084×413 | 5.05 | 结果图：AgentDojo/ActorAttack 暴露率与命中率对比，最右为 BFCL-v3 深度 2–5 | figure | 通栏置底，五个子图横向平铺；M 轴刻度必须可读 | no-crop | user | Existing | Fig. 4 | keep | 正文 |
 
 ## IX. Content Outline

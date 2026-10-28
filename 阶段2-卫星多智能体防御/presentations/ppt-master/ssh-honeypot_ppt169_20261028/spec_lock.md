@@ -54,6 +54,8 @@
 - fig2: images/ssh-fig2.png | source=user | crop=no-crop
 - fig3: images/ssh-fig3.png | source=user | crop=no-crop
 - fig4: images/ssh-fig4.png | source=user | crop=no-crop
+- tbl2: images/ssh-table2.png | source=user | crop=no-crop
+- tbl3: images/ssh-table3.png | source=user | crop=no-crop
 
 ## page_rhythm
 - P01: anchor
@@ -64,7 +66,8 @@
 - P06: dense
 - P07: anchor
 - P08: dense
-- P09: dense
+- P09: breathing
+- P10: dense
 
 ## pptx_structure
 - mode: flat
