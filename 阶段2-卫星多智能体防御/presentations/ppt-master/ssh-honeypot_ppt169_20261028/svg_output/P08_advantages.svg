@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" data-pptx-page-role="content">
 <title>四、Key advantages</title>
 <rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
 <rect x="72" y="56" width="48" height="4" fill="#0E8A7D"/>
@@ -15,5 +15,5 @@
 <text x="96" y="633" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#5E6B75" font-weight="400">支撑：PromptGuard 单独 12.25% ASR、Judger 单独 10.48%，加 SSH 都变 0%；连 86M 的 PromptGuard 也能做到。</text>
 <line x1="72" y1="664" x2="1208" y2="664" stroke="#DDE2E6" stroke-width="1"/>
 <text x="72" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">四、Key advantages</text>
-<text x="1208" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400" text-anchor="end">07 / 10</text>
+<text x="1208" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400" text-anchor="end">08 / 11</text>
 </svg>

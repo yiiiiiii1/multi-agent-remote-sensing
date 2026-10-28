@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" data-pptx-page-role="content">
 <title>二、两个问题</title>
 <rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
 <rect x="72" y="56" width="48" height="4" fill="#0E8A7D"/>
@@ -11,11 +11,11 @@
 <text x="98" y="378" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#16202A" font-weight="700">问题二　严格与宽松之间没有免费的解</text>
 <text x="98" y="414" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#1F2933" font-weight="400">严了误报高；放宽又漏掉拆散在序列里的深层意图。</text>
 <text x="98" y="448" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#1F2933" font-weight="400">攻击者只要把意图摊到多轮，单轮检查就都放行。</text>
-<rect x="72" y="516" width="1136" height="104" fill="#16202A" rx="6"/>
-<text x="100" y="552" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#8FA3B0" font-weight="400">它站的位置</text>
-<text x="100" y="590" font-family="Microsoft YaHei, Arial, sans-serif" font-size="22" fill="#FFFFFF" font-weight="400">推测解码已把「推测」推到动作级（DSP / Speculative Action / SpecReason），但不做安全；</text>
-<text x="718" y="590" font-family="Microsoft YaHei, Arial, sans-serif" font-size="22" fill="#0E8A7D" font-weight="700">安全只用到了 token 级（SSD）。</text>
+<rect x="72" y="512" width="1136" height="124" fill="#16202A" rx="6"/>
+<text x="100" y="544" font-family="Microsoft YaHei, Arial, sans-serif" font-size="18" fill="#8FA3B0" font-weight="400">它站的位置</text>
+<text x="100" y="582" font-family="Microsoft YaHei, Arial, sans-serif" font-size="22" fill="#FFFFFF" font-weight="400">推测解码已把「推测」推到动作级：DSP、Speculative Action、SpecReason。</text>
+<text x="100" y="616" font-family="Microsoft YaHei, Arial, sans-serif" font-size="22" fill="#0E8A7D" font-weight="700">但都不做安全——安全只用到了 token 级（SSD）。</text>
 <line x1="72" y1="664" x2="1208" y2="664" stroke="#DDE2E6" stroke-width="1"/>
 <text x="72" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">二、两个问题</text>
-<text x="1208" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400" text-anchor="end">03 / 10</text>
+<text x="1208" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400" text-anchor="end">04 / 11</text>
 </svg>

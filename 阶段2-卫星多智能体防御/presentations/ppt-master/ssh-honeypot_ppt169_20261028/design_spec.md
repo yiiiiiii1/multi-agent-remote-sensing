@@ -7,7 +7,7 @@
 | --- | --- |
 | Project Name | SSH 单篇精读 |
 | Canvas Format | PPT 16:9 (1280 × 720) |
-| Page Count | 10 |
+| Page Count | 11 |
 | Primary Language | zh-CN |
 | Target Audience | 导师；熟悉 LLM 与 Agent 安全，本次主要检验我是否真正读懂一篇论文，而不只记住结论 |
 | Communication Intent | 单篇论文精读汇报：把 ICML 2026 的 Speculative Safety Honeypot 讲透——它把 Agent 防御从“回顾历史”改成“动手前推演”，用三个模拟器异步建推测树、以真实动作剪枝，并靠决策冗余降低对单个检测器精度的依赖 |

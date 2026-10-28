@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" data-pptx-page-role="content">
 <title>证据 · 两张结果图</title>
 <rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
 <rect x="72" y="56" width="48" height="4" fill="#0E8A7D"/>
@@ -16,5 +16,5 @@
 <text x="72" y="596" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#5E6B75" font-weight="400">命中率 47.2% 对 8% 的落差说明：命中高靠剪枝，命中低靠多分支兜底。</text>
 <line x1="72" y1="664" x2="1208" y2="664" stroke="#DDE2E6" stroke-width="1"/>
 <text x="72" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">证据 · 两张结果图</text>
-<text x="1208" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400" text-anchor="end">09 / 10</text>
+<text x="1208" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400" text-anchor="end">10 / 11</text>
 </svg>

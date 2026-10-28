@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" data-pptx-page-role="content">
+<title>证据 · 两张结果图</title>
+<rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+<rect x="72" y="56" width="48" height="4" fill="#0E8A7D"/>
+<text x="72" y="118" font-family="Microsoft YaHei, Arial, sans-serif" font-size="42" fill="#16202A" font-weight="700">不误报，以及 M 怎么选</text>
+<image href="../images/ssh-fig3.png" x="72" y="190" width="470" height="247" preserveAspectRatio="xMidYMid meet"/>
+<text x="72" y="458" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">论文 Fig. 3　柱子是风险分（左轴），虚线是告警率（右轴）</text>
+<image href="../images/ssh-fig4.png" x="574" y="190" width="634" height="126" preserveAspectRatio="xMidYMid meet"/>
+<text x="574" y="330" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">论文 Fig. 4　左侧比暴露率与命中率，最右为深度 2–5</text>
+<text x="574" y="368" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#0E8A7D" font-weight="700">有攻击：57.2% / 81.5% 告警；正常任务：0% / 0%</text>
+<text x="574" y="400" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">暴露率上 Beam Search 明显领先；命中率两者接近</text>
+<text x="574" y="428" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">工具调用命中 47.2%，文本越狱仅 8%——靠多分支兜底</text>
+<line x1="72" y1="478" x2="1208" y2="478" stroke="#DDE2E6" stroke-width="1"/>
+<text x="72" y="512" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#16202A" font-weight="700">左边回答「误不误报」：正常任务零告警，所以 0% ASR 不是靠乱报警换的。</text>
+<text x="72" y="548" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#16202A" font-weight="700">右边回答「M 取多大」：4 到 5 只涨 1 个点，5 是划算的停点。</text>
+<text x="72" y="596" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#5E6B75" font-weight="400">命中率 47.2% 对 8% 的落差说明：命中高靠剪枝，命中低靠多分支兜底。</text>
+<line x1="72" y1="664" x2="1208" y2="664" stroke="#DDE2E6" stroke-width="1"/>
+<text x="72" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">证据 · 两张结果图</text>
+<text x="1208" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400" text-anchor="end">10 / 11</text>
+</svg>

@@ -59,15 +59,16 @@
 
 ## page_rhythm
 - P01: anchor
-- P02: breathing
-- P03: dense
+- P02: anchor
+- P03: breathing
 - P04: dense
-- P05: breathing
-- P06: dense
-- P07: anchor
-- P08: dense
-- P09: breathing
-- P10: dense
+- P05: dense
+- P06: breathing
+- P07: dense
+- P08: anchor
+- P09: dense
+- P10: breathing
+- P11: dense
 
 ## pptx_structure
 - mode: flat
