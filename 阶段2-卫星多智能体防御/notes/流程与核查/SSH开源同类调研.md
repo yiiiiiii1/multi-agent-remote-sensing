@@ -189,10 +189,78 @@ clone `SaFo-Lab/DRIFT` 和 `Graph-COM/TurnGate`，看它们的代码组织——
 
 ---
 
+## 三·补 预测式护栏这一族（第三次检索才找到，之前全漏）
+
+**第三次换的方法：反查参考文献。** 前向引文查不到（SSH、DreamGuard、TurnGate 被引数都是 0，太新），改成读 DreamGuard 和那篇批判论文的参考文献——**这两篇本身就在梳理这一族**。
+
+**结果：这一族至少 11 篇，我之前一篇都没找到。**
+
+### 这一族的完整名单
+
+| 论文 | 出处 | 开源 | 一句话做法 |
+|---|---|---|---|
+| **SafePred**（Chen et al. 2026） | **arXiv 2602.01725（预印本）** | ✅ **`YurunChen/SafePred` ★71，官方** | world model 预测短期+长期风险的语义表示，"**识别并剪掉会进入高风险状态的动作**"，风险-决策闭环 |
+| **SafeMCP**（Wang et al. 2026a） | 预印本 | ❌ 未找到 | 环境落地的 look-ahead 推理 + 主动过滤工具调用 |
+| **JANUS**（Xiong et al. 2026） | 预印本 | ❌ 未找到 | **联合训练风险预判与安全裁决**，按"对下游安全的贡献"优化预测 |
+| **SeerGuard**（Yu et al. 2026） | 预印本 | ❌ 未找到 | 移动 GUI Agent：语义上的下一状态预测 + 风险评估 |
+| **TRACES**（Li et al. 2026） | 预印本 | ❌ 未找到 | 多轮 LLM 的主动安全审计 |
+| **SafetyDrift**（Dhodapkar & Pishori 2026） | 预印本 | ❌ 未找到 | 预测安全性漂移 |
+| **MAGE**（Wang et al. 2026b） | 预印本 | ❌ 未找到 | 维护安全相关的记忆/运行时状态 |
+| **SafeAgent**（Liu et al. 2026c） | 预印本 | ❌ 未找到 | 运行时保护架构 |
+| **AgentDoG**（Liu et al. 2026b） | arXiv 2601.18491（预印本） | ❌ 未找到 | 诊断式护栏框架 |
+| **ToolSafe**（2026） | **Findings of ACL 2026** | ✅ **`MurrayTom/ToolSafe` ★86** | 工具调用安全：主动的**步级**护栏 + 反馈 |
+| **TS-Guard**（Mou et al. 2026） | 预印本 | ❌ 未找到 | 训练专用 guard 模型 |
+
+### 这一族里的三个关键事实
+
+**1. 这一族几乎全是 2026 年的预印本。**
+
+除 ToolSafe（Findings of ACL 2026，不是正会）之外，**没有一篇进 CCF-A 正会**。
+
+**换句话说：SSH（ICML 2026）是这一族里唯一 CCF-A 正会的论文。** 这对 SSH 的站位判断很重要——它抢在前面了。
+
+**2. 最像 SSH 的开源项目是 SafePred。**
+
+它摘要里的三句话，几乎就是 SSH 的另一个版本：
+
+> "aligning **predicted future risks** with **current decisions**"
+> "leverages the prediction capability of the **world model** to generate semantic representations of both short-term and long-term risks"
+> "**identifying and pruning** actions that lead to high-risk states"
+
+**跟 SSH 的差别**：它用 world model 出语义风险表示 + 剪动作，**没有 M 条分支的轨迹树，也没有三个角色模拟器分工**；场景是 Computer-Using Agent（GUI 点击），不是工具调用型 Agent。
+
+**3. 所以原来的问题，答案要改写成：**
+
+> **「CCF-A 正会 + 开源 + 预测式」三个条件同时满足的：没有。**
+> 「预测式 + 开源」有：**SafePred（★71）**、ToolSafe（★86）。
+> 「预测式 + CCF-A 正会」只有：**SSH 自己**，但 SSH 不开源。
+
+### 为什么前两次都漏了
+
+| 漏的原因 | 具体 |
+|---|---|
+| **关键词不对** | 我搜的是 "proactive defense"、"predictive guardrail"，这些论文标题里写的是 "world model"、"look-ahead"、"risk anticipation"、"safety drift" |
+| **OpenAlex 索引滞后** | 这批全是 2026 年 1–3 月的新预印本，OpenAlex 还没收 |
+| **前向引文查不到** | SSH 被引 0，没有下游可查 |
+| **只有反查参考文献有效** | DreamGuard 和批判论文的相关工作段落，就是这一族的完整清单 |
+
+**教训：查"同一族"最快的路不是搜关键词，是读最接近那篇的 related work 和参考文献。**
+
+---
+
 ## 四、这次覆盖到什么程度（诚实边界）
 
+**这轮一共做了三次检索，三种方法**：
+
+| 轮次 | 方法 | 结果 |
+|---|---|---|
+| 第一次 | 网页搜索（撞见式） | 9 篇，漏了一批 |
+| 第二次 | OpenAlex 关键词 + 会议过滤 | 补 4 篇，但会议判错 5 篇 |
+| **第三次** | **反查参考文献（backward citation）** | **补出整族 11 篇，这才是真正的同类** |
+
 **覆盖到的**：
-- 51 个查询，8 个词族，两轮
+- 51 个查询，8 个词族，两轮关键词扫描
+- 3 篇核心论文的参考文献做反查
 - CCF-A 会议清单（17 个）+ 2023 至今
 - OpenAlex 全文检索 + 会议字段过滤
 
