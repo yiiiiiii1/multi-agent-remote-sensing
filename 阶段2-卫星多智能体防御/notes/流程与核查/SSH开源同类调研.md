@@ -246,6 +246,50 @@ clone `SaFo-Lab/DRIFT` 和 `Graph-COM/TurnGate`，看它们的代码组织——
 
 **教训：查"同一族"最快的路不是搜关键词，是读最接近那篇的 related work 和参考文献。**
 
+
+## 三·补2 反查只用了两篇，做窄了（第四次补挖）
+
+**上一轮我只从 DreamGuard 和批判论文里反查参考文献。** 这个做法本身对，但样本太少。
+
+补挖 SafePred 和 ToolSafe 的参考文献后，**又冒出 8 篇**：
+
+| 论文 | 出处（据引文） | 开源 | 做法 |
+|---|---|---|---|
+| **IPIGuard**（An et al. 2025） | 预印本/arXiv | ✅ `Greysahy/ipiguard` ★26 | **工具依赖图**防御间接注入 |
+| **HarmonyGuard**（Chen et al. 2026） | arXiv | ✅ `YurunChen/HarmonyGuard` ★28 | Web Agent：自适应策略增强 + 双目标优化（**和 SafePred 同一作者**） |
+| **WebGuard**（Zheng et al. 2025） | arXiv | ✅ `OSU-NLP-Group/WebGuard` ★13 | 可泛化的 Web Agent 护栏 |
+| **ShieldAgent**（Chen, Kang & Li 2025） | arXiv 2503 | ❌ | 可验证的安全策略推理 |
+| **VeriGuard**（2025） | arXiv 2510 | ❌ | 验证式代码生成做 Agent 安全 |
+| **Simura**（Deng et al. 2025） | arXiv 2507 | ❌ | **world-model 驱动的仿真推理** |
+| **GuardAgent**（Xiang et al. 2025） | arXiv | ❌ | 知识驱动的安全检查清单 |
+| **TS-Guard**（Mou et al. 2026） | 预印本 | ❌ | ToolSafe 自己训的步级安全判别模型 |
+
+**顺带两个基准**：**WASP**（Web Agent 注入攻击基准）、**OS-Harm**（Computer-Use Agent 安全基准）。
+
+---
+
+## 三·补3 一个必须承认的事实：这个领域查不完
+
+**三轮检索，三种方法，每轮都发现上一轮不够：**
+
+| 轮次 | 方法 | 这一轮的收获 | 这一轮暴露的问题 |
+|---|---|---|---|
+| 一 | 网页搜索 | 9 篇 | 撞见式，系统性差 |
+| 二 | 关键词 + 会议过滤 | 补 4 篇 | 子串匹配，会议判错 5 篇 |
+| 三 | 反查 2 篇的参考文献 | 补出整族 11 篇 | 反查样本太少 |
+| 四 | 反查 4 篇的参考文献 | 又补 8 篇 | 还会继续长 |
+
+**结论：这是个 2026 年正在爆发的方向，没有穷尽的一天。**
+
+**但边界已经清楚了**，可以收敛：
+
+- 这一族叫 **predictive / proactive guardrail**（预测式护栏），核心都是"执行前预判后果再决策"
+- **全部集中在 2025Q4–2026 的预印本**，CCF-A 正会只有 SSH 一篇
+- 开源的有 **5 个**：SafePred ★71（最像）、ToolSafe ★86、HarmonyGuard ★28、IPIGuard ★26、WebGuard ★13
+- **SSH 的独特点没变**：M=5 分支轨迹树 + 三模拟器分工 + 告警后重采样
+
+**所以检索到此为止够用了。** 再往下挖只会加名字，不会改结论。
+
 ---
 
 ## 四、这次覆盖到什么程度（诚实边界）
