@@ -20,16 +20,34 @@
 
 | 变化 | 具体 |
 |---|---|
-| **新增** | **DRIFT**（NeurIPS 2025，注入隔离防御，**已开源** ★62） |
-| **新增** | **KG-Guard**（ICML 2025，知识图谱引导的多轮越狱防御） |
-| **新增** | **ShadowPlay**（ASE 2025，角色型注入防御） |
-| **新增** | **C-SafeGen**（NeurIPS 2025，流式护栏，可认证） |
-| **新增** | **The Task Shield**（ACL 2025）、**Causal Influence Prompting**（ACL 2025）、**TrustAgent**（ACL 2024）、**R-Judge**（ACL 2024，**已开源** ★116）、**AirGapAgent**（CCS 2024） |
+| **新增·真 CCF-A** | **DRIFT**（NeurIPS 2025，注入隔离防御，**已开源** ★62） |
+| **新增·**~~CCF-A~~ | **KG-Guard** —— **实际是 ICMLCA 2025，不是 ICML** |
+| **新增·**~~CCF-A~~ | **ShadowPlay** —— **实际是 Cyber-AI 2025，不是 ASE** |
+| **新增·真 CCF-A** | **C-SafeGen**（NeurIPS 2025，可认证流式护栏） |
+| **新增·真 CCF-A** | **The Task Shield**（ACL 2025 正会）、**AirGapAgent**（CCS 2024） |
+| **新增·非正会** | TrustAgent（**Findings of EMNLP** 2024）、R-Judge（**Findings of EMNLP** 2024）、Causal Influence Prompting（**Findings of ACL** 2025） |
 | **修正** | **DataSentinel 是 S&P 2025，不是 ICML 2024**（我第一版凭印象写错了） |
 
 **结论没变，但证据面完全不一样了**——第一版是"我搜到 9 篇里没有"，这一版是"51 个查询扫遍 CCF-A 清单，仍然没有"。
 
 ---
+
+## 第二版勘误（2026-11-04 读摘要时发现）
+
+**我第一版的错是漏检，第二版的错是假阳性——两种都错，性质不同。**
+
+第二版用会议名**子串匹配**，结果把这几篇判成了 CCF-A：
+
+| 论文 | 我写的 | **实际是** | 为什么会错 |
+|---|---|---|---|
+| KG-Guard | ICML 2025 | **ICMLCA 2025** | "International Conference on **Machine Learning** and Computer Application" 含 Machine Learning |
+| ShadowPlay | ASE 2025 | **Cyber-AI 2025** | 会议名匹配错 |
+| TrustAgent | ACL 2024 | **Findings of EMNLP 2024** | Findings 不是正会 |
+| R-Judge | ACL 2024 | **Findings of EMNLP 2024** | 同上 |
+| Causal Influence Prompting | ACL 2025 | **Findings of ACL 2025** | 同上 |
+
+**教训：会议归属不能靠字符串推断，必须看 DOI 或官方列表。**
+下面表格里凡标 ⚠️ 的，都是"名字像但实际不是 CCF-A"。
 
 ## 一句话结论
 
@@ -67,13 +85,13 @@
 | **SecAlign** | CCS 2025 正会 | ✅ `facebookresearch/SecAlign` ★104 | 把抗注入用 DPO 训进权重；优化型攻击 ASR 降到 8%/1%（Table 6, p8） |
 | **DRIFT** | **NeurIPS 2025** | ✅ `SaFo-Lab/DRIFT` ★62 | 动态规则 + 注入隔离 |
 | **The Task Shield** | ACL 2025 | 未查到 | 强制任务对齐防间接注入 |
-| **ShadowPlay** | ASE 2025 | `aalosbeh/ShadowPlay`（★0，疑非官方） | 角色型注入与依赖攻击防御 |
+| ~~ShadowPlay~~ ⚠️ | **Cyber-AI 2025（不是 ASE）** | `aalosbeh/ShadowPlay`（★0，疑非官方） | 四层防御：语义分析+依赖校验+行为监控+响应校验 |
 
 ### C. 多轮攻击防御（威胁模型最贴，2 篇）
 
 | 论文 | 会议 | 开源 | 备注 |
 |---|---|---|---|
-| **KG-Guard** | **ICML 2025** | ❌ 未查到 | 知识图谱引导的多轮越狱防御框架 |
+| ~~KG-Guard~~ ⚠️ | **ICMLCA 2025（不是 ICML）** | ❌ 未查到 | 对话级知识图谱追踪实体关系演化，检测向不安全目标收敛 → 主动 re-steering |
 | **TurnGate**（上表） | 预印本 | ✅ | 研究"该在第几轮拦"，有最早致害轮 t\* 的形式化 |
 
 ### D. 运行时监控 / 护栏（3 篇）
@@ -81,8 +99,8 @@
 | 论文 | 会议 | 开源 | 备注 |
 |---|---|---|---|
 | **C-SafeGen** | NeurIPS 2025 | 未查到 | 可认证的流式护栏（claim-based） |
-| **TrustAgent** | ACL 2024 | 未查到 | 安全可信 Agent 框架 |
-| **R-Judge** | ACL 2024 | ✅ `Lordog/R-Judge` ★116 | Agent 风险意识**基准**，不是防御 |
+| ~~TrustAgent~~ ⚠️ | **Findings of EMNLP 2024** | 未查到 | Agent 宪法 + 计划前/中/后三阶段安全 |
+| ~~R-Judge~~ ⚠️ | **Findings of EMNLP 2024** | ✅ `Lordog/R-Judge` ★116 | Agent 风险意识基准，不是防御 |
 
 ### E. 执行隔离 / 信息流控制（3 篇）
 
@@ -100,9 +118,23 @@
 | **AgentDojo** | NeurIPS 2024 D&B | ✅ `ethz-spylab/agentdojo` ★985 | SSH 自己也用这个基准 |
 | **InjecAgent** | ACL 2024 | ✅ | 间接注入基准 |
 
-**合计：CCF-A 相关论文 19 篇，其中确认开源 11 篇。**
+**合计：真正 CCF-A 相关 14 篇，其中确认开源 9 篇。另有 5 篇名字像但不是 CCF-A（标 ⚠️）。**
 
 ---
+
+## 一·补 新找到这批的摘要要点（只读了摘要，没读全文）
+
+| 论文 | 真正会议 | 摘要说的是什么 | 是否预测未来 |
+|---|---|---|---|
+| **DRIFT** | NeurIPS 2025 | 动态安全策略 + **注入隔离 + 记忆流隔离** | ❌ 不预测 |
+| **C-SafeGen** | NeurIPS 2025 | claim-based 流式解码 + conformal 统计保证，**可认证安全生成** | ❌ 不预测 |
+| **The Task Shield** | ACL 2025 正会 | **把安全从「别做坏事」改成「每个动作都得服务用户目标」**，test-time | ❌ 但同源：都是判"该不该做" |
+| **AirGapAgent** | CCS 2024 | 上下文完整性：只给 Agent 任务必需的数据 | ❌ 不预测 |
+| **DataSentinel** | S&P 2025 | 博弈论 minimax 训注入检测器，抗自适应攻击 | ❌ 不预测 |
+| KG-Guard ⚠️ | ICMLCA 2025 | 对话级知识图谱追踪**实体关系演化**，检测向不安全目标收敛 → 主动 re-steering | ⭕ 部分（看累积趋势，不是看未来） |
+| Causal Influence Prompting ⚠️ | Findings of ACL 2025 | 用**因果影响图**让 Agent **预判有害后果** | ⭕ 是"预判后果"，不是"预测动作" |
+
+**读摘要的收获**：真正启发最大的是 **The Task Shield**——它不预测未来，但把安全问题重新定义成"动作是否服务用户目标"，是正交视角而非又一层过滤器。
 
 ## 二、深读过的三篇（原文全文，不是摘要）
 
