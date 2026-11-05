@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" data-pptx-page-role="content">
+<title>三、方法 · C</title>
+<rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+<rect x="72" y="56" width="48" height="4" fill="#0E8A7D"/>
+<text x="72" y="118" font-family="Microsoft YaHei, Arial, sans-serif" font-size="42" fill="#16202A" font-weight="700">对上就剪窄，对不上就留着</text>
+<rect x="72" y="182" width="4" height="88" fill="#0E8A7D"/>
+<text x="96" y="206" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#16202A" font-weight="700">1  匹配</text>
+<text x="96" y="238" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">函数调用比函数名 + 参数；文本用 SimHash 算相似度</text>
+<rect x="72" y="302" width="4" height="88" fill="#0E8A7D"/>
+<text x="96" y="326" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#16202A" font-weight="700">2  剪枝</text>
+<text x="96" y="358" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">匹配上只保留那一支；匹配不上保留原树，当未来风险的参考</text>
+<rect x="72" y="422" width="4" height="88" fill="#0E8A7D"/>
+<text x="96" y="446" font-family="Microsoft YaHei, Arial, sans-serif" font-size="24" fill="#16202A" font-weight="700">3  打分</text>
+<text x="96" y="478" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">检测器看剩余叶节点，送进去的是从根到叶的整条路径</text>
+<rect x="700" y="182" width="508" height="196" fill="#F4F6F7" rx="6"/>
+<text x="724" y="218" font-family="Microsoft YaHei, Arial, sans-serif" font-size="22" fill="#16202A" font-weight="700">双阈值：τ₁ &lt; τ₂</text>
+<text x="724" y="252" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">推测命中 → 走低阈值（推测可信，从严）</text>
+<text x="724" y="282" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">推测未命中 → 走高阈值（参考价值低，防误报）</text>
+<text x="724" y="322" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#0E8A7D" font-weight="700">风险分 = 有风险的叶子 / 总叶子</text>
+<rect x="700" y="398" width="508" height="196" fill="#FDF4EC" stroke="#E9C6A8" stroke-width="1" rx="6"/>
+<text x="724" y="434" font-family="Microsoft YaHei, Arial, sans-serif" font-size="22" fill="#C2410C" font-weight="700">超阈值后的三种响应</text>
+<text x="724" y="468" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">引导　/　重采样　/　直接终止</text>
+<text x="724" y="504" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#1F2933" font-weight="400">实验选的是重采样：不直接终止，</text>
+<text x="724" y="534" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#C2410C" font-weight="700">重新生成，最多五次，仍无安全动作才中断。</text>
+<text x="724" y="568" font-family="Microsoft YaHei, Arial, sans-serif" font-size="20" fill="#5E6B75" font-weight="400">这个选择把平均效用拉回 8.12%。</text>
+<line x1="72" y1="664" x2="1208" y2="664" stroke="#DDE2E6" stroke-width="1"/>
+<text x="72" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400">三、方法 · C</text>
+<text x="1208" y="686" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#5E6B75" font-weight="400" text-anchor="end">07 / 11</text>
+</svg>

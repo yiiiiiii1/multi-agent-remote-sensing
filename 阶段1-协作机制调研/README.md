@@ -1,6 +1,6 @@
 # 阶段1 · 协作机制调研（已完成）
 
-**成果**：`presentations/卫星多智能体安全调研汇报.pptx`，40 页，约 29 分钟讲稿。
+**成果**：`presentations/多智能体调研汇报.pptx`，**39 页**，约 29 分钟讲稿。
 **讲稿**：`presentations/汇报稿.md`
 
 ## 这一阶段干了什么
@@ -18,6 +18,6 @@
 | `notes/CAMEL复现总结.md` | CAMEL 复现实验的记录 |
 | `figures/` | 30 张裁好的图与表，见 `INDEX.md` |
 | `papers/` | 论文 PDF（不进 git） |
-| `presentations/` | 最终 PPT + 讲稿 |
+| `presentations/` | 最终 PPT（多智能体调研汇报.pptx）+ 汇报稿 + CAMEL 复现汇报 |
 
 **已归档**：`../_archive/阶段1-汇报规划/`（当时的 PPT 规划，已过期）
