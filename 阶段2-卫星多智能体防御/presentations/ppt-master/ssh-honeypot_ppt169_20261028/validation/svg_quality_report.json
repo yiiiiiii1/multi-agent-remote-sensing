@@ -4,7 +4,7 @@
   "target": "/Users/a16411/Documents/my-research/multi-agent-remote-sensing/阶段2-卫星多智能体防御/presentations/ppt-master/ssh-honeypot_ppt169_20261028",
   "source_fingerprint": {
     "algorithm": "sha256",
-    "digest": "314148411c2e5783ec42810726dc05842c754ba05ace14487b8390e9d6aa0f39",
+    "digest": "bef34250b3914ba1206e5544970330f7a79f5bb72d434e52e3e56525c2e522d9",
     "file_count": 11,
     "files": [
       {
@@ -29,7 +29,7 @@
       },
       {
         "file": "P06_speculate.svg",
-        "sha256": "359de2427c15ac58bb5ef20ef2a0ff00aef88ce87fd0ce328ba99c145417bafc"
+        "sha256": "811f756d93c38ea425377c4d6afedba450a55021abfab32f3c885711981e976a"
       },
       {
         "file": "P07_verify.svg",
@@ -677,7 +677,7 @@
         "tspan_elements": 0
       },
       "passed": true,
-      "source_sha256": "359de2427c15ac58bb5ef20ef2a0ff00aef88ce87fd0ce328ba99c145417bafc"
+      "source_sha256": "811f756d93c38ea425377c4d6afedba450a55021abfab32f3c885711981e976a"
     },
     {
       "file": "P07_verify.svg",
