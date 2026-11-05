@@ -139,7 +139,7 @@ multi-agent-remote-sensing/
 │   ├── figures/              30 张裁好的图与表，索引 INDEX.md
 │   ├── papers/               论文 PDF（不上传 git）
 │   └── presentations/        PPT、汇报稿、规划（不上传 git）
-├── 阶段2-卫星多智能体防御/    ← 当前阶段
+├── 阶段2-卫星多智能体防御/    ← 已完成：SSH 精读 + 11 页 PPT 汇报
 │   ├── notes/
 │   │   ├── INDEX.md          ★ 找东西先看这张表
 │   │   ├── 论文笔记/         13 份（八篇 + 换下去的 + 调研查到的）
@@ -154,10 +154,17 @@ multi-agent-remote-sensing/
 │       ├── build_ppt_v2.py / crop_*.py / check_ppt.py
 │       ├── skill-科研汇报PPT.md
 │       └── archive/          旧的 19 页 PPT、旧脚本、过期大纲
+├── 阶段3-MAS安全防御/         ← 当前阶段（2026-11-05 起）
+│   ├── README.md              ★ 这一阶段要解决什么、三条判断、先读哪三篇
+│   ├── 01-主线-SSH/           SSH 论文 + 四份精读笔记（从阶段2整组移过来）
+│   ├── 02-预选论文/           候选池 12 篇，见 索引.md（标了 CCF-A / 开源 / 与 SSH 关系 / 读没读）
+│   └── notes/                 调研与核查：四轮检索记录、MAS 一族、答老师问、独立复核
 ├── experiments/              跑过的代码
 │   ├── 阶段1-CAMEL复现/       01–12 号 demo + 日志
 │   └── archive/              my_camel_project、rs_model-已停
 └── tools/                    外部工具（zotero 导入、pdf 翻译；pdf2zh 的缓存不进 git）
 ```
 
-**当前阶段的东西一律放 `阶段2-卫星多智能体防御/`**，不要再往阶段一里加。
+**当前阶段的东西一律放 `阶段3-MAS安全防御/`**，不要再往阶段一里加。
+
+**阶段2 已收尾**：SSH 精读 + 11 页 PPT 已汇报完，成果留在 `阶段2-卫星多智能体防御/presentations/SSH精读.pptx` 和 `精读PPT标准流程.md`。
