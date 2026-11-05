@@ -93,5 +93,80 @@
   "name": "Yan 等 - 2025 - Beyond Self-Talk Communication-Centric Survey of LLM Based MAS.pdf",
   "size": 1158630,
   "at": "2026-10-09 22:05"
+ },
+ "阶段3-MAS安全防御/02-预选论文/AgentBreeder - 多智能体脚手架安全 (NeurIPS2025).pdf": {
+  "name": "AgentBreeder - 多智能体脚手架安全 (NeurIPS2025).pdf",
+  "size": 1699148,
+  "at": "2026-11-05 13:57"
+ },
+ "阶段3-MAS安全防御/02-预选论文/AmongUs - 模型协作恶意贡献 (ACL2026正会).pdf": {
+  "name": "AmongUs - 模型协作恶意贡献 (ACL2026正会).pdf",
+  "size": 759450,
+  "at": "2026-11-05 13:58"
+ },
+ "阶段3-MAS安全防御/02-预选论文/BlindGuard - 多智能体无监督防御 (ACL2026正会).pdf": {
+  "name": "BlindGuard - 多智能体无监督防御 (ACL2026正会).pdf",
+  "size": 1795790,
+  "at": "2026-11-05 13:58"
+ },
+ "阶段3-MAS安全防御/02-预选论文/DreamGuard - 世界模型运行时护栏 (arXiv2026).pdf": {
+  "name": "DreamGuard - 世界模型运行时护栏 (arXiv2026).pdf",
+  "size": 821961,
+  "at": "2026-11-05 13:59"
+ },
+ "阶段3-MAS安全防御/02-预选论文/Fides - 信息流控制 (arXiv2025).pdf": {
+  "name": "Fides - 信息流控制 (arXiv2025).pdf",
+  "size": 634860,
+  "at": "2026-11-05 13:59"
+ },
+ "阶段3-MAS安全防御/02-预选论文/IsolateGPT - 执行隔离 (NDSS2025).pdf": {
+  "name": "IsolateGPT - 执行隔离 (NDSS2025).pdf",
+  "size": 2614790,
+  "at": "2026-11-05 14:00"
+ },
+ "阶段3-MAS安全防御/02-预选论文/PredictiveGuardrail - 预测式护栏批判 (arXiv2026).pdf": {
+  "name": "PredictiveGuardrail - 预测式护栏批判 (arXiv2026).pdf",
+  "size": 4066096,
+  "at": "2026-11-05 14:00"
+ },
+ "阶段3-MAS安全防御/02-预选论文/ProbGuard - 概率预测运行时监控 (ASE2026).pdf": {
+  "name": "ProbGuard - 概率预测运行时监控 (ASE2026).pdf",
+  "size": 1486414,
+  "at": "2026-11-05 14:01"
+ },
+ "阶段3-MAS安全防御/02-预选论文/SafeMCP - 主动能力调节 (ACL2026正会).pdf": {
+  "name": "SafeMCP - 主动能力调节 (ACL2026正会).pdf",
+  "size": 1182585,
+  "at": "2026-11-05 14:01"
+ },
+ "阶段3-MAS安全防御/02-预选论文/SafePred - 世界模型预测式护栏 (arXiv2026).pdf": {
+  "name": "SafePred - 世界模型预测式护栏 (arXiv2026).pdf",
+  "size": 1034158,
+  "at": "2026-11-05 14:01"
+ },
+ "阶段3-MAS安全防御/02-预选论文/SecAlign - 偏好优化抗注入 (CCS2025).pdf": {
+  "name": "SecAlign - 偏好优化抗注入 (CCS2025).pdf",
+  "size": 907027,
+  "at": "2026-11-05 14:01"
+ },
+ "阶段3-MAS安全防御/02-预选论文/SelfDefend - 影子LLM防御 (USENIXSec2025).pdf": {
+  "name": "SelfDefend - 影子LLM防御 (USENIXSec2025).pdf",
+  "size": 1533066,
+  "at": "2026-11-05 14:02"
+ },
+ "阶段3-MAS安全防御/02-预选论文/ToolEmu - LM模拟沙盒 (ICLR2024).pdf": {
+  "name": "ToolEmu - LM模拟沙盒 (ICLR2024).pdf",
+  "size": 2712591,
+  "at": "2026-11-05 14:02"
+ },
+ "阶段3-MAS安全防御/02-预选论文/ToolSafe - 步级工具护栏 (FindingsACL2026).pdf": {
+  "name": "ToolSafe - 步级工具护栏 (FindingsACL2026).pdf",
+  "size": 3190330,
+  "at": "2026-11-05 14:02"
+ },
+ "阶段3-MAS安全防御/02-预选论文/TurnGate - 多轮干预时机 (arXiv2026).pdf": {
+  "name": "TurnGate - 多轮干预时机 (arXiv2026).pdf",
+  "size": 1281422,
+  "at": "2026-11-05 14:02"
  }
 }
